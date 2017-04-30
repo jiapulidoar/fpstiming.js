@@ -1,0 +1,49 @@
+{
+  "name": "fpstiming",
+  "version": "0.0.1",
+  "description": "A sequential single-threaded timer on top of which Proscene animations and timing routines are built",
+  "main": "build/fpstiming.js",
+  "module": "build/fpstiming.module.js",
+  "files": [
+    "package.json",
+    "bower.json",
+    "LICENSE",
+    "README.md",
+    "build/fpstiming.js",
+    "build/fpstiming.min.js",
+    "build/fpstiming.module.js",
+    "src",
+    "examples/js"
+  ],
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "test"
+  },
+  "eslintConfig": {
+    "extends": "airbnb"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w -m inline",
+    "lint": "eslint src"
+  },
+  "keywords": [
+    "p5.js",
+    "fpstiming.js",
+    "proscene"
+  ],
+  "author": "",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/@TODO/@TODO/issues"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.9.0"
+  },
+  "dependencies": {
+  }
+}
