@@ -21,7 +21,16 @@
     "test": "test"
   },
   "eslintConfig": {
-    "extends": "airbnb"
+    "extends" : "airbnb",
+    "plugins": [
+        "import"
+    ],
+    "globals": {
+      "window" : true
+    },
+    "rules" : {
+      "no-underscore-dangle": ["error", { "allowAfterThis": true }]
+    }
   },
   "scripts": {
     "build": "rollup -c",
