@@ -1,8 +1,7 @@
 export default class Taskable {
-  /**
-   * Timer callback method
-   */
-  execute() {
-    console.warn("execute method should be implemented");
+  constructor() {
+    if (typeof this.execute === 'function') {
+      throw new TypeError('execute must be overrided');
+    }
   }
 }
