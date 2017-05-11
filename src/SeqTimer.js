@@ -1,34 +1,74 @@
-// @flow
 export default class SeqTimer {
-  create() {}
 
-  constuctor(options) {
-    this.handler = options.handler;
-    this.runOnlyOnce = options.runOnlyOnce || false;
-    this.task = options.task;
+  constuctor({ handler, runOnlyOnce = false, task = null }) {
+    this._task = task;
+    this._handler = handler;
+    this._active = false;
+    this._runOnlyOnce = runOnlyOnce;
+    this._counter = 0;
+    this._period = 0;
+    this._startTime = 0;
     this.create();
-    // aliases
-    this.stop = this.inactivate;
+  }
+
+  get timingTask() {
+    return this._task;
   }
 
   execute() {
     const result = this.triggered();
     if (result) {
-      this.task.execute();
-      if (this.runOnlyOnce) {
-        this.active = false;
+      this._task.execute();
+      if (this._runOnlyOnce) {
+        this.inactivate();
       }
     }
+    return result;
+  }
+
+  cancel() {
+    this.inactivate();
+  }
+
+  create() {
+    this.inactivate();
+  }
+
+  run(period = null) {
+    if (period !== null) {
+      this._period = period;
+    }
+    if (period <= 0) {
+      return;
+    }
+    this._counter = 1;
+    this._active = true;
+    this._startTime = window.performace.now();
+  }
+
+  stop() {
+    this.inactivate();
+  }
+
+  isActive() {
+    return this._active;
+  }
+
+  inactivate() {
+    this.active = false;
   }
 
   triggered() {
-    if (!this.active) {
+    if (!this._active) {
       return false;
     }
+
     let result = false;
-    const elapsedTime = 0;
+
+    const elapsedTime = window.performace.now() - this._startTime;
     const timePerFrame = (1 / this.handler.frameRate) * 1000;
-    const threshold = this.counter * this.period;
+    const threshold = this._counter * this._period;
+
     if (threshold >= elapsedTime) {
       const diff = (elapsedTime + timePerFrame) - threshold;
       if (diff >= 0) {
@@ -42,23 +82,23 @@ export default class SeqTimer {
     if (result) {
       this.counter += 1;
     }
-
     return result;
   }
 
-  inactivate() {
-    this.active = false;
+  get period() {
+    return this._period;
   }
 
-  run(period) {
-    if (period !== undefined) {
-      this.period = period;
-    }
-    if (period <= 0) {
-      return;
-    }
-    this.counter = 1;
-    this.active = true;
-    // this.startTime =
+  set period(period) {
+    this._period = period;
   }
+
+  isSingleShot() {
+    return this._runOnlyOnce;
+  }
+
+  setSingleShot(singleShot) {
+    this._runOnlyOnce = singleShot;
+  }
+
 }

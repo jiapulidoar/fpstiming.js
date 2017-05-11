@@ -27,7 +27,7 @@ export default class Animator {
     if (typeof this.animationStarted === 'function') {
       throw new TypeError('animationStarted must be overrided');
     }
-    if (typeof this.setTimingHandler === 'function') {
+    if (typeof this.timingHandler === 'function') {
       throw new TypeError('setTimingHandler must be overrided');
     }
     // TODO: check for timingHandler : TimingHandler
