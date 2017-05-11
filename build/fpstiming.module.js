@@ -37,7 +37,7 @@ class Animator {
 
 class SeqTimer {
 
-  constuctor({ handler, runOnlyOnce = false, task = null }) {
+  constructor({ handler, runOnlyOnce = false, task = null }) {
     this._task = task;
     this._handler = handler;
     this._active = false;
@@ -80,7 +80,7 @@ class SeqTimer {
     }
     this._counter = 1;
     this._active = true;
-    this._startTime = window.performace.now();
+    this._startTime = window.performance.now();
   }
 
   stop() {
@@ -92,7 +92,7 @@ class SeqTimer {
   }
 
   inactivate() {
-    this.active = false;
+    this._active = false;
   }
 
   triggered() {
@@ -102,8 +102,8 @@ class SeqTimer {
 
     let result = false;
 
-    const elapsedTime = window.performace.now() - this._startTime;
-    const timePerFrame = (1 / this.handler.frameRate) * 1000;
+    const elapsedTime = window.performance.now() - this._startTime;
+    const timePerFrame = (1 / this._handler.frameRate) * 1000;
     const threshold = this._counter * this._period;
 
     if (threshold >= elapsedTime) {
@@ -140,7 +140,7 @@ class SeqTimer {
 
 }
 
-class AnimatorObject/* extends Animator*/ {
+class AnimatorObject /* extends Animator*/ {
   constructor(handler = null) {
     //super();
 
@@ -156,9 +156,9 @@ class AnimatorObject/* extends Animator*/ {
   }
 
   set timingHandler(handler) {
-    handler.registerAnimator(this);
-    this._animationTimer = new SeqTimer(handler);
+    this._animationTimer = new SeqTimer({ handler });
     this._handler = handler;
+    handler.registerAnimator(this);
   }
 
   get timingHandler() {
@@ -188,15 +188,15 @@ class AnimatorObject/* extends Animator*/ {
 
   stopAnimation() {
     this._started = false;
-    if (this.animationTimer != null) {
-      this.animationTimer.stop();
+    if (this._animationTimer != null) {
+      this._animationTimer.stop();
     }
   }
 
   startAnimation() {
     this._started = true;
-    if (this.animationTimer != null) {
-      this.animationTimer.run(this.animationPeriod);
+    if (this._animationTimer != null) {
+      this._animationTimer.run(this._animationPeriod);
     }
   }
 
@@ -213,6 +213,9 @@ class AnimatorObject/* extends Animator*/ {
     }
   }
 
+  invokeAnimationHandler() {
+    return false;
+  }
 }
 
 class Taskable {
@@ -258,8 +261,8 @@ class Timer {
 
 class TimingHandler {
   constructor(aObject = null) {
-    this._tPool = new WeakSet();
-    this._aPool = new WeakSet();
+    this._tPool = new Set();
+    this._aPool = new Set();
     this._frameRateLastMillis = 0;
     this._frameRate = 10;
     this._fCount = 0;
@@ -279,10 +282,11 @@ class TimingHandler {
         }
       }
     });
+    console.log(this._aPool);
     Array.from(this._aPool).forEach((aObj) => {
-      if (aObj.animationStarted()) {
+      if (aObj.animationStarted) {
         if (aObj.timer.triggered()) {
-          if (aObj.invokeAnimationHandler()) {
+          if (!aObj.invokeAnimationHandler()) {
             aObj.animate();
           }
         }
@@ -292,7 +296,7 @@ class TimingHandler {
 
   registerTask(task, timer = null) {
     if (timer === null) {
-      task.setTimer(new SeqTimer(this, task));
+      task.setTimer(new SeqTimer({ handler: this, task }));
     } else {
       task.setTimer(timer);
     }

@@ -1,6 +1,6 @@
 export default class SeqTimer {
 
-  constuctor({ handler, runOnlyOnce = false, task = null }) {
+  constructor({ handler, runOnlyOnce = false, task = null }) {
     this._task = task;
     this._handler = handler;
     this._active = false;
@@ -43,7 +43,7 @@ export default class SeqTimer {
     }
     this._counter = 1;
     this._active = true;
-    this._startTime = window.performace.now();
+    this._startTime = window.performance.now();
   }
 
   stop() {
@@ -55,7 +55,7 @@ export default class SeqTimer {
   }
 
   inactivate() {
-    this.active = false;
+    this._active = false;
   }
 
   triggered() {
@@ -65,8 +65,8 @@ export default class SeqTimer {
 
     let result = false;
 
-    const elapsedTime = window.performace.now() - this._startTime;
-    const timePerFrame = (1 / this.handler.frameRate) * 1000;
+    const elapsedTime = window.performance.now() - this._startTime;
+    const timePerFrame = (1 / this._handler.frameRate) * 1000;
     const threshold = this._counter * this._period;
 
     if (threshold >= elapsedTime) {
@@ -80,7 +80,7 @@ export default class SeqTimer {
       result = true;
     }
     if (result) {
-      this.counter += 1;
+      this._counter += 1;
     }
     return result;
   }

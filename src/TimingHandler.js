@@ -2,8 +2,8 @@ import SeqTimer from './SeqTimer';
 
 export default class TimingHandler {
   constructor(aObject = null) {
-    this._tPool = new WeakSet();
-    this._aPool = new WeakSet();
+    this._tPool = new Set();
+    this._aPool = new Set();
     this._frameRateLastMillis = 0;
     this._frameRate = 10;
     this._fCount = 0;
@@ -23,10 +23,11 @@ export default class TimingHandler {
         }
       }
     });
+    console.log(this._aPool);
     Array.from(this._aPool).forEach((aObj) => {
-      if (aObj.animationStarted()) {
+      if (aObj.animationStarted) {
         if (aObj.timer.triggered()) {
-          if (aObj.invokeAnimationHandler()) {
+          if (!aObj.invokeAnimationHandler()) {
             aObj.animate();
           }
         }
@@ -36,7 +37,7 @@ export default class TimingHandler {
 
   registerTask(task, timer = null) {
     if (timer === null) {
-      task.setTimer(new SeqTimer(this, task));
+      task.setTimer(new SeqTimer({ handler: this, task }));
     } else {
       task.setTimer(timer);
     }

@@ -1,7 +1,7 @@
 import Animator from './Animator';
 import SeqTimer from './SeqTimer';
 
-export default class AnimatorObject/* extends Animator*/ {
+export default class AnimatorObject /* extends Animator*/ {
   constructor(handler = null) {
     //super();
 
@@ -17,9 +17,9 @@ export default class AnimatorObject/* extends Animator*/ {
   }
 
   set timingHandler(handler) {
-    handler.registerAnimator(this);
-    this._animationTimer = new SeqTimer(handler);
+    this._animationTimer = new SeqTimer({ handler });
     this._handler = handler;
+    handler.registerAnimator(this);
   }
 
   get timingHandler() {
@@ -49,15 +49,15 @@ export default class AnimatorObject/* extends Animator*/ {
 
   stopAnimation() {
     this._started = false;
-    if (this.animationTimer != null) {
-      this.animationTimer.stop();
+    if (this._animationTimer != null) {
+      this._animationTimer.stop();
     }
   }
 
   startAnimation() {
     this._started = true;
-    if (this.animationTimer != null) {
-      this.animationTimer.run(this.animationPeriod);
+    if (this._animationTimer != null) {
+      this._animationTimer.run(this._animationPeriod);
     }
   }
 
@@ -74,4 +74,7 @@ export default class AnimatorObject/* extends Animator*/ {
     }
   }
 
+  invokeAnimationHandler() {
+    return false;
+  }
 }
