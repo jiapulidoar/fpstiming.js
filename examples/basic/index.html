@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.9/p5.min.js"></script>
+    <script src="../build/fpstiming.js"></script>
+  </head>
+  <body>
+    <div id="fps"></div>
+    <button onclick="aObj.setAnimationPeriod(aObj.animationPeriod + 10)">+</button>
+    <button onclick="aObj.setAnimationPeriod(aObj.animationPeriod - 10)">-</button>
+    <script>
+      const fps = document.getElementById("fps");
+      class Test extends fpstiming.AnimatorObject {
+        constructor() {
+          super();
+          this._frameRateLastMillis = window.performance.now();
+          this._frameRate = 10;
+          this._fCount = 0;
+        }
+        updateFrameRate() {
+          const now = window.performance.now();
+          if (this._fCount > 1) {
+            const rate = 1000 / ((now - this._frameRateLastMillis) / 1000);
+            const instantaneousRate = rate / 1000;
+            this._frameRate = (this._frameRate * 0.9) + (instantaneousRate * 0.1);
+          }
+          this._frameRateLastMillis = now;
+          this._fCount += 1;
+        }
+        animate() {
+          this.updateFrameRate()
+          fps.innerHTML = `frames per second ${this._frameRate} `
+        }
+      }
+      let aObj = new Test();
+      window.aObj = aObj;
+      var handler = new fpstiming.TimingHandler(aObj);
+      aObj.startAnimation();
+      function step(timestamp) {
+        handler.handle();
+        window.requestAnimationFrame(step);
+      }
+      window.requestAnimationFrame(step);
+    </script>
+  </body>
+</html>
