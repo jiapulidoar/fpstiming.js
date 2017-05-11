@@ -7,7 +7,7 @@ export default class TimingHandler {
     this._frameRateLastMillis = 0;
     this._frameRate = 10;
     this._fCount = 0;
-    if (aObject === null) {
+    if (aObject !== null) {
       this.registerAnimator(aObject);
     }
   }
