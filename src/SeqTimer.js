@@ -7,7 +7,7 @@ export default class SeqTimer {
     this._runOnlyOnce = runOnlyOnce;
     this._counter = 0;
     this._period = 0;
-    this._startTime = 0;
+    this._startTime = window.performance.now();
     this.create();
   }
 

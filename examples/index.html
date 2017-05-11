@@ -9,6 +9,19 @@
   </head>
   <body>
     <script>
+      class Test extends fpstiming.AnimatorObject {
+        animate() {
+          console.log(this.timingHandler.frameRate);
+        }
+      }
+      let aObj = new Test();
+      var handler = new fpstiming.TimingHandler(aObj);
+      aObj.startAnimation();
+      function step(timestamp) {
+        handler.handle();
+        window.requestAnimationFrame(step);
+      }
+      window.requestAnimationFrame(step);
     </script>
   </body>
 </html>

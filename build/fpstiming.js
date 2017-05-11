@@ -50,7 +50,7 @@ class SeqTimer {
     this._runOnlyOnce = runOnlyOnce;
     this._counter = 0;
     this._period = 0;
-    this._startTime = 0;
+    this._startTime = window.performance.now();
     this.create();
   }
 
@@ -123,7 +123,7 @@ class SeqTimer {
       result = true;
     }
     if (result) {
-      this.counter += 1;
+      this._counter += 1;
     }
     return result;
   }
