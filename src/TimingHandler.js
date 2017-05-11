@@ -23,7 +23,6 @@ export default class TimingHandler {
         }
       }
     });
-    console.log(this._aPool);
     Array.from(this._aPool).forEach((aObj) => {
       if (aObj.animationStarted) {
         if (aObj.timer.triggered()) {
@@ -54,7 +53,7 @@ export default class TimingHandler {
 
   updateFrameRate() {
     const now = window.performance.now();
-    if(this._fCount > 1) {
+    if (this._fCount > 1) {
       const rate = 1000 / ((now - this._frameRateLastMillis) / 1000);
       const instantaneousRate = rate / 1000;
       this._frameRate = (this._frameRate * 0.9) + (instantaneousRate * 0.1);
@@ -71,7 +70,7 @@ export default class TimingHandler {
     return this._fCount;
   }
 
-  registerAnimator(object, timer = null) {
+  registerAnimator(object) {
     if (object.timingHandler !== this) {
       object.timingHandler = this;
     }
