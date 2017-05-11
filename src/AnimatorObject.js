@@ -1,59 +1,61 @@
 import Animator from './Animator';
 import SeqTimer from './SeqTimer';
 
-export default class AnimatorObject extends Animator {
+export default class AnimatorObject/* extends Animator*/ {
   constructor(handler = null) {
-    super();
+    //super();
 
-    this.animationTimer = null;
+    this._animationPeriod = 40;
+    this._started = false;
+
+    this._animationTimer = null;
+    this._handler = null;
 
     if (handler !== null) {
       this.setTimingHandler(handler);
     }
-    this.setAnimationPeriod(40, false);
-    this.stopAnimation();
   }
 
   set timingHandler(handler) {
-    this.handler = handler;
     handler.registerAnimator(this);
-    this.animationTimer = new SeqTimer(handler);
+    this._animationTimer = new SeqTimer(handler);
+    this._handler = handler;
   }
 
   get timingHandler() {
-    return this.handler;
+    return this._handler;
   }
 
   get timer() {
-    return this.animationTimer;
+    return this._animationTimer;
   }
 
   get animationStarted() {
-    return this.started;
+    return this._started;
   }
 
   get animationPeriod() {
-    return this.animationPeriod;
+    return this._animationPeriod;
   }
 
   setAnimationPeriod(period, restart = true) {
     if (period > 0) {
-      this.animationPeriod = period;
-      if (this.started && restart) {
+      this._animationPeriod = period;
+      if (this._started && restart) {
         this.restartAnimation();
       }
     }
   }
 
   stopAnimation() {
-    this.started = false;
+    this._started = false;
     if (this.animationTimer != null) {
       this.animationTimer.stop();
     }
   }
 
   startAnimation() {
-    this.started = true;
+    this._started = true;
     if (this.animationTimer != null) {
       this.animationTimer.run(this.animationPeriod);
     }
@@ -65,7 +67,7 @@ export default class AnimatorObject extends Animator {
   }
 
   toggleAnimation() {
-    if (this.started) {
+    if (this._started) {
       this.stopAnimation();
     } else {
       this.startAnimation();
