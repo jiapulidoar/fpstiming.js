@@ -556,6 +556,9 @@ class TimingHandler {
  * ( {@link Taskable#execute}) which derived classes should implement.
  */
 class TimingTask extends Taskable {
+  /**
+   * Default Constructor.
+   */
   constructor() {
     super();
     this._timer = null;
@@ -637,6 +640,10 @@ class TimingTask extends Taskable {
   }
 }
 
+/**
+ * fps-based timing.  
+ * A sequential single-threaded timer on top of which Proscene animations and timing routines are built.
+ */
 const fpstiming = {
   Animator,
   AnimatorObject,

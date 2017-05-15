@@ -2426,7 +2426,7 @@
     "__docId__": 106,
     "kind": "file",
     "name": "src/TimingTask.js",
-    "content": "import Taskable from './Taskable.js';\n\n/**\n * An abstract wrapper class holding a {@link TimingTask#timer} together with its callback method\n * ( {@link Taskable#execute}) which derived classes should implement.\n */\nexport default class TimingTask extends Taskable {\n  constructor() {\n    super();\n    this._timer = null;\n  }\n  /**\n   * Returns the timer instance.\n   * @returns {Timer}\n   */\n  timer() {\n    return this._timer;\n  }\n\n  /**\n   * Sets the timer instance.\n   * @param {Timer} timer\n   */\n  setTimer(timer) {\n    this._timer = timer;\n  }\n\n  /**\n   * Run the {@link TimingTask#timer} with a repeated fixed-rate execution according to `period`.\n   * @param {number} period in milliseconds.\n   */\n  run(period) {\n    if (this._timer != null) {\n      this._timer().setSingleShot(false);\n      this._timer().run(period);\n    }\n  }\n\n  /**\n   * Run the {@link TimingTask#timer} once, according to `period`.\n   * @param {number} period in milliseconds.\n   */\n  runOnce(period) {\n    if (this._timer != null) {\n      this._timer().setSingleShot(true);\n      this._timer().run(period);\n    }\n  }\n\n  /**\n   * Stops the {@link TimingTask#timer}.\n   */\n  stop() {\n    if (this._timer != null) {\n      this._timer().stop();\n    }\n  }\n\n  /**\n   * Stops the {@link TimingTask#timer}.\n   */\n  cancel() {\n    if (this._timer != null) {\n      this._timer().cancel();\n    }\n  }\n\n  /**\n   * Creates the {@link TimingTask#timer}.\n   */\n  create() {\n    if (this._timer != null) {\n      this._timer().create();\n    }\n  }\n\n  /**\n   * Tells whether or not the timer is active.\n   * @returns {boolean}\n   */\n  isActive() {\n    if (this._timer != null) {\n      return this._timer().isActive();\n    }\n    return false;\n  }\n}\n",
+    "content": "import Taskable from './Taskable.js';\n\n/**\n * An abstract wrapper class holding a {@link TimingTask#timer} together with its callback method\n * ( {@link Taskable#execute}) which derived classes should implement.\n */\nexport default class TimingTask extends Taskable {\n  /**\n   * Default Constructor.\n   */\n  constructor() {\n    super();\n    this._timer = null;\n  }\n  /**\n   * Returns the timer instance.\n   * @returns {Timer}\n   */\n  timer() {\n    return this._timer;\n  }\n\n  /**\n   * Sets the timer instance.\n   * @param {Timer} timer\n   */\n  setTimer(timer) {\n    this._timer = timer;\n  }\n\n  /**\n   * Run the {@link TimingTask#timer} with a repeated fixed-rate execution according to `period`.\n   * @param {number} period in milliseconds.\n   */\n  run(period) {\n    if (this._timer != null) {\n      this._timer().setSingleShot(false);\n      this._timer().run(period);\n    }\n  }\n\n  /**\n   * Run the {@link TimingTask#timer} once, according to `period`.\n   * @param {number} period in milliseconds.\n   */\n  runOnce(period) {\n    if (this._timer != null) {\n      this._timer().setSingleShot(true);\n      this._timer().run(period);\n    }\n  }\n\n  /**\n   * Stops the {@link TimingTask#timer}.\n   */\n  stop() {\n    if (this._timer != null) {\n      this._timer().stop();\n    }\n  }\n\n  /**\n   * Stops the {@link TimingTask#timer}.\n   */\n  cancel() {\n    if (this._timer != null) {\n      this._timer().cancel();\n    }\n  }\n\n  /**\n   * Creates the {@link TimingTask#timer}.\n   */\n  create() {\n    if (this._timer != null) {\n      this._timer().create();\n    }\n  }\n\n  /**\n   * Tells whether or not the timer is active.\n   * @returns {boolean}\n   */\n  isActive() {\n    if (this._timer != null) {\n      return this._timer().isActive();\n    }\n    return false;\n  }\n}\n",
     "static": true,
     "longname": "src/TimingTask.js",
     "access": null,
@@ -2461,15 +2461,8 @@
     "static": false,
     "longname": "src/TimingTask.js~TimingTask#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 8,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
+    "description": "Default Constructor.",
+    "lineNumber": 11,
     "params": []
   },
   {
@@ -2481,7 +2474,7 @@
     "longname": "src/TimingTask.js~TimingTask#_timer",
     "access": null,
     "description": null,
-    "lineNumber": 10,
+    "lineNumber": 13,
     "undocument": true,
     "unknown": [
       {
@@ -2506,7 +2499,7 @@
     "longname": "src/TimingTask.js~TimingTask#timer",
     "access": null,
     "description": "Returns the timer instance.",
-    "lineNumber": 16,
+    "lineNumber": 19,
     "unknown": [
       {
         "tagName": "@returns",
@@ -2534,7 +2527,7 @@
     "longname": "src/TimingTask.js~TimingTask#setTimer",
     "access": null,
     "description": "Sets the timer instance.",
-    "lineNumber": 24,
+    "lineNumber": 27,
     "params": [
       {
         "nullable": null,
@@ -2557,7 +2550,7 @@
     "longname": "src/TimingTask.js~TimingTask#_timer",
     "access": null,
     "description": null,
-    "lineNumber": 25,
+    "lineNumber": 28,
     "undocument": true,
     "unknown": [
       {
@@ -2582,7 +2575,7 @@
     "longname": "src/TimingTask.js~TimingTask#run",
     "access": null,
     "description": "Run the {@link TimingTask#timer} with a repeated fixed-rate execution according to `period`.",
-    "lineNumber": 32,
+    "lineNumber": 35,
     "params": [
       {
         "nullable": null,
@@ -2607,7 +2600,7 @@
     "longname": "src/TimingTask.js~TimingTask#runOnce",
     "access": null,
     "description": "Run the {@link TimingTask#timer} once, according to `period`.",
-    "lineNumber": 43,
+    "lineNumber": 46,
     "params": [
       {
         "nullable": null,
@@ -2632,7 +2625,7 @@
     "longname": "src/TimingTask.js~TimingTask#stop",
     "access": null,
     "description": "Stops the {@link TimingTask#timer}.",
-    "lineNumber": 53,
+    "lineNumber": 56,
     "params": []
   },
   {
@@ -2646,7 +2639,7 @@
     "longname": "src/TimingTask.js~TimingTask#cancel",
     "access": null,
     "description": "Stops the {@link TimingTask#timer}.",
-    "lineNumber": 62,
+    "lineNumber": 65,
     "params": []
   },
   {
@@ -2660,7 +2653,7 @@
     "longname": "src/TimingTask.js~TimingTask#create",
     "access": null,
     "description": "Creates the {@link TimingTask#timer}.",
-    "lineNumber": 71,
+    "lineNumber": 74,
     "params": []
   },
   {
@@ -2674,7 +2667,7 @@
     "longname": "src/TimingTask.js~TimingTask#isActive",
     "access": null,
     "description": "Tells whether or not the timer is active.",
-    "lineNumber": 81,
+    "lineNumber": 84,
     "unknown": [
       {
         "tagName": "@returns",
@@ -2695,7 +2688,7 @@
     "__docId__": 119,
     "kind": "file",
     "name": "src/index.js",
-    "content": "import Animator from './Animator';\nimport AnimatorObject from './AnimatorObject';\nimport SeqTimer from './SeqTimer';\nimport Taskable from './Taskable';\nimport Timer from './Timer';\nimport TimingHandler from './TimingHandler';\nimport TimingTask from './TimingTask';\n\nconst fpstiming = {\n  Animator,\n  AnimatorObject,\n  SeqTimer,\n  Taskable,\n  Timer,\n  TimingHandler,\n  TimingTask,\n};\n\nexport default fpstiming;\n",
+    "content": "import Animator from './Animator';\nimport AnimatorObject from './AnimatorObject';\nimport SeqTimer from './SeqTimer';\nimport Taskable from './Taskable';\nimport Timer from './Timer';\nimport TimingHandler from './TimingHandler';\nimport TimingTask from './TimingTask';\n\n/**\n * fps-based timing.  \n * A sequential single-threaded timer on top of which Proscene animations and timing routines are built.\n */\nconst fpstiming = {\n  Animator,\n  AnimatorObject,\n  SeqTimer,\n  Taskable,\n  Timer,\n  TimingHandler,\n  TimingTask,\n};\n\nexport default fpstiming;\n",
     "static": true,
     "longname": "src/index.js",
     "access": null,
@@ -2713,15 +2706,8 @@
     "export": true,
     "importPath": "fpstiming/src/index.js",
     "importStyle": "fpstiming",
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
+    "description": "fps-based timing.  \nA sequential single-threaded timer on top of which Proscene animations and timing routines are built.",
+    "lineNumber": 13,
     "type": {
       "types": [
         "{\"Animator\": *, \"AnimatorObject\": *, \"SeqTimer\": *, \"Taskable\": *, \"Timer\": *, \"TimingHandler\": *, \"TimingTask\": *}"

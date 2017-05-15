@@ -1,28 +1,28 @@
 {
   "type": "File",
   "start": 0,
-  "end": 410,
+  "end": 546,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 20,
+      "line": 24,
       "column": 0
     }
   },
   "program": {
     "type": "Program",
     "start": 0,
-    "end": 410,
+    "end": 546,
     "loc": {
       "start": {
         "line": 1,
         "column": 0
       },
       "end": {
-        "line": 20,
+        "line": 24,
         "column": 0
       }
     },
@@ -509,80 +509,99 @@
             "raw": "'./TimingTask'"
           },
           "value": "./TimingTask"
-        }
+        },
+        "trailingComments": [
+          {
+            "type": "CommentBlock",
+            "value": "*\n * fps-based timing.  \n * A sequential single-threaded timer on top of which Proscene animations and timing routines are built.\n ",
+            "start": 266,
+            "end": 401,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 12,
+                "column": 3
+              }
+            }
+          }
+        ]
       },
       {
         "type": "Identifier",
-        "start": 266,
-        "end": 382,
+        "start": 402,
+        "end": 518,
         "loc": {
           "start": {
-            "line": 9,
+            "line": 13,
             "column": 0
           },
           "end": {
-            "line": 17,
+            "line": 21,
             "column": 2
           }
         },
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 272,
-            "end": 381,
+            "start": 408,
+            "end": 517,
             "loc": {
               "start": {
-                "line": 9,
+                "line": 13,
                 "column": 6
               },
               "end": {
-                "line": 17,
+                "line": 21,
                 "column": 1
               }
             },
             "id": {
               "type": "Identifier",
-              "start": 272,
-              "end": 281,
+              "start": 408,
+              "end": 417,
               "loc": {
                 "start": {
-                  "line": 9,
+                  "line": 13,
                   "column": 6
                 },
                 "end": {
-                  "line": 9,
+                  "line": 13,
                   "column": 15
                 },
                 "identifierName": "fpstiming"
               },
-              "name": "fpstiming"
+              "name": "fpstiming",
+              "leadingComments": null
             },
             "init": {
               "type": "ObjectExpression",
-              "start": 284,
-              "end": 381,
+              "start": 420,
+              "end": 517,
               "loc": {
                 "start": {
-                  "line": 9,
+                  "line": 13,
                   "column": 18
                 },
                 "end": {
-                  "line": 17,
+                  "line": 21,
                   "column": 1
                 }
               },
               "properties": [
                 {
                   "type": "ObjectProperty",
-                  "start": 288,
-                  "end": 296,
+                  "start": 424,
+                  "end": 432,
                   "loc": {
                     "start": {
-                      "line": 10,
+                      "line": 14,
                       "column": 2
                     },
                     "end": {
-                      "line": 10,
+                      "line": 14,
                       "column": 10
                     }
                   },
@@ -591,15 +610,15 @@
                   "computed": false,
                   "key": {
                     "type": "Identifier",
-                    "start": 288,
-                    "end": 296,
+                    "start": 424,
+                    "end": 432,
                     "loc": {
                       "start": {
-                        "line": 10,
+                        "line": 14,
                         "column": 2
                       },
                       "end": {
-                        "line": 10,
+                        "line": 14,
                         "column": 10
                       },
                       "identifierName": "Animator"
@@ -608,15 +627,15 @@
                   },
                   "value": {
                     "type": "Identifier",
-                    "start": 288,
-                    "end": 296,
+                    "start": 424,
+                    "end": 432,
                     "loc": {
                       "start": {
-                        "line": 10,
+                        "line": 14,
                         "column": 2
                       },
                       "end": {
-                        "line": 10,
+                        "line": 14,
                         "column": 10
                       },
                       "identifierName": "Animator"
@@ -629,15 +648,15 @@
                 },
                 {
                   "type": "ObjectProperty",
-                  "start": 300,
-                  "end": 314,
+                  "start": 436,
+                  "end": 450,
                   "loc": {
                     "start": {
-                      "line": 11,
+                      "line": 15,
                       "column": 2
                     },
                     "end": {
-                      "line": 11,
+                      "line": 15,
                       "column": 16
                     }
                   },
@@ -646,15 +665,15 @@
                   "computed": false,
                   "key": {
                     "type": "Identifier",
-                    "start": 300,
-                    "end": 314,
+                    "start": 436,
+                    "end": 450,
                     "loc": {
                       "start": {
-                        "line": 11,
+                        "line": 15,
                         "column": 2
                       },
                       "end": {
-                        "line": 11,
+                        "line": 15,
                         "column": 16
                       },
                       "identifierName": "AnimatorObject"
@@ -663,15 +682,15 @@
                   },
                   "value": {
                     "type": "Identifier",
-                    "start": 300,
-                    "end": 314,
+                    "start": 436,
+                    "end": 450,
                     "loc": {
                       "start": {
-                        "line": 11,
+                        "line": 15,
                         "column": 2
                       },
                       "end": {
-                        "line": 11,
+                        "line": 15,
                         "column": 16
                       },
                       "identifierName": "AnimatorObject"
@@ -684,15 +703,15 @@
                 },
                 {
                   "type": "ObjectProperty",
-                  "start": 318,
-                  "end": 326,
+                  "start": 454,
+                  "end": 462,
                   "loc": {
                     "start": {
-                      "line": 12,
+                      "line": 16,
                       "column": 2
                     },
                     "end": {
-                      "line": 12,
+                      "line": 16,
                       "column": 10
                     }
                   },
@@ -701,15 +720,15 @@
                   "computed": false,
                   "key": {
                     "type": "Identifier",
-                    "start": 318,
-                    "end": 326,
+                    "start": 454,
+                    "end": 462,
                     "loc": {
                       "start": {
-                        "line": 12,
+                        "line": 16,
                         "column": 2
                       },
                       "end": {
-                        "line": 12,
+                        "line": 16,
                         "column": 10
                       },
                       "identifierName": "SeqTimer"
@@ -718,15 +737,15 @@
                   },
                   "value": {
                     "type": "Identifier",
-                    "start": 318,
-                    "end": 326,
+                    "start": 454,
+                    "end": 462,
                     "loc": {
                       "start": {
-                        "line": 12,
+                        "line": 16,
                         "column": 2
                       },
                       "end": {
-                        "line": 12,
+                        "line": 16,
                         "column": 10
                       },
                       "identifierName": "SeqTimer"
@@ -739,15 +758,15 @@
                 },
                 {
                   "type": "ObjectProperty",
-                  "start": 330,
-                  "end": 338,
+                  "start": 466,
+                  "end": 474,
                   "loc": {
                     "start": {
-                      "line": 13,
+                      "line": 17,
                       "column": 2
                     },
                     "end": {
-                      "line": 13,
+                      "line": 17,
                       "column": 10
                     }
                   },
@@ -756,15 +775,15 @@
                   "computed": false,
                   "key": {
                     "type": "Identifier",
-                    "start": 330,
-                    "end": 338,
+                    "start": 466,
+                    "end": 474,
                     "loc": {
                       "start": {
-                        "line": 13,
+                        "line": 17,
                         "column": 2
                       },
                       "end": {
-                        "line": 13,
+                        "line": 17,
                         "column": 10
                       },
                       "identifierName": "Taskable"
@@ -773,15 +792,15 @@
                   },
                   "value": {
                     "type": "Identifier",
-                    "start": 330,
-                    "end": 338,
+                    "start": 466,
+                    "end": 474,
                     "loc": {
                       "start": {
-                        "line": 13,
+                        "line": 17,
                         "column": 2
                       },
                       "end": {
-                        "line": 13,
+                        "line": 17,
                         "column": 10
                       },
                       "identifierName": "Taskable"
@@ -794,15 +813,15 @@
                 },
                 {
                   "type": "ObjectProperty",
-                  "start": 342,
-                  "end": 347,
+                  "start": 478,
+                  "end": 483,
                   "loc": {
                     "start": {
-                      "line": 14,
+                      "line": 18,
                       "column": 2
                     },
                     "end": {
-                      "line": 14,
+                      "line": 18,
                       "column": 7
                     }
                   },
@@ -811,15 +830,15 @@
                   "computed": false,
                   "key": {
                     "type": "Identifier",
-                    "start": 342,
-                    "end": 347,
+                    "start": 478,
+                    "end": 483,
                     "loc": {
                       "start": {
-                        "line": 14,
+                        "line": 18,
                         "column": 2
                       },
                       "end": {
-                        "line": 14,
+                        "line": 18,
                         "column": 7
                       },
                       "identifierName": "Timer"
@@ -828,15 +847,15 @@
                   },
                   "value": {
                     "type": "Identifier",
-                    "start": 342,
-                    "end": 347,
+                    "start": 478,
+                    "end": 483,
                     "loc": {
                       "start": {
-                        "line": 14,
+                        "line": 18,
                         "column": 2
                       },
                       "end": {
-                        "line": 14,
+                        "line": 18,
                         "column": 7
                       },
                       "identifierName": "Timer"
@@ -849,15 +868,15 @@
                 },
                 {
                   "type": "ObjectProperty",
-                  "start": 351,
-                  "end": 364,
+                  "start": 487,
+                  "end": 500,
                   "loc": {
                     "start": {
-                      "line": 15,
+                      "line": 19,
                       "column": 2
                     },
                     "end": {
-                      "line": 15,
+                      "line": 19,
                       "column": 15
                     }
                   },
@@ -866,15 +885,15 @@
                   "computed": false,
                   "key": {
                     "type": "Identifier",
-                    "start": 351,
-                    "end": 364,
+                    "start": 487,
+                    "end": 500,
                     "loc": {
                       "start": {
-                        "line": 15,
+                        "line": 19,
                         "column": 2
                       },
                       "end": {
-                        "line": 15,
+                        "line": 19,
                         "column": 15
                       },
                       "identifierName": "TimingHandler"
@@ -883,15 +902,15 @@
                   },
                   "value": {
                     "type": "Identifier",
-                    "start": 351,
-                    "end": 364,
+                    "start": 487,
+                    "end": 500,
                     "loc": {
                       "start": {
-                        "line": 15,
+                        "line": 19,
                         "column": 2
                       },
                       "end": {
-                        "line": 15,
+                        "line": 19,
                         "column": 15
                       },
                       "identifierName": "TimingHandler"
@@ -904,15 +923,15 @@
                 },
                 {
                   "type": "ObjectProperty",
-                  "start": 368,
-                  "end": 378,
+                  "start": 504,
+                  "end": 514,
                   "loc": {
                     "start": {
-                      "line": 16,
+                      "line": 20,
                       "column": 2
                     },
                     "end": {
-                      "line": 16,
+                      "line": 20,
                       "column": 12
                     }
                   },
@@ -921,15 +940,15 @@
                   "computed": false,
                   "key": {
                     "type": "Identifier",
-                    "start": 368,
-                    "end": 378,
+                    "start": 504,
+                    "end": 514,
                     "loc": {
                       "start": {
-                        "line": 16,
+                        "line": 20,
                         "column": 2
                       },
                       "end": {
-                        "line": 16,
+                        "line": 20,
                         "column": 12
                       },
                       "identifierName": "TimingTask"
@@ -938,15 +957,15 @@
                   },
                   "value": {
                     "type": "Identifier",
-                    "start": 368,
-                    "end": 378,
+                    "start": 504,
+                    "end": 514,
                     "loc": {
                       "start": {
-                        "line": 16,
+                        "line": 20,
                         "column": 2
                       },
                       "end": {
-                        "line": 16,
+                        "line": 20,
                         "column": 12
                       },
                       "identifierName": "TimingTask"
@@ -958,39 +977,40 @@
                   }
                 }
               ]
-            }
+            },
+            "leadingComments": null
           }
         ],
         "kind": "const",
-        "name": "_",
         "leadingComments": [],
+        "name": "_",
         "trailingComments": []
       },
       {
         "type": "Identifier",
-        "start": 384,
-        "end": 409,
+        "start": 520,
+        "end": 545,
         "loc": {
           "start": {
-            "line": 19,
+            "line": 23,
             "column": 0
           },
           "end": {
-            "line": 19,
+            "line": 23,
             "column": 25
           }
         },
         "declaration": {
           "type": "Identifier",
-          "start": 399,
-          "end": 408,
+          "start": 535,
+          "end": 544,
           "loc": {
             "start": {
-              "line": 19,
+              "line": 23,
               "column": 15
             },
             "end": {
-              "line": 19,
+              "line": 23,
               "column": 24
             },
             "identifierName": "fpstiming"
@@ -1003,90 +1023,91 @@
       },
       {
         "type": "ExportDefaultDeclaration",
-        "start": 384,
-        "end": 409,
+        "start": 520,
+        "end": 545,
         "loc": {
           "start": {
-            "line": 19,
+            "line": 23,
             "column": 0
           },
           "end": {
-            "line": 19,
+            "line": 23,
             "column": 25
           }
         },
         "declaration": {
           "type": "VariableDeclaration",
-          "start": 266,
-          "end": 382,
+          "start": 402,
+          "end": 518,
           "loc": {
             "start": {
-              "line": 9,
+              "line": 13,
               "column": 0
             },
             "end": {
-              "line": 17,
+              "line": 21,
               "column": 2
             }
           },
           "declarations": [
             {
               "type": "VariableDeclarator",
-              "start": 272,
-              "end": 381,
+              "start": 408,
+              "end": 517,
               "loc": {
                 "start": {
-                  "line": 9,
+                  "line": 13,
                   "column": 6
                 },
                 "end": {
-                  "line": 17,
+                  "line": 21,
                   "column": 1
                 }
               },
               "id": {
                 "type": "Identifier",
-                "start": 272,
-                "end": 281,
+                "start": 408,
+                "end": 417,
                 "loc": {
                   "start": {
-                    "line": 9,
+                    "line": 13,
                     "column": 6
                   },
                   "end": {
-                    "line": 9,
+                    "line": 13,
                     "column": 15
                   },
                   "identifierName": "fpstiming"
                 },
-                "name": "fpstiming"
+                "name": "fpstiming",
+                "leadingComments": null
               },
               "init": {
                 "type": "ObjectExpression",
-                "start": 284,
-                "end": 381,
+                "start": 420,
+                "end": 517,
                 "loc": {
                   "start": {
-                    "line": 9,
+                    "line": 13,
                     "column": 18
                   },
                   "end": {
-                    "line": 17,
+                    "line": 21,
                     "column": 1
                   }
                 },
                 "properties": [
                   {
                     "type": "ObjectProperty",
-                    "start": 288,
-                    "end": 296,
+                    "start": 424,
+                    "end": 432,
                     "loc": {
                       "start": {
-                        "line": 10,
+                        "line": 14,
                         "column": 2
                       },
                       "end": {
-                        "line": 10,
+                        "line": 14,
                         "column": 10
                       }
                     },
@@ -1095,15 +1116,15 @@
                     "computed": false,
                     "key": {
                       "type": "Identifier",
-                      "start": 288,
-                      "end": 296,
+                      "start": 424,
+                      "end": 432,
                       "loc": {
                         "start": {
-                          "line": 10,
+                          "line": 14,
                           "column": 2
                         },
                         "end": {
-                          "line": 10,
+                          "line": 14,
                           "column": 10
                         },
                         "identifierName": "Animator"
@@ -1112,15 +1133,15 @@
                     },
                     "value": {
                       "type": "Identifier",
-                      "start": 288,
-                      "end": 296,
+                      "start": 424,
+                      "end": 432,
                       "loc": {
                         "start": {
-                          "line": 10,
+                          "line": 14,
                           "column": 2
                         },
                         "end": {
-                          "line": 10,
+                          "line": 14,
                           "column": 10
                         },
                         "identifierName": "Animator"
@@ -1133,15 +1154,15 @@
                   },
                   {
                     "type": "ObjectProperty",
-                    "start": 300,
-                    "end": 314,
+                    "start": 436,
+                    "end": 450,
                     "loc": {
                       "start": {
-                        "line": 11,
+                        "line": 15,
                         "column": 2
                       },
                       "end": {
-                        "line": 11,
+                        "line": 15,
                         "column": 16
                       }
                     },
@@ -1150,15 +1171,15 @@
                     "computed": false,
                     "key": {
                       "type": "Identifier",
-                      "start": 300,
-                      "end": 314,
+                      "start": 436,
+                      "end": 450,
                       "loc": {
                         "start": {
-                          "line": 11,
+                          "line": 15,
                           "column": 2
                         },
                         "end": {
-                          "line": 11,
+                          "line": 15,
                           "column": 16
                         },
                         "identifierName": "AnimatorObject"
@@ -1167,15 +1188,15 @@
                     },
                     "value": {
                       "type": "Identifier",
-                      "start": 300,
-                      "end": 314,
+                      "start": 436,
+                      "end": 450,
                       "loc": {
                         "start": {
-                          "line": 11,
+                          "line": 15,
                           "column": 2
                         },
                         "end": {
-                          "line": 11,
+                          "line": 15,
                           "column": 16
                         },
                         "identifierName": "AnimatorObject"
@@ -1188,15 +1209,15 @@
                   },
                   {
                     "type": "ObjectProperty",
-                    "start": 318,
-                    "end": 326,
+                    "start": 454,
+                    "end": 462,
                     "loc": {
                       "start": {
-                        "line": 12,
+                        "line": 16,
                         "column": 2
                       },
                       "end": {
-                        "line": 12,
+                        "line": 16,
                         "column": 10
                       }
                     },
@@ -1205,15 +1226,15 @@
                     "computed": false,
                     "key": {
                       "type": "Identifier",
-                      "start": 318,
-                      "end": 326,
+                      "start": 454,
+                      "end": 462,
                       "loc": {
                         "start": {
-                          "line": 12,
+                          "line": 16,
                           "column": 2
                         },
                         "end": {
-                          "line": 12,
+                          "line": 16,
                           "column": 10
                         },
                         "identifierName": "SeqTimer"
@@ -1222,15 +1243,15 @@
                     },
                     "value": {
                       "type": "Identifier",
-                      "start": 318,
-                      "end": 326,
+                      "start": 454,
+                      "end": 462,
                       "loc": {
                         "start": {
-                          "line": 12,
+                          "line": 16,
                           "column": 2
                         },
                         "end": {
-                          "line": 12,
+                          "line": 16,
                           "column": 10
                         },
                         "identifierName": "SeqTimer"
@@ -1243,15 +1264,15 @@
                   },
                   {
                     "type": "ObjectProperty",
-                    "start": 330,
-                    "end": 338,
+                    "start": 466,
+                    "end": 474,
                     "loc": {
                       "start": {
-                        "line": 13,
+                        "line": 17,
                         "column": 2
                       },
                       "end": {
-                        "line": 13,
+                        "line": 17,
                         "column": 10
                       }
                     },
@@ -1260,15 +1281,15 @@
                     "computed": false,
                     "key": {
                       "type": "Identifier",
-                      "start": 330,
-                      "end": 338,
+                      "start": 466,
+                      "end": 474,
                       "loc": {
                         "start": {
-                          "line": 13,
+                          "line": 17,
                           "column": 2
                         },
                         "end": {
-                          "line": 13,
+                          "line": 17,
                           "column": 10
                         },
                         "identifierName": "Taskable"
@@ -1277,15 +1298,15 @@
                     },
                     "value": {
                       "type": "Identifier",
-                      "start": 330,
-                      "end": 338,
+                      "start": 466,
+                      "end": 474,
                       "loc": {
                         "start": {
-                          "line": 13,
+                          "line": 17,
                           "column": 2
                         },
                         "end": {
-                          "line": 13,
+                          "line": 17,
                           "column": 10
                         },
                         "identifierName": "Taskable"
@@ -1298,15 +1319,15 @@
                   },
                   {
                     "type": "ObjectProperty",
-                    "start": 342,
-                    "end": 347,
+                    "start": 478,
+                    "end": 483,
                     "loc": {
                       "start": {
-                        "line": 14,
+                        "line": 18,
                         "column": 2
                       },
                       "end": {
-                        "line": 14,
+                        "line": 18,
                         "column": 7
                       }
                     },
@@ -1315,15 +1336,15 @@
                     "computed": false,
                     "key": {
                       "type": "Identifier",
-                      "start": 342,
-                      "end": 347,
+                      "start": 478,
+                      "end": 483,
                       "loc": {
                         "start": {
-                          "line": 14,
+                          "line": 18,
                           "column": 2
                         },
                         "end": {
-                          "line": 14,
+                          "line": 18,
                           "column": 7
                         },
                         "identifierName": "Timer"
@@ -1332,15 +1353,15 @@
                     },
                     "value": {
                       "type": "Identifier",
-                      "start": 342,
-                      "end": 347,
+                      "start": 478,
+                      "end": 483,
                       "loc": {
                         "start": {
-                          "line": 14,
+                          "line": 18,
                           "column": 2
                         },
                         "end": {
-                          "line": 14,
+                          "line": 18,
                           "column": 7
                         },
                         "identifierName": "Timer"
@@ -1353,15 +1374,15 @@
                   },
                   {
                     "type": "ObjectProperty",
-                    "start": 351,
-                    "end": 364,
+                    "start": 487,
+                    "end": 500,
                     "loc": {
                       "start": {
-                        "line": 15,
+                        "line": 19,
                         "column": 2
                       },
                       "end": {
-                        "line": 15,
+                        "line": 19,
                         "column": 15
                       }
                     },
@@ -1370,15 +1391,15 @@
                     "computed": false,
                     "key": {
                       "type": "Identifier",
-                      "start": 351,
-                      "end": 364,
+                      "start": 487,
+                      "end": 500,
                       "loc": {
                         "start": {
-                          "line": 15,
+                          "line": 19,
                           "column": 2
                         },
                         "end": {
-                          "line": 15,
+                          "line": 19,
                           "column": 15
                         },
                         "identifierName": "TimingHandler"
@@ -1387,15 +1408,15 @@
                     },
                     "value": {
                       "type": "Identifier",
-                      "start": 351,
-                      "end": 364,
+                      "start": 487,
+                      "end": 500,
                       "loc": {
                         "start": {
-                          "line": 15,
+                          "line": 19,
                           "column": 2
                         },
                         "end": {
-                          "line": 15,
+                          "line": 19,
                           "column": 15
                         },
                         "identifierName": "TimingHandler"
@@ -1408,15 +1429,15 @@
                   },
                   {
                     "type": "ObjectProperty",
-                    "start": 368,
-                    "end": 378,
+                    "start": 504,
+                    "end": 514,
                     "loc": {
                       "start": {
-                        "line": 16,
+                        "line": 20,
                         "column": 2
                       },
                       "end": {
-                        "line": 16,
+                        "line": 20,
                         "column": 12
                       }
                     },
@@ -1425,15 +1446,15 @@
                     "computed": false,
                     "key": {
                       "type": "Identifier",
-                      "start": 368,
-                      "end": 378,
+                      "start": 504,
+                      "end": 514,
                       "loc": {
                         "start": {
-                          "line": 16,
+                          "line": 20,
                           "column": 2
                         },
                         "end": {
-                          "line": 16,
+                          "line": 20,
                           "column": 12
                         },
                         "identifierName": "TimingTask"
@@ -1442,15 +1463,15 @@
                     },
                     "value": {
                       "type": "Identifier",
-                      "start": 368,
-                      "end": 378,
+                      "start": 504,
+                      "end": 514,
                       "loc": {
                         "start": {
-                          "line": 16,
+                          "line": 20,
                           "column": 2
                         },
                         "end": {
-                          "line": 16,
+                          "line": 20,
                           "column": 12
                         },
                         "identifierName": "TimingTask"
@@ -1462,18 +1483,53 @@
                     }
                   }
                 ]
-              }
+              },
+              "leadingComments": null
             }
           ],
           "kind": "const",
-          "leadingComments": [],
+          "leadingComments": [
+            {
+              "type": "CommentBlock",
+              "value": "*\n * fps-based timing.  \n * A sequential single-threaded timer on top of which Proscene animations and timing routines are built.\n ",
+              "start": 266,
+              "end": 401,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 0
+                },
+                "end": {
+                  "line": 12,
+                  "column": 3
+                }
+              }
+            }
+          ],
           "trailingComments": []
         }
       }
     ],
     "directives": []
   },
-  "comments": [],
+  "comments": [
+    {
+      "type": "CommentBlock",
+      "value": "*\n * fps-based timing.  \n * A sequential single-threaded timer on top of which Proscene animations and timing routines are built.\n ",
+      "start": 266,
+      "end": 401,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 3
+        }
+      }
+    }
+  ],
   "tokens": [
     {
       "type": {
@@ -2407,6 +2463,22 @@
       }
     },
     {
+      "type": "CommentBlock",
+      "value": "*\n * fps-based timing.  \n * A sequential single-threaded timer on top of which Proscene animations and timing routines are built.\n ",
+      "start": 266,
+      "end": 401,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 3
+        }
+      }
+    },
+    {
       "type": {
         "label": "const",
         "keyword": "const",
@@ -2421,15 +2493,15 @@
         "updateContext": null
       },
       "value": "const",
-      "start": 266,
-      "end": 271,
+      "start": 402,
+      "end": 407,
       "loc": {
         "start": {
-          "line": 9,
+          "line": 13,
           "column": 0
         },
         "end": {
-          "line": 9,
+          "line": 13,
           "column": 5
         }
       }
@@ -2447,15 +2519,15 @@
         "binop": null
       },
       "value": "fpstiming",
-      "start": 272,
-      "end": 281,
+      "start": 408,
+      "end": 417,
       "loc": {
         "start": {
-          "line": 9,
+          "line": 13,
           "column": 6
         },
         "end": {
-          "line": 9,
+          "line": 13,
           "column": 15
         }
       }
@@ -2474,15 +2546,15 @@
         "updateContext": null
       },
       "value": "=",
-      "start": 282,
-      "end": 283,
+      "start": 418,
+      "end": 419,
       "loc": {
         "start": {
-          "line": 9,
+          "line": 13,
           "column": 16
         },
         "end": {
-          "line": 9,
+          "line": 13,
           "column": 17
         }
       }
@@ -2499,15 +2571,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 284,
-      "end": 285,
+      "start": 420,
+      "end": 421,
       "loc": {
         "start": {
-          "line": 9,
+          "line": 13,
           "column": 18
         },
         "end": {
-          "line": 9,
+          "line": 13,
           "column": 19
         }
       }
@@ -2525,15 +2597,15 @@
         "binop": null
       },
       "value": "Animator",
-      "start": 288,
-      "end": 296,
+      "start": 424,
+      "end": 432,
       "loc": {
         "start": {
-          "line": 10,
+          "line": 14,
           "column": 2
         },
         "end": {
-          "line": 10,
+          "line": 14,
           "column": 10
         }
       }
@@ -2551,15 +2623,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 296,
-      "end": 297,
+      "start": 432,
+      "end": 433,
       "loc": {
         "start": {
-          "line": 10,
+          "line": 14,
           "column": 10
         },
         "end": {
-          "line": 10,
+          "line": 14,
           "column": 11
         }
       }
@@ -2577,15 +2649,15 @@
         "binop": null
       },
       "value": "AnimatorObject",
-      "start": 300,
-      "end": 314,
+      "start": 436,
+      "end": 450,
       "loc": {
         "start": {
-          "line": 11,
+          "line": 15,
           "column": 2
         },
         "end": {
-          "line": 11,
+          "line": 15,
           "column": 16
         }
       }
@@ -2603,15 +2675,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 314,
-      "end": 315,
+      "start": 450,
+      "end": 451,
       "loc": {
         "start": {
-          "line": 11,
+          "line": 15,
           "column": 16
         },
         "end": {
-          "line": 11,
+          "line": 15,
           "column": 17
         }
       }
@@ -2629,15 +2701,15 @@
         "binop": null
       },
       "value": "SeqTimer",
-      "start": 318,
-      "end": 326,
+      "start": 454,
+      "end": 462,
       "loc": {
         "start": {
-          "line": 12,
+          "line": 16,
           "column": 2
         },
         "end": {
-          "line": 12,
+          "line": 16,
           "column": 10
         }
       }
@@ -2655,15 +2727,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 326,
-      "end": 327,
+      "start": 462,
+      "end": 463,
       "loc": {
         "start": {
-          "line": 12,
+          "line": 16,
           "column": 10
         },
         "end": {
-          "line": 12,
+          "line": 16,
           "column": 11
         }
       }
@@ -2681,15 +2753,15 @@
         "binop": null
       },
       "value": "Taskable",
-      "start": 330,
-      "end": 338,
+      "start": 466,
+      "end": 474,
       "loc": {
         "start": {
-          "line": 13,
+          "line": 17,
           "column": 2
         },
         "end": {
-          "line": 13,
+          "line": 17,
           "column": 10
         }
       }
@@ -2707,15 +2779,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 338,
-      "end": 339,
+      "start": 474,
+      "end": 475,
       "loc": {
         "start": {
-          "line": 13,
+          "line": 17,
           "column": 10
         },
         "end": {
-          "line": 13,
+          "line": 17,
           "column": 11
         }
       }
@@ -2733,15 +2805,15 @@
         "binop": null
       },
       "value": "Timer",
-      "start": 342,
-      "end": 347,
+      "start": 478,
+      "end": 483,
       "loc": {
         "start": {
-          "line": 14,
+          "line": 18,
           "column": 2
         },
         "end": {
-          "line": 14,
+          "line": 18,
           "column": 7
         }
       }
@@ -2759,15 +2831,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 347,
-      "end": 348,
+      "start": 483,
+      "end": 484,
       "loc": {
         "start": {
-          "line": 14,
+          "line": 18,
           "column": 7
         },
         "end": {
-          "line": 14,
+          "line": 18,
           "column": 8
         }
       }
@@ -2785,15 +2857,15 @@
         "binop": null
       },
       "value": "TimingHandler",
-      "start": 351,
-      "end": 364,
+      "start": 487,
+      "end": 500,
       "loc": {
         "start": {
-          "line": 15,
+          "line": 19,
           "column": 2
         },
         "end": {
-          "line": 15,
+          "line": 19,
           "column": 15
         }
       }
@@ -2811,15 +2883,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 364,
-      "end": 365,
+      "start": 500,
+      "end": 501,
       "loc": {
         "start": {
-          "line": 15,
+          "line": 19,
           "column": 15
         },
         "end": {
-          "line": 15,
+          "line": 19,
           "column": 16
         }
       }
@@ -2837,15 +2909,15 @@
         "binop": null
       },
       "value": "TimingTask",
-      "start": 368,
-      "end": 378,
+      "start": 504,
+      "end": 514,
       "loc": {
         "start": {
-          "line": 16,
+          "line": 20,
           "column": 2
         },
         "end": {
-          "line": 16,
+          "line": 20,
           "column": 12
         }
       }
@@ -2863,15 +2935,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 378,
-      "end": 379,
+      "start": 514,
+      "end": 515,
       "loc": {
         "start": {
-          "line": 16,
+          "line": 20,
           "column": 12
         },
         "end": {
-          "line": 16,
+          "line": 20,
           "column": 13
         }
       }
@@ -2888,15 +2960,15 @@
         "postfix": false,
         "binop": null
       },
-      "start": 380,
-      "end": 381,
+      "start": 516,
+      "end": 517,
       "loc": {
         "start": {
-          "line": 17,
+          "line": 21,
           "column": 0
         },
         "end": {
-          "line": 17,
+          "line": 21,
           "column": 1
         }
       }
@@ -2914,15 +2986,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 381,
-      "end": 382,
+      "start": 517,
+      "end": 518,
       "loc": {
         "start": {
-          "line": 17,
+          "line": 21,
           "column": 1
         },
         "end": {
-          "line": 17,
+          "line": 21,
           "column": 2
         }
       }
@@ -2942,15 +3014,15 @@
         "updateContext": null
       },
       "value": "export",
-      "start": 384,
-      "end": 390,
+      "start": 520,
+      "end": 526,
       "loc": {
         "start": {
-          "line": 19,
+          "line": 23,
           "column": 0
         },
         "end": {
-          "line": 19,
+          "line": 23,
           "column": 6
         }
       }
@@ -2970,15 +3042,15 @@
         "updateContext": null
       },
       "value": "default",
-      "start": 391,
-      "end": 398,
+      "start": 527,
+      "end": 534,
       "loc": {
         "start": {
-          "line": 19,
+          "line": 23,
           "column": 7
         },
         "end": {
-          "line": 19,
+          "line": 23,
           "column": 14
         }
       }
@@ -2996,15 +3068,15 @@
         "binop": null
       },
       "value": "fpstiming",
-      "start": 399,
-      "end": 408,
+      "start": 535,
+      "end": 544,
       "loc": {
         "start": {
-          "line": 19,
+          "line": 23,
           "column": 15
         },
         "end": {
-          "line": 19,
+          "line": 23,
           "column": 24
         }
       }
@@ -3022,15 +3094,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 408,
-      "end": 409,
+      "start": 544,
+      "end": 545,
       "loc": {
         "start": {
-          "line": 19,
+          "line": 23,
           "column": 24
         },
         "end": {
-          "line": 19,
+          "line": 23,
           "column": 25
         }
       }
@@ -3048,15 +3120,15 @@
         "binop": null,
         "updateContext": null
       },
-      "start": 410,
-      "end": 410,
+      "start": 546,
+      "end": 546,
       "loc": {
         "start": {
-          "line": 20,
+          "line": 24,
           "column": 0
         },
         "end": {
-          "line": 20,
+          "line": 24,
           "column": 0
         }
       }
