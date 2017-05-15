@@ -1,9 +1,9 @@
 import Animator from './Animator';
 import SeqTimer from './SeqTimer';
 
-export default class AnimatorObject /* extends Animator*/ {
+export default class AnimatorObject extends Animator {
   constructor(handler = null) {
-    //super();
+    super();
 
     this._animationPeriod = 40;
     this._started = false;
@@ -12,7 +12,7 @@ export default class AnimatorObject /* extends Animator*/ {
     this._handler = null;
 
     if (handler !== null) {
-      this.setTimingHandler(handler);
+      this.timingHandler = handler;
     }
   }
 

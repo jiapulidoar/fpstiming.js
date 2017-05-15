@@ -1,37 +1,39 @@
 class Animator {
-  constructor() {
-    if (typeof this.animate === 'function') {
-      throw new TypeError('animate must be overrided');
-    }
-    if (typeof this.invokeAnimationHandler === 'function') {
-      throw new TypeError('invokeAnimationHandler must be overrided');
-    }
-    if (typeof this.setAnimationPeriod === 'function') {
-      throw new TypeError('setAnimationPeriod must be overrided');
-    }
-    if (typeof this.setAnimationPeriod === 'function') {
-      throw new TypeError('setAnimationPeriod must be overrided');
-    }
-    if (typeof this.stopAnimation === 'function') {
-      throw new TypeError('stopAnimation must be overrided');
-    }
-    if (typeof this.startAnimation === 'function') {
-      throw new TypeError('startAnimation must be overrided');
-    }
-    if (typeof this.restartAnimation === 'function') {
-      throw new TypeError('restartAnimation must be overrided');
-    }
-    if (typeof this.toggleAnimation === 'function') {
-      throw new TypeError('toggleAnimation must be overrided');
-    }
-    if (typeof this.animationStarted === 'function') {
-      throw new TypeError('animationStarted must be overrided');
-    }
-    if (typeof this.timingHandler === 'function') {
-      throw new TypeError('setTimingHandler must be overrided');
-    }
-    // TODO: check for timingHandler : TimingHandler
-    // TODO: check for timer : SeqTimer
+  animate() {
+    throw new TypeError('animate must be overrided');
+  }
+  invokeAnimationHandler() {
+    throw new TypeError('invokeAnimationHandler must be overrided');
+  }
+  get animationPeriod() {
+    throw new TypeError('animationPeriod must be overrided');
+  }
+  setAnimationPeriod(number) {
+    throw new TypeError('setAnimationPeriod must be overrided');
+  }
+  stopAnimation() {
+    throw new TypeError('stopAnimation must be overrided');
+  }
+  startAnimation() {
+    throw new TypeError('startAnimation must be overrided');
+  }
+  restartAnimation() {
+    throw new TypeError('restartAnimation must be overrided');
+  }
+  toggleAnimation() {
+    throw new TypeError('toggleAnimation must be overrided');
+  }
+  animationStarted() {
+    throw new TypeError('animationStarted must be overrided');
+  }
+  set timingHandler(handler) {
+    throw new TypeError('set timingHandler must be overrided');
+  }
+  get timingHandler() {
+    throw new TypeError('get TimingHandler must be overrided');
+  }
+  get timer() {
+    throw new TypeError('get timer must be overrided');
   }
 }
 
@@ -140,9 +142,9 @@ class SeqTimer {
 
 }
 
-class AnimatorObject /* extends Animator*/ {
+class AnimatorObject extends Animator {
   constructor(handler = null) {
-    //super();
+    super();
 
     this._animationPeriod = 40;
     this._started = false;
@@ -151,7 +153,7 @@ class AnimatorObject /* extends Animator*/ {
     this._handler = null;
 
     if (handler !== null) {
-      this.setTimingHandler(handler);
+      this.timingHandler = handler;
     }
   }
 
