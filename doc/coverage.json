@@ -1,7 +1,7 @@
 {
-  "coverage": "34.21%",
+  "coverage": "40.78%",
   "expectCount": 76,
-  "actualCount": 26,
+  "actualCount": 31,
   "files": {
     "src/Animator.js": {
       "expectCount": 13,
@@ -27,23 +27,18 @@
     },
     "src/SeqTimer.js": {
       "expectCount": 15,
-      "actualCount": 0,
+      "actualCount": 5,
       "undocumentLines": [
-        3,
-        31,
-        4,
-        35,
-        20,
-        59,
-        55,
-        98,
-        90,
-        39,
-        94,
-        102,
-        51,
-        16,
-        63
+        45,
+        49,
+        69,
+        121,
+        113,
+        53,
+        117,
+        125,
+        65,
+        27
       ]
     },
     "src/Taskable.js": {

@@ -1,6 +1,17 @@
 import Timer from './Timer';
 
+/**
+ * Sequential timers are single-threaded timers handled by a TimingHandler.
+ */
 export default class SeqTimer extends Timer {
+    /**
+   * Defines a sequential (single-threaded) timer.
+   *
+   * @param {Object} options defines the handler, singleShot and task options
+   * @param {TimingHandler} options.handler timing handler owner
+   * @param {boolean} options.runOnlyOnce Defines a single shot sequential (single-threaded) timer
+   * @param {TimingTask} options.task if not null, register a callback task
+   */
   constructor({ handler, runOnlyOnce = false, task = null }) {
     super();
     this._task = task;
@@ -16,7 +27,10 @@ export default class SeqTimer extends Timer {
   timingTask() {
     return this._task;
   }
-
+  /**
+   * Executes the callback method defined by the {@link SeqTimer#timingTask}.
+   * *Note:* You should not call this method since it's done by the timing handler (see {@link TimingHandler#handle}).
+   */
   execute() {
     const result = this.triggered();
     if (result) {
@@ -56,10 +70,19 @@ export default class SeqTimer extends Timer {
     return this._active;
   }
 
+  /**
+   * Deactivates the SeqTimer.
+   */
   inactivate() {
     this._active = false;
   }
 
+  /**
+   * Returns `true` if the timer was triggered at the given frame.
+   * *Note:* You should not call this method since it's done by the timing handler
+   * (see {@link TimingHandler#handle}).
+   * @returns {boolean}
+   */
   triggered() {
     if (!this._active) {
       return false;

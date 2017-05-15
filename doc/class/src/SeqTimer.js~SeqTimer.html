@@ -45,13 +45,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import SeqTimer from &apos;<span><a href="file/src/SeqTimer.js.html#lineNumber3">fpstiming/src/SeqTimer.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import SeqTimer from &apos;<span><a href="file/src/SeqTimer.js.html#lineNumber6">fpstiming/src/SeqTimer.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/SeqTimer.js.html#lineNumber3">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/SeqTimer.js.html#lineNumber6">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -71,7 +71,8 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>Sequential timers are single-threaded timers handled by a TimingHandler.</p>
+</div>
   
 
   
@@ -102,13 +103,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/SeqTimer.js~SeqTimer.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(objectPattern: {&quot;handler&quot;: <span>*</span>, &quot;runOnlyOnce&quot;: <span>*</span>, &quot;task&quot;: <span>*</span>})</span>
+          <span data-ice="name"><span><a href="class/src/SeqTimer.js~SeqTimer.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Defines a sequential (single-threaded) timer.</p>
+</div>
       </div>
     </td>
     <td>
@@ -197,7 +199,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Executes the callback method defined by the <span><a href="class/src/SeqTimer.js~SeqTimer.html#instance-method-timingTask">SeqTimer#timingTask</a></span>.</p>
+</div>
       </div>
     </td>
     <td>
@@ -224,7 +227,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Deactivates the SeqTimer.</p>
+</div>
       </div>
     </td>
     <td>
@@ -461,13 +465,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/SeqTimer.js~SeqTimer.html#instance-method-triggered">triggered</a></span></span><span data-ice="signature">(): <span>*</span></span>
+          <span data-ice="name"><span><a href="class/src/SeqTimer.js~SeqTimer.html#instance-method-triggered">triggered</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns <code>true</code> if the timer was triggered at the given frame.</p>
+</div>
       </div>
     </td>
     <td>
@@ -779,18 +784,19 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(objectPattern: {&quot;handler&quot;: <span>*</span>, &quot;runOnlyOnce&quot;: <span>*</span>, &quot;task&quot;: <span>*</span>})</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(options: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber4">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber15">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Defines a sequential (single-threaded) timer.</p>
+</div>
 
   
 
@@ -803,10 +809,32 @@
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">objectPattern</td>
-      <td data-ice="type">{&quot;handler&quot;: <span>*</span>, &quot;runOnlyOnce&quot;: <span>*</span>, &quot;task&quot;: <span>*</span>}</td>
-      <td data-ice="appendix"><ul><li>default: {&quot;handler&quot;:null,&quot;runOnlyOnce&quot;:null,&quot;task&quot;:null}</li></ul></td>
-      <td data-ice="description"></td>
+      <td data-ice="name" data-depth="0">options</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>defines the handler, singleShot and task options</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.handler</td>
+      <td data-ice="type"><span><a href="class/src/TimingHandler.js~TimingHandler.html">TimingHandler</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>timing handler owner</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.runOnlyOnce</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>Defines a single shot sequential (single-threaded) timer</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="1">
+      <td data-ice="name" data-depth="1">options.task</td>
+      <td data-ice="type"><span><a href="class/src/TimingTask.js~TimingTask.html">TimingTask</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>if not null, register a callback task</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -846,7 +874,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber31">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber45">source</a></span></span>
     </span>
   </h3>
 
@@ -890,7 +918,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber35">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber49">source</a></span></span>
     </span>
   </h3>
 
@@ -934,14 +962,16 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber20">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber34">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Executes the callback method defined by the <span><a href="class/src/SeqTimer.js~SeqTimer.html#instance-method-timingTask">SeqTimer#timingTask</a></span>.
+<em>Note:</em> You should not call this method since it&apos;s done by the timing handler (see <span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-handle">TimingHandler#handle</a></span>).</p>
+</div>
 
   
 
@@ -989,14 +1019,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber59">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber76">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Deactivates the SeqTimer.</p>
+</div>
 
   
 
@@ -1032,7 +1063,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber55">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber69">source</a></span></span>
     </span>
   </h3>
 
@@ -1088,7 +1119,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber98">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber121">source</a></span></span>
     </span>
   </h3>
 
@@ -1144,7 +1175,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber90">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber113">source</a></span></span>
     </span>
   </h3>
 
@@ -1200,7 +1231,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber39">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber53">source</a></span></span>
     </span>
   </h3>
 
@@ -1261,7 +1292,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber94">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber117">source</a></span></span>
     </span>
   </h3>
 
@@ -1321,7 +1352,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber102">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber125">source</a></span></span>
     </span>
   </h3>
 
@@ -1381,7 +1412,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber51">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber65">source</a></span></span>
     </span>
   </h3>
 
@@ -1425,7 +1456,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber16">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber27">source</a></span></span>
     </span>
   </h3>
 
@@ -1477,18 +1508,21 @@
     
     
     
-    <span data-ice="name">triggered</span><span data-ice="signature">(): <span>*</span></span>
+    <span data-ice="name">triggered</span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber63">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/SeqTimer.js.html#lineNumber86">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Returns <code>true</code> if the timer was triggered at the given frame.
+<em>Note:</em> You should not call this method since it&apos;s done by the timing handler
+(see <span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-handle">TimingHandler#handle</a></span>).</p>
+</div>
 
   
 
@@ -1500,7 +1534,7 @@
     <table>
       <tbody>
         <tr>
-          <td class="return-type" data-ice="returnType"><span>*</span></td>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
           
         </tr>
       </tbody>

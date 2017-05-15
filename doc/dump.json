@@ -839,7 +839,7 @@
     "__docId__": 37,
     "kind": "file",
     "name": "src/SeqTimer.js",
-    "content": "import Timer from './Timer';\n\nexport default class SeqTimer extends Timer {\n  constructor({ handler, runOnlyOnce = false, task = null }) {\n    super();\n    this._task = task;\n    this._handler = handler;\n    this._active = false;\n    this._runOnlyOnce = runOnlyOnce;\n    this._counter = 0;\n    this._period = 0;\n    this._startTime = window.performance.now();\n    this.create();\n  }\n\n  timingTask() {\n    return this._task;\n  }\n\n  execute() {\n    const result = this.triggered();\n    if (result) {\n      this._task.execute();\n      if (this._runOnlyOnce) {\n        this.inactivate();\n      }\n    }\n    return result;\n  }\n\n  cancel() {\n    this.inactivate();\n  }\n\n  create() {\n    this.inactivate();\n  }\n\n  run(period = null) {\n    if (period !== null) {\n      this._period = period;\n    }\n    if (period <= 0) {\n      return;\n    }\n    this._counter = 1;\n    this._active = true;\n    this._startTime = window.performance.now();\n  }\n\n  stop() {\n    this.inactivate();\n  }\n\n  isActive() {\n    return this._active;\n  }\n\n  inactivate() {\n    this._active = false;\n  }\n\n  triggered() {\n    if (!this._active) {\n      return false;\n    }\n\n    let result = false;\n\n    const elapsedTime = window.performance.now() - this._startTime;\n    const timePerFrame = (1 / this._handler.frameRate) * 1000;\n    const threshold = this._counter * this._period;\n\n    if (threshold >= elapsedTime) {\n      const diff = (elapsedTime + timePerFrame) - threshold;\n      if (diff >= 0) {\n        if (threshold - elapsedTime < diff) {\n          result = true;\n        }\n      }\n    } else {\n      result = true;\n    }\n    if (result) {\n      this._counter += 1;\n    }\n    return result;\n  }\n\n  period() {\n    return this._period;\n  }\n\n  setPeriod(period) {\n    this._period = period;\n  }\n\n  isSingleShot() {\n    return this._runOnlyOnce;\n  }\n\n  setSingleShot(singleShot) {\n    this._runOnlyOnce = singleShot;\n  }\n}\n",
+    "content": "import Timer from './Timer';\n\n/**\n * Sequential timers are single-threaded timers handled by a TimingHandler.\n */\nexport default class SeqTimer extends Timer {\n    /**\n   * Defines a sequential (single-threaded) timer.\n   *\n   * @param {Object} options defines the handler, singleShot and task options\n   * @param {TimingHandler} options.handler timing handler owner\n   * @param {boolean} options.runOnlyOnce Defines a single shot sequential (single-threaded) timer\n   * @param {TimingTask} options.task if not null, register a callback task\n   */\n  constructor({ handler, runOnlyOnce = false, task = null }) {\n    super();\n    this._task = task;\n    this._handler = handler;\n    this._active = false;\n    this._runOnlyOnce = runOnlyOnce;\n    this._counter = 0;\n    this._period = 0;\n    this._startTime = window.performance.now();\n    this.create();\n  }\n\n  timingTask() {\n    return this._task;\n  }\n  /**\n   * Executes the callback method defined by the {@link SeqTimer#timingTask}.\n   * *Note:* You should not call this method since it's done by the timing handler (see {@link TimingHandler#handle}).\n   */\n  execute() {\n    const result = this.triggered();\n    if (result) {\n      this._task.execute();\n      if (this._runOnlyOnce) {\n        this.inactivate();\n      }\n    }\n    return result;\n  }\n\n  cancel() {\n    this.inactivate();\n  }\n\n  create() {\n    this.inactivate();\n  }\n\n  run(period = null) {\n    if (period !== null) {\n      this._period = period;\n    }\n    if (period <= 0) {\n      return;\n    }\n    this._counter = 1;\n    this._active = true;\n    this._startTime = window.performance.now();\n  }\n\n  stop() {\n    this.inactivate();\n  }\n\n  isActive() {\n    return this._active;\n  }\n\n  /**\n   * Deactivates the SeqTimer.\n   */\n  inactivate() {\n    this._active = false;\n  }\n\n  /**\n   * Returns `true` if the timer was triggered at the given frame.\n   * *Note:* You should not call this method since it's done by the timing handler\n   * (see {@link TimingHandler#handle}).\n   * @returns {boolean}\n   */\n  triggered() {\n    if (!this._active) {\n      return false;\n    }\n\n    let result = false;\n\n    const elapsedTime = window.performance.now() - this._startTime;\n    const timePerFrame = (1 / this._handler.frameRate) * 1000;\n    const threshold = this._counter * this._period;\n\n    if (threshold >= elapsedTime) {\n      const diff = (elapsedTime + timePerFrame) - threshold;\n      if (diff >= 0) {\n        if (threshold - elapsedTime < diff) {\n          result = true;\n        }\n      }\n    } else {\n      result = true;\n    }\n    if (result) {\n      this._counter += 1;\n    }\n    return result;\n  }\n\n  period() {\n    return this._period;\n  }\n\n  setPeriod(period) {\n    this._period = period;\n  }\n\n  isSingleShot() {\n    return this._runOnlyOnce;\n  }\n\n  setSingleShot(singleShot) {\n    this._runOnlyOnce = singleShot;\n  }\n}\n",
     "static": true,
     "longname": "src/SeqTimer.js",
     "access": null,
@@ -857,15 +857,8 @@
     "export": true,
     "importPath": "fpstiming/src/SeqTimer.js",
     "importStyle": "SeqTimer",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
+    "description": "Sequential timers are single-threaded timers handled by a TimingHandler.",
+    "lineNumber": 6,
     "interface": false,
     "extends": [
       "src/Timer.js~Timer"
@@ -881,27 +874,48 @@
     "static": false,
     "longname": "src/SeqTimer.js~SeqTimer#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
+    "description": "Defines a sequential (single-threaded) timer.",
+    "lineNumber": 15,
     "params": [
       {
-        "name": "objectPattern",
+        "nullable": null,
         "types": [
-          "{\"handler\": *, \"runOnlyOnce\": *, \"task\": *}"
+          "Object"
         ],
-        "defaultRaw": {
-          "handler": null,
-          "runOnlyOnce": null,
-          "task": null
-        },
-        "defaultValue": "{\"handler\":null,\"runOnlyOnce\":null,\"task\":null}"
+        "spread": false,
+        "optional": false,
+        "name": "options",
+        "description": "defines the handler, singleShot and task options"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "TimingHandler"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.handler",
+        "description": "timing handler owner"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "boolean"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.runOnlyOnce",
+        "description": "Defines a single shot sequential (single-threaded) timer"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "TimingTask"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "options.task",
+        "description": "if not null, register a callback task"
       }
     ]
   },
@@ -914,7 +928,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#_task",
     "access": null,
     "description": null,
-    "lineNumber": 6,
+    "lineNumber": 17,
     "undocument": true,
     "unknown": [
       {
@@ -937,7 +951,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#_handler",
     "access": null,
     "description": null,
-    "lineNumber": 7,
+    "lineNumber": 18,
     "undocument": true,
     "unknown": [
       {
@@ -960,7 +974,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#_active",
     "access": null,
     "description": null,
-    "lineNumber": 8,
+    "lineNumber": 19,
     "undocument": true,
     "unknown": [
       {
@@ -983,7 +997,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#_runOnlyOnce",
     "access": null,
     "description": null,
-    "lineNumber": 9,
+    "lineNumber": 20,
     "undocument": true,
     "unknown": [
       {
@@ -1006,7 +1020,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#_counter",
     "access": null,
     "description": null,
-    "lineNumber": 10,
+    "lineNumber": 21,
     "undocument": true,
     "unknown": [
       {
@@ -1029,7 +1043,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#_period",
     "access": null,
     "description": null,
-    "lineNumber": 11,
+    "lineNumber": 22,
     "undocument": true,
     "unknown": [
       {
@@ -1052,7 +1066,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#_startTime",
     "access": null,
     "description": null,
-    "lineNumber": 12,
+    "lineNumber": 23,
     "undocument": true,
     "unknown": [
       {
@@ -1077,7 +1091,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#timingTask",
     "access": null,
     "description": null,
-    "lineNumber": 16,
+    "lineNumber": 27,
     "undocument": true,
     "unknown": [
       {
@@ -1102,15 +1116,8 @@
     "static": false,
     "longname": "src/SeqTimer.js~SeqTimer#execute",
     "access": null,
-    "description": null,
-    "lineNumber": 20,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
+    "description": "Executes the callback method defined by the {@link SeqTimer#timingTask}.\n*Note:* You should not call this method since it's done by the timing handler (see {@link TimingHandler#handle}).",
+    "lineNumber": 34,
     "params": [],
     "return": {
       "types": [
@@ -1129,7 +1136,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#cancel",
     "access": null,
     "description": null,
-    "lineNumber": 31,
+    "lineNumber": 45,
     "undocument": true,
     "unknown": [
       {
@@ -1150,7 +1157,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#create",
     "access": null,
     "description": null,
-    "lineNumber": 35,
+    "lineNumber": 49,
     "undocument": true,
     "unknown": [
       {
@@ -1171,7 +1178,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#run",
     "access": null,
     "description": null,
-    "lineNumber": 39,
+    "lineNumber": 53,
     "undocument": true,
     "unknown": [
       {
@@ -1199,7 +1206,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#_period",
     "access": null,
     "description": null,
-    "lineNumber": 41,
+    "lineNumber": 55,
     "undocument": true,
     "unknown": [
       {
@@ -1222,7 +1229,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#_counter",
     "access": null,
     "description": null,
-    "lineNumber": 46,
+    "lineNumber": 60,
     "undocument": true,
     "unknown": [
       {
@@ -1245,7 +1252,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#_active",
     "access": null,
     "description": null,
-    "lineNumber": 47,
+    "lineNumber": 61,
     "undocument": true,
     "unknown": [
       {
@@ -1268,7 +1275,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#_startTime",
     "access": null,
     "description": null,
-    "lineNumber": 48,
+    "lineNumber": 62,
     "undocument": true,
     "unknown": [
       {
@@ -1293,7 +1300,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#stop",
     "access": null,
     "description": null,
-    "lineNumber": 51,
+    "lineNumber": 65,
     "undocument": true,
     "unknown": [
       {
@@ -1314,7 +1321,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#isActive",
     "access": null,
     "description": null,
-    "lineNumber": 55,
+    "lineNumber": 69,
     "undocument": true,
     "unknown": [
       {
@@ -1339,15 +1346,8 @@
     "static": false,
     "longname": "src/SeqTimer.js~SeqTimer#inactivate",
     "access": null,
-    "description": null,
-    "lineNumber": 59,
-    "undocument": true,
-    "unknown": [
-      {
-        "tagName": "@_undocument",
-        "tagValue": ""
-      }
-    ],
+    "description": "Deactivates the SeqTimer.",
+    "lineNumber": 76,
     "params": []
   },
   {
@@ -1359,7 +1359,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#_active",
     "access": null,
     "description": null,
-    "lineNumber": 60,
+    "lineNumber": 77,
     "undocument": true,
     "unknown": [
       {
@@ -1383,20 +1383,22 @@
     "static": false,
     "longname": "src/SeqTimer.js~SeqTimer#triggered",
     "access": null,
-    "description": null,
-    "lineNumber": 63,
-    "undocument": true,
+    "description": "Returns `true` if the timer was triggered at the given frame.\n*Note:* You should not call this method since it's done by the timing handler\n(see {@link TimingHandler#handle}).",
+    "lineNumber": 86,
     "unknown": [
       {
-        "tagName": "@_undocument",
-        "tagValue": ""
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
       }
     ],
     "params": [],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
     }
   },
   {
@@ -1408,7 +1410,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#_counter",
     "access": null,
     "description": null,
-    "lineNumber": 85,
+    "lineNumber": 108,
     "undocument": true,
     "unknown": [
       {
@@ -1433,7 +1435,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#period",
     "access": null,
     "description": null,
-    "lineNumber": 90,
+    "lineNumber": 113,
     "undocument": true,
     "unknown": [
       {
@@ -1459,7 +1461,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#setPeriod",
     "access": null,
     "description": null,
-    "lineNumber": 94,
+    "lineNumber": 117,
     "undocument": true,
     "unknown": [
       {
@@ -1485,7 +1487,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#_period",
     "access": null,
     "description": null,
-    "lineNumber": 95,
+    "lineNumber": 118,
     "undocument": true,
     "unknown": [
       {
@@ -1510,7 +1512,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#isSingleShot",
     "access": null,
     "description": null,
-    "lineNumber": 98,
+    "lineNumber": 121,
     "undocument": true,
     "unknown": [
       {
@@ -1536,7 +1538,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#setSingleShot",
     "access": null,
     "description": null,
-    "lineNumber": 102,
+    "lineNumber": 125,
     "undocument": true,
     "unknown": [
       {
@@ -1562,7 +1564,7 @@
     "longname": "src/SeqTimer.js~SeqTimer#_runOnlyOnce",
     "access": null,
     "description": null,
-    "lineNumber": 103,
+    "lineNumber": 126,
     "undocument": true,
     "unknown": [
       {
