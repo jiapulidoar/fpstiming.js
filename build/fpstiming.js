@@ -164,7 +164,18 @@ class Timer {
   }
 }
 
+/**
+ * Sequential timers are single-threaded timers handled by a TimingHandler.
+ */
 class SeqTimer extends Timer {
+    /**
+   * Defines a sequential (single-threaded) timer.
+   *
+   * @param {Object} options defines the handler, singleShot and task options
+   * @param {TimingHandler} options.handler timing handler owner
+   * @param {boolean} options.runOnlyOnce Defines a single shot sequential (single-threaded) timer
+   * @param {TimingTask} options.task if not null, register a callback task
+   */
   constructor({ handler, runOnlyOnce = false, task = null }) {
     super();
     this._task = task;
@@ -180,7 +191,10 @@ class SeqTimer extends Timer {
   timingTask() {
     return this._task;
   }
-
+  /**
+   * Executes the callback method defined by the {@link SeqTimer#timingTask}.
+   * *Note:* You should not call this method since it's done by the timing handler (see {@link TimingHandler#handle}).
+   */
   execute() {
     const result = this.triggered();
     if (result) {
@@ -220,10 +234,19 @@ class SeqTimer extends Timer {
     return this._active;
   }
 
+  /**
+   * Deactivates the SeqTimer.
+   */
   inactivate() {
     this._active = false;
   }
 
+  /**
+   * Returns `true` if the timer was triggered at the given frame.
+   * *Note:* You should not call this method since it's done by the timing handler
+   * (see {@link TimingHandler#handle}).
+   * @returns {boolean}
+   */
   triggered() {
     if (!this._active) {
       return false;
@@ -353,8 +376,14 @@ class AnimatorObject extends Animator {
   }
 }
 
+/**
+ * Interface used to define a timer callback method.
+ */
 class Taskable {
-  execute(){
+  /**
+   * Timer callback method
+   */
+  execute() {
     throw new TypeError('execute must be overrided');
   }
 }
@@ -446,16 +475,35 @@ class TimingHandler {
 
 }
 
+/**
+ * An abstract wrapper class holding a {@link TimingTask#timer} together with its callback method
+ * ( {@link Taskable#execute}) which derived classes should implement.
+ */
 class TimingTask extends Taskable {
   constructor() {
     super();
     this._timer = null;
   }
+  /**
+   * Returns the timer instance.
+   * @returns {Timer}
+   */
+  timer() {
+    return this._timer;
+  }
 
+  /**
+   * Sets the timer instance.
+   * @param {Timer} timer
+   */
   setTimer(timer) {
     this._timer = timer;
   }
 
+  /**
+   * Run the {@link TimingTask#timer} with a repeated fixed-rate execution according to `period`.
+   * @param {number} period in milliseconds.
+   */
   run(period) {
     if (this._timer != null) {
       this._timer().setSingleShot(false);
@@ -463,6 +511,10 @@ class TimingTask extends Taskable {
     }
   }
 
+  /**
+   * Run the {@link TimingTask#timer} once, according to `period`.
+   * @param {number} period in milliseconds.
+   */
   runOnce(period) {
     if (this._timer != null) {
       this._timer().setSingleShot(true);
@@ -470,27 +522,40 @@ class TimingTask extends Taskable {
     }
   }
 
+  /**
+   * Stops the {@link TimingTask#timer}.
+   */
   stop() {
     if (this._timer != null) {
       this._timer().stop();
     }
   }
 
+  /**
+   * Stops the {@link TimingTask#timer}.
+   */
   cancel() {
     if (this._timer != null) {
       this._timer().cancel();
     }
   }
 
+  /**
+   * Creates the {@link TimingTask#timer}.
+   */
   create() {
     if (this._timer != null) {
       this._timer().create();
     }
   }
 
+  /**
+   * Tells whether or not the timer is active.
+   * @returns {boolean}
+   */
   isActive() {
     if (this._timer != null) {
-      this._timer().isActive();
+      return this._timer().isActive();
     }
     return false;
   }
