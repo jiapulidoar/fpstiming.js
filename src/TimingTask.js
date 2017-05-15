@@ -5,6 +5,9 @@ import Taskable from './Taskable.js';
  * ( {@link Taskable#execute}) which derived classes should implement.
  */
 export default class TimingTask extends Taskable {
+  /**
+   * Default Constructor.
+   */
   constructor() {
     super();
     this._timer = null;
