@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/Animator.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Animator.js~Animator.html">Animator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/AnimatorObject.js~AnimatorObject.html">AnimatorObject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SeqTimer.js~SeqTimer.html">SeqTimer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Taskable.js~Taskable.html">Taskable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Timer.js~Timer.html">Timer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html">TimingHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TimingTask.js~TimingTask.html">TimingTask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fpstiming">fpstiming</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/Animator.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Interface defining the behavior animated objects should implement.
+ */
+export default class Animator {
+  /**
+   * Main callback method
+   */
+  animate() {
+    throw new TypeError(&apos;animate must be overrided&apos;);
+  }
+  /**
+   * @returns {boolean} whether or not the animated method is defined externally, as when register it
+   * through reflection.
+   */
+  invokeAnimationHandler() {
+    throw new TypeError(&apos;invokeAnimationHandler must be overrided&apos;);
+  }
+  /**
+   * @returns {number} the animation period in milliseconds.
+   */
+  get animationPeriod() {
+    throw new TypeError(&apos;animationPeriod must be overrided&apos;);
+  }
+  /**
+   * Sets the animation `period` in milliseconds and (optional) `restart` the animation.
+   * @param {number} period
+   * @param {boolean} [restart = false]
+   */
+  setAnimationPeriod(period, restart = true) {
+    throw new TypeError(&apos;setAnimationPeriod must be overrided&apos;);
+  }
+  /**
+   * Stops the animation
+   */
+  stopAnimation() {
+    throw new TypeError(&apos;stopAnimation must be overrided&apos;);
+  }
+  /**
+   * Starts the animation executing periodically the animated call back method.
+   */
+  startAnimation() {
+    throw new TypeError(&apos;startAnimation must be overrided&apos;);
+  }
+  /**
+   * Simply calls {@link Animator#stopAnimation} and then {@link Animator#startAnimation}.
+   */
+  restartAnimation() {
+    throw new TypeError(&apos;restartAnimation must be overrided&apos;);
+  }
+  /**
+   * Starts or stops the animation according to {@link Animator#animationStarted}.
+   */
+  toggleAnimation() {
+    throw new TypeError(&apos;toggleAnimation must be overrided&apos;);
+  }
+  /**
+   * @returns {boolean} `true` if animation was started or `false` otherwise.
+   */
+  animationStarted() {
+    throw new TypeError(&apos;animationStarted must be overrided&apos;);
+  }
+  /**
+   * Sets the timing handler.
+   * param {TimingHandler} handler
+   */
+  set timingHandler(handler) {
+    throw new TypeError(&apos;set timingHandler must be overrided&apos;);
+  }
+  /**
+   * @returns {TimingHandler} the timing handler.
+   */
+  get timingHandler() {
+    throw new TypeError(&apos;get TimingHandler must be overrided&apos;);
+  }
+  /**
+   * @returns {SeqTimer} the sequential timer.
+   */
+  get timer() {
+    throw new TypeError(&apos;get timer must be overrided&apos;);
+  }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

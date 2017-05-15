@@ -1,0 +1,118 @@
+{
+  "coverage": "16.88%",
+  "expectCount": 77,
+  "actualCount": 13,
+  "files": {
+    "src/Animator.js": {
+      "expectCount": 13,
+      "actualCount": 13,
+      "undocumentLines": []
+    },
+    "src/AnimatorObject.js": {
+      "expectCount": 13,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        37,
+        33,
+        5,
+        77,
+        64,
+        41,
+        57,
+        50,
+        29,
+        25,
+        19,
+        69
+      ]
+    },
+    "src/SeqTimer.js": {
+      "expectCount": 15,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        31,
+        4,
+        35,
+        20,
+        59,
+        55,
+        98,
+        94,
+        90,
+        39,
+        102,
+        51,
+        16,
+        63
+      ]
+    },
+    "src/Taskable.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        2
+      ]
+    },
+    "src/Timer.js": {
+      "expectCount": 12,
+      "actualCount": 0,
+      "undocumentLines": [
+        1,
+        11,
+        14,
+        17,
+        29,
+        20,
+        23,
+        2,
+        26,
+        32,
+        8,
+        5
+      ]
+    },
+    "src/TimingHandler.js": {
+      "expectCount": 12,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        4,
+        69,
+        65,
+        15,
+        84,
+        50,
+        73,
+        37,
+        80,
+        46,
+        54
+      ]
+    },
+    "src/TimingTask.js": {
+      "expectCount": 9,
+      "actualCount": 0,
+      "undocumentLines": [
+        3,
+        33,
+        4,
+        39,
+        45,
+        13,
+        20,
+        9,
+        27
+      ]
+    },
+    "src/index.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        9
+      ]
+    }
+  }
+}
