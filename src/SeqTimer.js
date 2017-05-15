@@ -1,6 +1,8 @@
-export default class SeqTimer {
+import Timer from './Timer';
 
+export default class SeqTimer extends Timer {
   constructor({ handler, runOnlyOnce = false, task = null }) {
+    super();
     this._task = task;
     this._handler = handler;
     this._active = false;
@@ -100,5 +102,4 @@ export default class SeqTimer {
   setSingleShot(singleShot) {
     this._runOnlyOnce = singleShot;
   }
-
 }
