@@ -13,7 +13,7 @@ export default class SeqTimer extends Timer {
     this.create();
   }
 
-  get timingTask() {
+  timingTask() {
     return this._task;
   }
 
@@ -87,11 +87,11 @@ export default class SeqTimer extends Timer {
     return result;
   }
 
-  get period() {
+  period() {
     return this._period;
   }
 
-  set period(period) {
+  setPeriod(period) {
     this._period = period;
   }
 

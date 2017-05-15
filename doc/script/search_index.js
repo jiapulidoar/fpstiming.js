@@ -583,20 +583,20 @@ window.esdocSearchIndex = [
   ],
   [
     "src/seqtimer.js~seqtimer#period",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-get-period",
+    "class/src/SeqTimer.js~SeqTimer.html#instance-method-period",
     "src/SeqTimer.js~SeqTimer#period",
-    "member"
-  ],
-  [
-    "src/seqtimer.js~seqtimer#period",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-set-period",
-    "src/SeqTimer.js~SeqTimer#period",
-    "member"
+    "method"
   ],
   [
     "src/seqtimer.js~seqtimer#run",
     "class/src/SeqTimer.js~SeqTimer.html#instance-method-run",
     "src/SeqTimer.js~SeqTimer#run",
+    "method"
+  ],
+  [
+    "src/seqtimer.js~seqtimer#setperiod",
+    "class/src/SeqTimer.js~SeqTimer.html#instance-method-setPeriod",
+    "src/SeqTimer.js~SeqTimer#setPeriod",
     "method"
   ],
   [
@@ -613,9 +613,9 @@ window.esdocSearchIndex = [
   ],
   [
     "src/seqtimer.js~seqtimer#timingtask",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-get-timingTask",
+    "class/src/SeqTimer.js~SeqTimer.html#instance-method-timingTask",
     "src/SeqTimer.js~SeqTimer#timingTask",
-    "member"
+    "method"
   ],
   [
     "src/seqtimer.js~seqtimer#triggered",
@@ -667,15 +667,9 @@ window.esdocSearchIndex = [
   ],
   [
     "src/timer.js~timer#period",
-    "class/src/Timer.js~Timer.html#instance-get-period",
+    "class/src/Timer.js~Timer.html#instance-method-period",
     "src/Timer.js~Timer#period",
-    "member"
-  ],
-  [
-    "src/timer.js~timer#period",
-    "class/src/Timer.js~Timer.html#instance-set-period",
-    "src/Timer.js~Timer#period",
-    "member"
+    "method"
   ],
   [
     "src/timer.js~timer#run",

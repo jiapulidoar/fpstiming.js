@@ -1,74 +1,159 @@
+/**
+ * Interface defining the behavior animated objects should implement.
+ */
 class Animator {
+  /**
+   * Main callback method.
+   */
   animate() {
     throw new TypeError('animate must be overrided');
   }
+  /**
+   * Whether or not the animated method is defined externally, as when register it through reflection.
+   * @returns {boolean}
+   */
   invokeAnimationHandler() {
     throw new TypeError('invokeAnimationHandler must be overrided');
   }
-  get animationPeriod() {
+  /**
+   * Returns the animation period in milliseconds.
+   * @returns {number}
+   */
+  animationPeriod() {
     throw new TypeError('animationPeriod must be overrided');
   }
-  setAnimationPeriod(number) {
+  /**
+   * Sets the animation `period` in milliseconds and (optional) `restart` the animation.
+   * @param {number} period
+   * @param {boolean} [restart = false]
+   */
+  setAnimationPeriod(period, restart = true) {
     throw new TypeError('setAnimationPeriod must be overrided');
   }
+  /**
+   * Stops the animation
+   */
   stopAnimation() {
     throw new TypeError('stopAnimation must be overrided');
   }
+  /**
+   * Starts the animation executing periodically the animated call back method.
+   */
   startAnimation() {
     throw new TypeError('startAnimation must be overrided');
   }
+  /**
+   * Simply calls {@link Animator#stopAnimation} and then {@link Animator#startAnimation}.
+   */
   restartAnimation() {
     throw new TypeError('restartAnimation must be overrided');
   }
+  /**
+   * Starts or stops the animation according to {@link Animator#animationStarted}.
+   */
   toggleAnimation() {
     throw new TypeError('toggleAnimation must be overrided');
   }
+  /**
+   * Return `true` if animation was started or `false` otherwise.
+   * @returns {boolean}
+   */
   animationStarted() {
     throw new TypeError('animationStarted must be overrided');
   }
-  set timingHandler(handler) {
-    throw new TypeError('set timingHandler must be overrided');
+  /**
+   * Sets the timing handler.
+   * param {TimingHandler} handler
+   */
+  setTimingHandler(handler) {
+    throw new TypeError('setTimingHandler must be overrided');
   }
-  get timingHandler() {
-    throw new TypeError('get TimingHandler must be overrided');
+  /**
+   * Returns the timing handler.
+   * @returns {TimingHandler}
+   */
+  timingHandler() {
+    throw new TypeError('TimingHandler must be overrided');
   }
-  get timer() {
-    throw new TypeError('get timer must be overrided');
+  /**
+   * Returns the sequential timer.
+   * @returns {SeqTimer}
+   */
+  timer() {
+    throw new TypeError('timer must be overrided');
   }
 }
 
+/**
+ * Interface defining timers.
+ */
 class Timer {
-  run(){
+  /**
+   * Sets the optional period and runs the timer according to {@link Timer#period}. The timer may be scheduled for repeated fixed-rate execution according to {@link Timer#isSingleShot}.
+   *
+   * @param {number} [period=null] time in milliseconds between successive task executions
+   */
+  run(period){
     throw new TypeError('run must be overrided');
   }
+  /**
+   * Returns the object defining the timer callback method. May be null.
+   * @returns {TimingTask|null}
+   */
   get timingTask(){
     throw new TypeError('get timingTask must be overrided');
   }
+  /**
+   * Stops the timer.
+   */
   stop(){
     throw new TypeError('stop must be overrided');
   }
+  /**
+   * Stops the timer.
+   */
   cancel(){
     throw new TypeError('cancel must be overrided');
   }
+  /**
+   * Creates the timer.
+   */
   create(){
     throw new TypeError('create must be overrided');
   }
+  /**
+   * Tells whether or not the timer is active.
+   * @returns {boolean}
+   */
   isActive(){
     throw new TypeError('isActive must be overrided');
   }
-  get period(){
+  /**
+   * Returns the timer period in milliseconds.
+   * @returns {number}
+   */
+  period(){
     throw new TypeError('get period must be overrided');
   }
-  set period(number){
+  /**
+   * Defines the timer period in milliseconds.
+   * @param {number} period in milliseconds
+   */
+  setPeriod(period){
     throw new TypeError('set period must be overrided');
   }
-  setPeriod(){
-    throw new TypeError('setPeriod must be overrided');
-  }
+  /**
+   * Returns whether or not the timer is scheduled to be executed only once.
+   * @returns {boolean}
+   */
   isSingleShot(){
     throw new TypeError('isSingleShot must be overrided');
   }
-  setSingleShot(){
+  /**
+   * Defines the timer as a single shot or for repeated execution.
+   * @param {boolean} singleShot
+   */
+  setSingleShot(singleShot){
     throw new TypeError('setSingleShot must be overrided');
   }
 }
@@ -86,7 +171,7 @@ class SeqTimer extends Timer {
     this.create();
   }
 
-  get timingTask() {
+  timingTask() {
     return this._task;
   }
 
@@ -160,11 +245,11 @@ class SeqTimer extends Timer {
     return result;
   }
 
-  get period() {
+  period() {
     return this._period;
   }
 
-  set period(period) {
+  setPeriod(period) {
     this._period = period;
   }
 
@@ -177,7 +262,14 @@ class SeqTimer extends Timer {
   }
 }
 
+/**
+ * Class implementing the main {@link Animator} behavior.
+ */
 class AnimatorObject extends Animator {
+  /**
+   * Constructs an animated object with a default {@link AnimatorObject#animationPeriod} of 40 milliseconds (25Hz), if no handler is supplied, the handler should explicitly be defined afterwards {@link AnimatorObject#setTimingHandler}.
+   * @param {TimingHandler} [handler = null] optional {@link TimingHandler}
+   */
   constructor(handler = null) {
     super();
 
@@ -188,29 +280,29 @@ class AnimatorObject extends Animator {
     this._handler = null;
 
     if (handler !== null) {
-      this.timingHandler = handler;
+      this.setTimingHandler(handler);
     }
   }
 
-  set timingHandler(handler) {
+  setTimingHandler(handler) {
     this._animationTimer = new SeqTimer({ handler });
     this._handler = handler;
     handler.registerAnimator(this);
   }
 
-  get timingHandler() {
+  timingHandler() {
     return this._handler;
   }
 
-  get timer() {
+  timer() {
     return this._animationTimer;
   }
 
-  get animationStarted() {
+  animationStarted() {
     return this._started;
   }
 
-  get animationPeriod() {
+  animationPeriod() {
     return this._animationPeriod;
   }
 
@@ -285,8 +377,8 @@ class TimingHandler {
       }
     });
     Array.from(this._aPool).forEach((aObj) => {
-      if (aObj.animationStarted) {
-        if (aObj.timer.triggered()) {
+      if (aObj.animationStarted()) {
+        if (aObj.timer().triggered()) {
           if (!aObj.invokeAnimationHandler()) {
             aObj.animate();
           }
@@ -332,8 +424,8 @@ class TimingHandler {
   }
 
   registerAnimator(object) {
-    if (object.timingHandler !== this) {
-      object.timingHandler = this;
+    if (object.timingHandler() !== this) {
+      object.setTimingHandler(this);
     }
     this._aPool.add(object);
   }

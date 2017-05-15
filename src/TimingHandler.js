@@ -24,8 +24,8 @@ export default class TimingHandler {
       }
     });
     Array.from(this._aPool).forEach((aObj) => {
-      if (aObj.animationStarted) {
-        if (aObj.timer.triggered()) {
+      if (aObj.animationStarted()) {
+        if (aObj.timer().triggered()) {
           if (!aObj.invokeAnimationHandler()) {
             aObj.animate();
           }
