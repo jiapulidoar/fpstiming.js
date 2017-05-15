@@ -50,14 +50,14 @@
  */
 export default class Animator {
   /**
-   * Main callback method
+   * Main callback method.
    */
   animate() {
     throw new TypeError(&apos;animate must be overrided&apos;);
   }
   /**
-   * @returns {boolean} whether or not the animated method is defined externally, as when register it
-   * through reflection.
+   * Whether or not the animated method is defined externally, as when register it through reflection.
+   * @returns {boolean}
    */
   invokeAnimationHandler() {
     throw new TypeError(&apos;invokeAnimationHandler must be overrided&apos;);
@@ -65,7 +65,7 @@ export default class Animator {
   /**
    * @returns {number} the animation period in milliseconds.
    */
-  get animationPeriod() {
+  animationPeriod() {
     throw new TypeError(&apos;animationPeriod must be overrided&apos;);
   }
   /**
@@ -110,20 +110,20 @@ export default class Animator {
    * Sets the timing handler.
    * param {TimingHandler} handler
    */
-  set timingHandler(handler) {
-    throw new TypeError(&apos;set timingHandler must be overrided&apos;);
+  setTimingHandler(handler) {
+    throw new TypeError(&apos;setTimingHandler must be overrided&apos;);
   }
   /**
    * @returns {TimingHandler} the timing handler.
    */
-  get timingHandler() {
-    throw new TypeError(&apos;get TimingHandler must be overrided&apos;);
+  timingHandler() {
+    throw new TypeError(&apos;TimingHandler must be overrided&apos;);
   }
   /**
    * @returns {SeqTimer} the sequential timer.
    */
-  get timer() {
-    throw new TypeError(&apos;get timer must be overrided&apos;);
+  timer() {
+    throw new TypeError(&apos;timer must be overrided&apos;);
   }
 }
 </code></pre>

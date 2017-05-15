@@ -40,6 +40,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w -m inline",
+    "doc" : "esdoc",
     "lint": "eslint src"
   },
   "keywords": [

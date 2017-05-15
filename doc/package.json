@@ -21,20 +21,26 @@
     "test": "test"
   },
   "eslintConfig": {
-    "extends" : "airbnb",
+    "extends": "airbnb",
     "plugins": [
-        "import"
+      "import"
     ],
     "globals": {
-      "window" : true
+      "window": true
     },
-    "rules" : {
-      "no-underscore-dangle": ["error", { "allowAfterThis": true }]
+    "rules": {
+      "no-underscore-dangle": [
+        "error",
+        {
+          "allowAfterThis": true
+        }
+      ]
     }
   },
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w -m inline",
+    "doc" : "esdoc",
     "lint": "eslint src"
   },
   "keywords": [
@@ -48,11 +54,11 @@
     "url": "https://github.com/@TODO/@TODO/issues"
   },
   "devDependencies": {
+    "esdoc": "^0.5.2",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.9.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

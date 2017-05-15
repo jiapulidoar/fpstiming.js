@@ -29,30 +29,18 @@ export default class AnimatorObject extends Animator {
     handler.registerAnimator(this);
   }
 
-  /**
-   * @returns {TimingHandler} the timing handler.
-   */
   timingHandler() {
     return this._handler;
   }
 
-  /**
-   * @returns {SeqTimer} the sequential timer.
-   */
   timer() {
     return this._animationTimer;
   }
 
-  /**
-   * @returns {boolean} `true` if animation was started or `false` otherwise.
-   */
   animationStarted() {
     return this._started;
   }
 
-  /**
-   * @returns {number} the animation period in milliseconds.
-   */
   animationPeriod() {
     return this._animationPeriod;
   }

@@ -391,9 +391,9 @@ window.esdocSearchIndex = [
   ],
   [
     "src/animator.js~animator#animationperiod",
-    "class/src/Animator.js~Animator.html#instance-get-animationPeriod",
+    "class/src/Animator.js~Animator.html#instance-method-animationPeriod",
     "src/Animator.js~Animator#animationPeriod",
-    "member"
+    "method"
   ],
   [
     "src/animator.js~animator#animationstarted",
@@ -420,6 +420,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/animator.js~animator#settiminghandler",
+    "class/src/Animator.js~Animator.html#instance-method-setTimingHandler",
+    "src/Animator.js~Animator#setTimingHandler",
+    "method"
+  ],
+  [
     "src/animator.js~animator#startanimation",
     "class/src/Animator.js~Animator.html#instance-method-startAnimation",
     "src/Animator.js~Animator#startAnimation",
@@ -433,21 +439,15 @@ window.esdocSearchIndex = [
   ],
   [
     "src/animator.js~animator#timer",
-    "class/src/Animator.js~Animator.html#instance-get-timer",
+    "class/src/Animator.js~Animator.html#instance-method-timer",
     "src/Animator.js~Animator#timer",
-    "member"
+    "method"
   ],
   [
     "src/animator.js~animator#timinghandler",
-    "class/src/Animator.js~Animator.html#instance-get-timingHandler",
+    "class/src/Animator.js~Animator.html#instance-method-timingHandler",
     "src/Animator.js~Animator#timingHandler",
-    "member"
-  ],
-  [
-    "src/animator.js~animator#timinghandler",
-    "class/src/Animator.js~Animator.html#instance-set-timingHandler",
-    "src/Animator.js~Animator#timingHandler",
-    "member"
+    "method"
   ],
   [
     "src/animator.js~animator#toggleanimation",
@@ -463,15 +463,15 @@ window.esdocSearchIndex = [
   ],
   [
     "src/animatorobject.js~animatorobject#animationperiod",
-    "class/src/AnimatorObject.js~AnimatorObject.html#instance-get-animationPeriod",
+    "class/src/AnimatorObject.js~AnimatorObject.html#instance-method-animationPeriod",
     "src/AnimatorObject.js~AnimatorObject#animationPeriod",
-    "member"
+    "method"
   ],
   [
     "src/animatorobject.js~animatorobject#animationstarted",
-    "class/src/AnimatorObject.js~AnimatorObject.html#instance-get-animationStarted",
+    "class/src/AnimatorObject.js~AnimatorObject.html#instance-method-animationStarted",
     "src/AnimatorObject.js~AnimatorObject#animationStarted",
-    "member"
+    "method"
   ],
   [
     "src/animatorobject.js~animatorobject#constructor",
@@ -498,6 +498,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/animatorobject.js~animatorobject#settiminghandler",
+    "class/src/AnimatorObject.js~AnimatorObject.html#instance-method-setTimingHandler",
+    "src/AnimatorObject.js~AnimatorObject#setTimingHandler",
+    "method"
+  ],
+  [
     "src/animatorobject.js~animatorobject#startanimation",
     "class/src/AnimatorObject.js~AnimatorObject.html#instance-method-startAnimation",
     "src/AnimatorObject.js~AnimatorObject#startAnimation",
@@ -511,21 +517,15 @@ window.esdocSearchIndex = [
   ],
   [
     "src/animatorobject.js~animatorobject#timer",
-    "class/src/AnimatorObject.js~AnimatorObject.html#instance-get-timer",
+    "class/src/AnimatorObject.js~AnimatorObject.html#instance-method-timer",
     "src/AnimatorObject.js~AnimatorObject#timer",
-    "member"
+    "method"
   ],
   [
     "src/animatorobject.js~animatorobject#timinghandler",
-    "class/src/AnimatorObject.js~AnimatorObject.html#instance-set-timingHandler",
+    "class/src/AnimatorObject.js~AnimatorObject.html#instance-method-timingHandler",
     "src/AnimatorObject.js~AnimatorObject#timingHandler",
-    "member"
-  ],
-  [
-    "src/animatorobject.js~animatorobject#timinghandler",
-    "class/src/AnimatorObject.js~AnimatorObject.html#instance-get-timingHandler",
-    "src/AnimatorObject.js~AnimatorObject#timingHandler",
-    "member"
+    "method"
   ],
   [
     "src/animatorobject.js~animatorobject#toggleanimation",
@@ -667,13 +667,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/timer.js~timer#period",
-    "class/src/Timer.js~Timer.html#instance-set-period",
+    "class/src/Timer.js~Timer.html#instance-get-period",
     "src/Timer.js~Timer#period",
     "member"
   ],
   [
     "src/timer.js~timer#period",
-    "class/src/Timer.js~Timer.html#instance-get-period",
+    "class/src/Timer.js~Timer.html#instance-set-period",
     "src/Timer.js~Timer#period",
     "member"
   ],
