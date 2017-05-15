@@ -9,8 +9,8 @@ export default class Animator {
     throw new TypeError('animate must be overrided');
   }
   /**
-   * @returns {boolean} whether or not the animated method is defined externally, as when register it
-   * through reflection.
+   * Whether or not the animated method is defined externally, as when register it through reflection.
+   * @returns {boolean}
    */
   invokeAnimationHandler() {
     throw new TypeError('invokeAnimationHandler must be overrided');
