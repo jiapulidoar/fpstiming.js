@@ -63,7 +63,8 @@ export default class Animator {
     throw new TypeError(&apos;invokeAnimationHandler must be overrided&apos;);
   }
   /**
-   * @returns {number} the animation period in milliseconds.
+   * Returns the animation period in milliseconds.
+   * @returns {number}
    */
   animationPeriod() {
     throw new TypeError(&apos;animationPeriod must be overrided&apos;);
@@ -101,7 +102,8 @@ export default class Animator {
     throw new TypeError(&apos;toggleAnimation must be overrided&apos;);
   }
   /**
-   * @returns {boolean} `true` if animation was started or `false` otherwise.
+   * Return `true` if animation was started or `false` otherwise.
+   * @returns {boolean}
    */
   animationStarted() {
     throw new TypeError(&apos;animationStarted must be overrided&apos;);
@@ -114,13 +116,15 @@ export default class Animator {
     throw new TypeError(&apos;setTimingHandler must be overrided&apos;);
   }
   /**
-   * @returns {TimingHandler} the timing handler.
+   * Returns the timing handler.
+   * @returns {TimingHandler}
    */
   timingHandler() {
     throw new TypeError(&apos;TimingHandler must be overrided&apos;);
   }
   /**
-   * @returns {SeqTimer} the sequential timer.
+   * Returns the sequential timer.
+   * @returns {SeqTimer}
    */
   timer() {
     throw new TypeError(&apos;timer must be overrided&apos;);

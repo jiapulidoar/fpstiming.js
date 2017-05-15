@@ -3,7 +3,7 @@
     "__docId__": 0,
     "kind": "file",
     "name": "src/Animator.js",
-    "content": "/**\n * Interface defining the behavior animated objects should implement.\n */\nexport default class Animator {\n  /**\n   * Main callback method.\n   */\n  animate() {\n    throw new TypeError('animate must be overrided');\n  }\n  /**\n   * Whether or not the animated method is defined externally, as when register it through reflection.\n   * @returns {boolean}\n   */\n  invokeAnimationHandler() {\n    throw new TypeError('invokeAnimationHandler must be overrided');\n  }\n  /**\n   * @returns {number} the animation period in milliseconds.\n   */\n  animationPeriod() {\n    throw new TypeError('animationPeriod must be overrided');\n  }\n  /**\n   * Sets the animation `period` in milliseconds and (optional) `restart` the animation.\n   * @param {number} period\n   * @param {boolean} [restart = false]\n   */\n  setAnimationPeriod(period, restart = true) {\n    throw new TypeError('setAnimationPeriod must be overrided');\n  }\n  /**\n   * Stops the animation\n   */\n  stopAnimation() {\n    throw new TypeError('stopAnimation must be overrided');\n  }\n  /**\n   * Starts the animation executing periodically the animated call back method.\n   */\n  startAnimation() {\n    throw new TypeError('startAnimation must be overrided');\n  }\n  /**\n   * Simply calls {@link Animator#stopAnimation} and then {@link Animator#startAnimation}.\n   */\n  restartAnimation() {\n    throw new TypeError('restartAnimation must be overrided');\n  }\n  /**\n   * Starts or stops the animation according to {@link Animator#animationStarted}.\n   */\n  toggleAnimation() {\n    throw new TypeError('toggleAnimation must be overrided');\n  }\n  /**\n   * @returns {boolean} `true` if animation was started or `false` otherwise.\n   */\n  animationStarted() {\n    throw new TypeError('animationStarted must be overrided');\n  }\n  /**\n   * Sets the timing handler.\n   * param {TimingHandler} handler\n   */\n  setTimingHandler(handler) {\n    throw new TypeError('setTimingHandler must be overrided');\n  }\n  /**\n   * @returns {TimingHandler} the timing handler.\n   */\n  timingHandler() {\n    throw new TypeError('TimingHandler must be overrided');\n  }\n  /**\n   * @returns {SeqTimer} the sequential timer.\n   */\n  timer() {\n    throw new TypeError('timer must be overrided');\n  }\n}\n",
+    "content": "/**\n * Interface defining the behavior animated objects should implement.\n */\nexport default class Animator {\n  /**\n   * Main callback method.\n   */\n  animate() {\n    throw new TypeError('animate must be overrided');\n  }\n  /**\n   * Whether or not the animated method is defined externally, as when register it through reflection.\n   * @returns {boolean}\n   */\n  invokeAnimationHandler() {\n    throw new TypeError('invokeAnimationHandler must be overrided');\n  }\n  /**\n   * Returns the animation period in milliseconds.\n   * @returns {number}\n   */\n  animationPeriod() {\n    throw new TypeError('animationPeriod must be overrided');\n  }\n  /**\n   * Sets the animation `period` in milliseconds and (optional) `restart` the animation.\n   * @param {number} period\n   * @param {boolean} [restart = false]\n   */\n  setAnimationPeriod(period, restart = true) {\n    throw new TypeError('setAnimationPeriod must be overrided');\n  }\n  /**\n   * Stops the animation\n   */\n  stopAnimation() {\n    throw new TypeError('stopAnimation must be overrided');\n  }\n  /**\n   * Starts the animation executing periodically the animated call back method.\n   */\n  startAnimation() {\n    throw new TypeError('startAnimation must be overrided');\n  }\n  /**\n   * Simply calls {@link Animator#stopAnimation} and then {@link Animator#startAnimation}.\n   */\n  restartAnimation() {\n    throw new TypeError('restartAnimation must be overrided');\n  }\n  /**\n   * Starts or stops the animation according to {@link Animator#animationStarted}.\n   */\n  toggleAnimation() {\n    throw new TypeError('toggleAnimation must be overrided');\n  }\n  /**\n   * Return `true` if animation was started or `false` otherwise.\n   * @returns {boolean}\n   */\n  animationStarted() {\n    throw new TypeError('animationStarted must be overrided');\n  }\n  /**\n   * Sets the timing handler.\n   * param {TimingHandler} handler\n   */\n  setTimingHandler(handler) {\n    throw new TypeError('setTimingHandler must be overrided');\n  }\n  /**\n   * Returns the timing handler.\n   * @returns {TimingHandler}\n   */\n  timingHandler() {\n    throw new TypeError('TimingHandler must be overrided');\n  }\n  /**\n   * Returns the sequential timer.\n   * @returns {SeqTimer}\n   */\n  timer() {\n    throw new TypeError('timer must be overrided');\n  }\n}\n",
     "static": true,
     "longname": "src/Animator.js",
     "access": null,
@@ -77,12 +77,12 @@
     "static": false,
     "longname": "src/Animator.js~Animator#animationPeriod",
     "access": null,
-    "description": "",
-    "lineNumber": 21,
+    "description": "Returns the animation period in milliseconds.",
+    "lineNumber": 22,
     "unknown": [
       {
         "tagName": "@returns",
-        "tagValue": "{number} the animation period in milliseconds."
+        "tagValue": "{number}"
       }
     ],
     "params": [],
@@ -92,7 +92,7 @@
         "number"
       ],
       "spread": false,
-      "description": "the animation period in milliseconds."
+      "description": ""
     }
   },
   {
@@ -106,7 +106,7 @@
     "longname": "src/Animator.js~Animator#setAnimationPeriod",
     "access": null,
     "description": "Sets the animation `period` in milliseconds and (optional) `restart` the animation.",
-    "lineNumber": 29,
+    "lineNumber": 30,
     "params": [
       {
         "nullable": null,
@@ -143,7 +143,7 @@
     "longname": "src/Animator.js~Animator#stopAnimation",
     "access": null,
     "description": "Stops the animation",
-    "lineNumber": 35,
+    "lineNumber": 36,
     "params": []
   },
   {
@@ -157,7 +157,7 @@
     "longname": "src/Animator.js~Animator#startAnimation",
     "access": null,
     "description": "Starts the animation executing periodically the animated call back method.",
-    "lineNumber": 41,
+    "lineNumber": 42,
     "params": []
   },
   {
@@ -171,7 +171,7 @@
     "longname": "src/Animator.js~Animator#restartAnimation",
     "access": null,
     "description": "Simply calls {@link Animator#stopAnimation} and then {@link Animator#startAnimation}.",
-    "lineNumber": 47,
+    "lineNumber": 48,
     "params": []
   },
   {
@@ -185,7 +185,7 @@
     "longname": "src/Animator.js~Animator#toggleAnimation",
     "access": null,
     "description": "Starts or stops the animation according to {@link Animator#animationStarted}.",
-    "lineNumber": 53,
+    "lineNumber": 54,
     "params": []
   },
   {
@@ -198,12 +198,12 @@
     "static": false,
     "longname": "src/Animator.js~Animator#animationStarted",
     "access": null,
-    "description": "",
-    "lineNumber": 59,
+    "description": "Return `true` if animation was started or `false` otherwise.",
+    "lineNumber": 61,
     "unknown": [
       {
         "tagName": "@returns",
-        "tagValue": "{boolean} `true` if animation was started or `false` otherwise."
+        "tagValue": "{boolean}"
       }
     ],
     "params": [],
@@ -213,7 +213,7 @@
         "boolean"
       ],
       "spread": false,
-      "description": "`true` if animation was started or `false` otherwise."
+      "description": ""
     }
   },
   {
@@ -227,7 +227,7 @@
     "longname": "src/Animator.js~Animator#setTimingHandler",
     "access": null,
     "description": "Sets the timing handler.\nparam {TimingHandler} handler",
-    "lineNumber": 66,
+    "lineNumber": 68,
     "params": [
       {
         "name": "handler",
@@ -247,12 +247,12 @@
     "static": false,
     "longname": "src/Animator.js~Animator#timingHandler",
     "access": null,
-    "description": "",
-    "lineNumber": 72,
+    "description": "Returns the timing handler.",
+    "lineNumber": 75,
     "unknown": [
       {
         "tagName": "@returns",
-        "tagValue": "{TimingHandler} the timing handler."
+        "tagValue": "{TimingHandler}"
       }
     ],
     "params": [],
@@ -262,7 +262,7 @@
         "TimingHandler"
       ],
       "spread": false,
-      "description": "the timing handler."
+      "description": ""
     }
   },
   {
@@ -275,12 +275,12 @@
     "static": false,
     "longname": "src/Animator.js~Animator#timer",
     "access": null,
-    "description": "",
-    "lineNumber": 78,
+    "description": "Returns the sequential timer.",
+    "lineNumber": 82,
     "unknown": [
       {
         "tagName": "@returns",
-        "tagValue": "{SeqTimer} the sequential timer."
+        "tagValue": "{SeqTimer}"
       }
     ],
     "params": [],
@@ -290,7 +290,7 @@
         "SeqTimer"
       ],
       "spread": false,
-      "description": "the sequential timer."
+      "description": ""
     }
   },
   {
