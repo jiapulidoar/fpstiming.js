@@ -3,7 +3,7 @@
  */
 export default class Animator {
   /**
-   * Main callback method
+   * Main callback method.
    */
   animate() {
     throw new TypeError('animate must be overrided');
@@ -18,7 +18,7 @@ export default class Animator {
   /**
    * @returns {number} the animation period in milliseconds.
    */
-  get animationPeriod() {
+  animationPeriod() {
     throw new TypeError('animationPeriod must be overrided');
   }
   /**
@@ -63,19 +63,19 @@ export default class Animator {
    * Sets the timing handler.
    * param {TimingHandler} handler
    */
-  set timingHandler(handler) {
-    throw new TypeError('set timingHandler must be overrided');
+  setTimingHandler(handler) {
+    throw new TypeError('setTimingHandler must be overrided');
   }
   /**
    * @returns {TimingHandler} the timing handler.
    */
-  get timingHandler() {
-    throw new TypeError('get TimingHandler must be overrided');
+  timingHandler() {
+    throw new TypeError('TimingHandler must be overrided');
   }
   /**
    * @returns {SeqTimer} the sequential timer.
    */
-  get timer() {
-    throw new TypeError('get timer must be overrided');
+  timer() {
+    throw new TypeError('timer must be overrided');
   }
 }

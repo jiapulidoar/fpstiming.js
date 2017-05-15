@@ -1,7 +1,14 @@
 import Animator from './Animator';
 import SeqTimer from './SeqTimer';
 
+/**
+ * Class implementing the main {@link Animator} behavior.
+ */
 export default class AnimatorObject extends Animator {
+  /**
+   * Constructs an animated object with a default {@link AnimatorObject#animationPeriod} of 40 milliseconds (25Hz), if no handler is supplied, the handler should explicitly be defined afterwards {@link AnimatorObject#setTimingHandler}.
+   * @param {TimingHandler} [handler = null] optional {@link TimingHandler}
+   */
   constructor(handler = null) {
     super();
 
@@ -12,29 +19,41 @@ export default class AnimatorObject extends Animator {
     this._handler = null;
 
     if (handler !== null) {
-      this.timingHandler = handler;
+      this.setTimingHandler(handler);
     }
   }
 
-  set timingHandler(handler) {
+  setTimingHandler(handler) {
     this._animationTimer = new SeqTimer({ handler });
     this._handler = handler;
     handler.registerAnimator(this);
   }
 
-  get timingHandler() {
+  /**
+   * @returns {TimingHandler} the timing handler.
+   */
+  timingHandler() {
     return this._handler;
   }
 
-  get timer() {
+  /**
+   * @returns {SeqTimer} the sequential timer.
+   */
+  timer() {
     return this._animationTimer;
   }
 
-  get animationStarted() {
+  /**
+   * @returns {boolean} `true` if animation was started or `false` otherwise.
+   */
+  animationStarted() {
     return this._started;
   }
 
-  get animationPeriod() {
+  /**
+   * @returns {number} the animation period in milliseconds.
+   */
+  animationPeriod() {
     return this._animationPeriod;
   }
 

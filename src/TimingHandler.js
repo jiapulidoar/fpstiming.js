@@ -71,8 +71,8 @@ export default class TimingHandler {
   }
 
   registerAnimator(object) {
-    if (object.timingHandler !== this) {
-      object.timingHandler = this;
+    if (object.timingHandler() !== this) {
+      object.setTimingHandler(this);
     }
     this._aPool.add(object);
   }
