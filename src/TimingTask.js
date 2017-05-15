@@ -1,5 +1,8 @@
-export default class TimingTask {
+import Taskable from './Taskable.js';
+
+export default class TimingTask extends Taskable {
   constructor() {
+    super();
     this._timer = null;
   }
 

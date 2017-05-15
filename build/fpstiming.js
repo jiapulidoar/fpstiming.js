@@ -262,10 +262,8 @@ class AnimatorObject extends Animator {
 }
 
 class Taskable {
-  constructor() {
-    if (typeof this.execute === 'function') {
-      throw new TypeError('execute must be overrided');
-    }
+  execute(){
+    throw new TypeError('execute must be overrided');
   }
 }
 
@@ -356,8 +354,9 @@ class TimingHandler {
 
 }
 
-class TimingTask {
+class TimingTask extends Taskable {
   constructor() {
+    super();
     this._timer = null;
   }
 
