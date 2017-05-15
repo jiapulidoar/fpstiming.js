@@ -708,6 +708,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/timinghandler.js~timinghandler#animatorpool",
+    "class/src/TimingHandler.js~TimingHandler.html#instance-method-animatorPool",
+    "src/TimingHandler.js~TimingHandler#animatorPool",
+    "method"
+  ],
+  [
     "src/timinghandler.js~timinghandler#constructor",
     "class/src/TimingHandler.js~TimingHandler.html#instance-constructor-constructor",
     "src/TimingHandler.js~TimingHandler#constructor",
@@ -715,15 +721,15 @@ window.esdocSearchIndex = [
   ],
   [
     "src/timinghandler.js~timinghandler#framecount",
-    "class/src/TimingHandler.js~TimingHandler.html#instance-get-frameCount",
+    "class/src/TimingHandler.js~TimingHandler.html#instance-method-frameCount",
     "src/TimingHandler.js~TimingHandler#frameCount",
-    "member"
+    "method"
   ],
   [
     "src/timinghandler.js~timinghandler#framerate",
-    "class/src/TimingHandler.js~TimingHandler.html#instance-get-frameRate",
+    "class/src/TimingHandler.js~TimingHandler.html#instance-method-frameRate",
     "src/TimingHandler.js~TimingHandler#frameRate",
-    "member"
+    "method"
   ],
   [
     "src/timinghandler.js~timinghandler#handle",
@@ -753,6 +759,12 @@ window.esdocSearchIndex = [
     "src/timinghandler.js~timinghandler#registertask",
     "class/src/TimingHandler.js~TimingHandler.html#instance-method-registerTask",
     "src/TimingHandler.js~TimingHandler#registerTask",
+    "method"
+  ],
+  [
+    "src/timinghandler.js~timinghandler#timerpool",
+    "class/src/TimingHandler.js~TimingHandler.html#instance-method-timerPool",
+    "src/TimingHandler.js~TimingHandler#timerPool",
     "method"
   ],
   [

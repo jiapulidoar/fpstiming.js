@@ -45,13 +45,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import TimingHandler from &apos;<span><a href="file/src/TimingHandler.js.html#lineNumber3">fpstiming/src/TimingHandler.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import TimingHandler from &apos;<span><a href="file/src/TimingHandler.js.html#lineNumber9">fpstiming/src/TimingHandler.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/TimingHandler.js.html#lineNumber3">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/TimingHandler.js.html#lineNumber9">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -71,7 +71,11 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>A timing handler holds a <span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-timerPool">TimingHandler#timerPool</a></span> and an <span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-animatorPool">TimingHandler#animatorPool</a></span>. The timer
+pool are all the tasks scheduled to be performed in the future (one single time or
+periodically). The animation pool are all the objects that implement an animation
+callback function. For an introduction to FPSTiming please refer to <span><a href="variable/index.html#static-variable-fpstiming">fpstiming</a></span></p>
+</div>
   
 
   
@@ -102,13 +106,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(aObject: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span>)</span>
+          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(aObject: <span>AnimationObject</span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Constructor that optionally takes and registers an animation object.</p>
+</div>
       </div>
     </td>
     <td>
@@ -119,15 +124,16 @@
 </tbody>
 </table>
 </div>
-<div data-ice="memberSummary"><h2>Member Summary</h2><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Public Members</td></tr></thead>
+
+<div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
   <tbody>
   
   <tr data-ice="target">
     <td>
       <span class="access" data-ice="access">public</span>
       
-      <span class="kind" data-ice="kind">get</span>
+      
       
       <span class="override" data-ice="override"></span>
     </td>
@@ -136,13 +142,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-get-frameCount">frameCount</a></span></span><span data-ice="signature">: <span>*</span></span>
+          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-animatorPool">animatorPool</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="class/src/AnimatorObject.js~AnimatorObject.html">AnimatorObject</a></span>&gt;</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns all the animated objects registered at the handler.</p>
+</div>
       </div>
     </td>
     <td>
@@ -154,7 +161,7 @@
     <td>
       <span class="access" data-ice="access">public</span>
       
-      <span class="kind" data-ice="kind">get</span>
+      
       
       <span class="override" data-ice="override"></span>
     </td>
@@ -163,13 +170,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-get-frameRate">frameRate</a></span></span><span data-ice="signature">: <span>*</span></span>
+          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-frameCount">frameCount</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns the number of frames displayed since the program started.</p>
+</div>
       </div>
     </td>
     <td>
@@ -177,14 +185,35 @@
       
     </td>
   </tr>
-</tbody>
-</table>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-frameRate">frameRate</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Returns the approximate frame rate of the software as it executes.</p>
 </div>
-<div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
-  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
-  <tbody>
-  
-  <tr data-ice="target">
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
     <td>
       <span class="access" data-ice="access">public</span>
       
@@ -203,7 +232,11 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Handler&apos;s main method. It should be called from within your main event loop. It does
+the following: 1. Recomputes the frame rate; 2. Executes the all timers (those in the
+<span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-timerPool">TimingHandler#timerPool</a></span>) callback functions; and, 3. Performs all the animated objects
+(those in the <span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-animatorPool">TimingHandler#animatorPool</a></span>) animation functions.</p>
+</div>
       </div>
     </td>
     <td>
@@ -230,7 +263,9 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns <code>true</code> if the animation object is registered and <code>false</code>
+otherwise.</p>
+</div>
       </div>
     </td>
     <td>
@@ -251,13 +286,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-isTaskRegistered">isTaskRegistered</a></span></span><span data-ice="signature">(task: <span>*</span>)</span>
+          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-isTaskRegistered">isTaskRegistered</a></span></span><span data-ice="signature">(task: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns <code>true</code> if the task is registered and <code>false</code> otherwise.</p>
+</div>
       </div>
     </td>
     <td>
@@ -278,13 +314,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-registerAnimator">registerAnimator</a></span></span><span data-ice="signature">(object: <span>*</span>)</span>
+          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-registerAnimator">registerAnimator</a></span></span><span data-ice="signature">(object: <span><a href="class/src/AnimatorObject.js~AnimatorObject.html">AnimatorObject</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Registers the animation object.</p>
+</div>
       </div>
     </td>
     <td>
@@ -305,13 +342,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-registerTask">registerTask</a></span></span><span data-ice="signature">(task: <span>*</span>, timer: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span>)</span>
+          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-registerTask">registerTask</a></span></span><span data-ice="signature">(task: <span><a href="class/src/TimingTask.js~TimingTask.html">TimingTask</a></span>, timer: <span><a href="class/src/Timer.js~Timer.html">Timer</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Register a task in the timer pool and creates a sequential timer for it with an optional timer.</p>
+</div>
       </div>
     </td>
     <td>
@@ -332,13 +370,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-unregisterAnimator">unregisterAnimator</a></span></span><span data-ice="signature">(object: <span>*</span>)</span>
+          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-timerPool">timerPool</a></span></span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="class/src/TimingTask.js~TimingTask.html">TimingTask</a></span>&gt;</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Returns the timer pool.</p>
+</div>
       </div>
     </td>
     <td>
@@ -359,13 +398,42 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-unregisterTask">unregisterTask</a></span></span><span data-ice="signature">(task: <span>*</span>)</span>
+          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-unregisterAnimator">unregisterAnimator</a></span></span><span data-ice="signature">(object: <span><a href="class/src/AnimatorObject.js~AnimatorObject.html">AnimatorObject</a></span>)</span>
         </p>
       </div>
       <div>
         
         
+        <div data-ice="description"><p>Unregisters the animation object.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-unregisterTask">unregisterTask</a></span></span><span data-ice="signature">(task: <span><a href="class/src/TimingTask.js~TimingTask.html">TimingTask</a></span> | <span><a href="class/src/SeqTimer.js~SeqTimer.html">SeqTimer</a></span>)</span>
+        </p>
+      </div>
+      <div>
         
+        
+        <div data-ice="description"><p>Unregisters the timer.</p>
+</div>
       </div>
     </td>
     <td>
@@ -392,7 +460,9 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Recomputes the frame rate based upon the frequency at which <span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-handle">TimingHandler#handle</a></span> is
+called from within the application main event loop.</p>
+</div>
       </div>
     </td>
     <td>
@@ -418,18 +488,19 @@
     
     
     
-    <span data-ice="name">constructor</span><span data-ice="signature">(aObject: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span>)</span>
+    <span data-ice="name">constructor</span><span data-ice="signature">(aObject: <span>AnimationObject</span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber4">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber14">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Constructor that optionally takes and registers an animation object.</p>
+</div>
 
   
 
@@ -443,10 +514,11 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">aObject</td>
-      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></td>
+      <td data-ice="type"><span>AnimationObject</span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null">null</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
-<li>default: undefined</li></ul></td>
-      <td data-ice="description"></td>
+<li>default: null</li></ul></td>
+      <td data-ice="description"><p>animation object.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -471,97 +543,182 @@
   
 </div>
 </div>
-<div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-get-frameCount">
-    <span class="access" data-ice="access">public</span>
-    
-    <span class="kind" data-ice="kind">get</span>
-    
-    
-    
-    <span data-ice="name">frameCount</span><span data-ice="signature">: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber69">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-get-frameRate">
-    <span class="access" data-ice="access">public</span>
-    
-    <span class="kind" data-ice="kind">get</span>
-    
-    
-    
-    <span data-ice="name">frameRate</span><span data-ice="signature">: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber65">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-</div>
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-animatorPool">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span data-ice="name">animatorPool</span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="class/src/AnimatorObject.js~AnimatorObject.html">AnimatorObject</a></span>&gt;</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber133">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns all the animated objects registered at the handler.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="class/src/AnimatorObject.js~AnimatorObject.html">AnimatorObject</a></span>&gt;</td>
+          <td class="return-desc" data-ice="returnDescription"><p>Animator Objects</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-frameCount">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span data-ice="name">frameCount</span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber125">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns the number of frames displayed since the program started.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>frame-count</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-frameRate">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span data-ice="name">frameRate</span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber117">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns the approximate frame rate of the software as it executes. The initial value
+is 10 fps and is updated with each frame. The value is averaged (integrated) over
+several frames. As such, this value won&apos;t be valid until after 5-10 frames.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+          <td class="return-desc" data-ice="returnDescription"><p>frame-rate</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-handle">
     <span class="access" data-ice="access">public</span>
@@ -574,14 +731,18 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber15">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber31">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Handler&apos;s main method. It should be called from within your main event loop. It does
+the following: 1. Recomputes the frame rate; 2. Executes the all timers (those in the
+<span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-timerPool">TimingHandler#timerPool</a></span>) callback functions; and, 3. Performs all the animated objects
+(those in the <span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-animatorPool">TimingHandler#animatorPool</a></span>) animation functions.</p>
+</div>
 
   
 
@@ -617,14 +778,16 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber84">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber160">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Returns <code>true</code> if the animation object is registered and <code>false</code>
+otherwise.</p>
+</div>
 
   
 
@@ -672,18 +835,19 @@
     
     
     
-    <span data-ice="name">isTaskRegistered</span><span data-ice="signature">(task: <span>*</span>)</span>
+    <span data-ice="name">isTaskRegistered</span><span data-ice="signature">(task: <span>*</span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber50">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber91">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Returns <code>true</code> if the task is registered and <code>false</code> otherwise.</p>
+</div>
 
   
 
@@ -706,7 +870,19 @@
 </div>
 </div>
 
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></span></td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
@@ -731,18 +907,19 @@
     
     
     
-    <span data-ice="name">registerAnimator</span><span data-ice="signature">(object: <span>*</span>)</span>
+    <span data-ice="name">registerAnimator</span><span data-ice="signature">(object: <span><a href="class/src/AnimatorObject.js~AnimatorObject.html">AnimatorObject</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber73">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber141">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Registers the animation object.</p>
+</div>
 
   
 
@@ -756,7 +933,7 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">object</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/AnimatorObject.js~AnimatorObject.html">AnimatorObject</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
@@ -790,18 +967,19 @@
     
     
     
-    <span data-ice="name">registerTask</span><span data-ice="signature">(task: <span>*</span>, timer: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span>)</span>
+    <span data-ice="name">registerTask</span><span data-ice="signature">(task: <span><a href="class/src/TimingTask.js~TimingTask.html">TimingTask</a></span>, timer: <span><a href="class/src/Timer.js~Timer.html">Timer</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber37">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber65">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Register a task in the timer pool and creates a sequential timer for it with an optional timer.</p>
+</div>
 
   
 
@@ -815,15 +993,15 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">task</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/TimingTask.js~TimingTask.html">TimingTask</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">timer</td>
-      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined">undefined</a></span></td>
+      <td data-ice="type"><span><a href="class/src/Timer.js~Timer.html">Timer</a></span></td>
       <td data-ice="appendix"><ul><li>optional</li>
-<li>default: undefined</li></ul></td>
+<li>default:  null</li></ul></td>
       <td data-ice="description"></td>
     </tr>
 </tbody>
@@ -849,6 +1027,63 @@
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-timerPool">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span data-ice="name">timerPool</span><span data-ice="signature">(): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="class/src/TimingTask.js~TimingTask.html">TimingTask</a></span>&gt;</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber56">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns the timer pool.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set">Set</a></span>&lt;<span><a href="class/src/TimingTask.js~TimingTask.html">TimingTask</a></span>&gt;</td>
+          <td class="return-desc" data-ice="returnDescription"><p>timingTasks callbacks</p>
+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-unregisterAnimator">
     <span class="access" data-ice="access">public</span>
     
@@ -856,18 +1091,19 @@
     
     
     
-    <span data-ice="name">unregisterAnimator</span><span data-ice="signature">(object: <span>*</span>)</span>
+    <span data-ice="name">unregisterAnimator</span><span data-ice="signature">(object: <span><a href="class/src/AnimatorObject.js~AnimatorObject.html">AnimatorObject</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber80">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber152">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Unregisters the animation object.</p>
+</div>
 
   
 
@@ -881,7 +1117,7 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">object</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/AnimatorObject.js~AnimatorObject.html">AnimatorObject</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
@@ -915,18 +1151,19 @@
     
     
     
-    <span data-ice="name">unregisterTask</span><span data-ice="signature">(task: <span>*</span>)</span>
+    <span data-ice="name">unregisterTask</span><span data-ice="signature">(task: <span><a href="class/src/TimingTask.js~TimingTask.html">TimingTask</a></span> | <span><a href="class/src/SeqTimer.js~SeqTimer.html">SeqTimer</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber46">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber78">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Unregisters the timer. You may also unregister the task this timer is attached to.</p>
+</div>
 
   
 
@@ -940,7 +1177,7 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">task</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/TimingTask.js~TimingTask.html">TimingTask</a></span> | <span><a href="class/src/SeqTimer.js~SeqTimer.html">SeqTimer</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
@@ -978,14 +1215,17 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber54">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingHandler.js.html#lineNumber100">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Recomputes the frame rate based upon the frequency at which <span><a href="class/src/TimingHandler.js~TimingHandler.html#instance-method-handle">TimingHandler#handle</a></span> is
+called from within the application main event loop. The frame rate is needed to sync
+all timing operations.</p>
+</div>
 
   
 

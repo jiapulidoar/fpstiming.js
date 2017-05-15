@@ -382,7 +382,17 @@ class Taskable {
   }
 }
 
+/**
+ * A timing handler holds a {@link TimingHandler#timerPool} and an {@link TimingHandler#animatorPool}. The timer
+ * pool are all the tasks scheduled to be performed in the future (one single time or
+ * periodically). The animation pool are all the objects that implement an animation
+ * callback function. For an introduction to FPSTiming please refer to {@link fpstiming}
+ */
 class TimingHandler {
+  /**
+   * Constructor that optionally takes and registers an animation object.
+   * @param {AnimationObject|null} [aObject=null] animation object.
+   */
   constructor(aObject = null) {
     this._tPool = new Set();
     this._aPool = new Set();
@@ -394,13 +404,19 @@ class TimingHandler {
     }
   }
 
+  /**
+   * Handler's main method. It should be called from within your main event loop. It does
+   * the following: 1. Recomputes the frame rate; 2. Executes the all timers (those in the
+   * {@link TimingHandler#timerPool}) callback functions; and, 3. Performs all the animated objects
+   * (those in the {@link TimingHandler#animatorPool}) animation functions.
+   */
   handle() {
     this.updateFrameRate();
     Array.from(this._tPool).forEach((task) => {
-      if (task.timer !== null) {
-        if (task.timer instanceof SeqTimer) {
-          if (task.timer.timingTask !== null) {
-            task.timer.execute();
+      if (task.timer() !== null) {
+        if (task.timer() instanceof SeqTimer) {
+          if (task.timer().timingTask() !== null) {
+            task.timer().execute();
           }
         }
       }
@@ -415,7 +431,19 @@ class TimingHandler {
       }
     });
   }
+  /**
+   * Returns the timer pool.
+   * @returns {Set<TimingTask>} timingTasks callbacks
+   */
+  timerPool() {
+    return this._tPool;
+  }
 
+  /**
+   * Register a task in the timer pool and creates a sequential timer for it with an optional timer.
+   * @param {TimingTask} task
+   * @param {Timer} [timer = null]
+   */
   registerTask(task, timer = null) {
     if (timer === null) {
       task.setTimer(new SeqTimer({ handler: this, task }));
@@ -425,14 +453,32 @@ class TimingHandler {
     this._tPool.add(task);
   }
 
+  /**
+   * Unregisters the timer. You may also unregister the task this timer is attached to.
+   * @param {TimingTask|SeqTimer} task
+   */
   unregisterTask(task) {
-    this._tPool.delete(task);
+    if(task instanceof SeqTimer){
+      this._tPool.delete(task.timingTask());
+    } else {
+      this._tPool.delete(task);
+    }
+
   }
 
+  /**
+   * Returns `true` if the task is registered and `false` otherwise.
+   * @returns {boolean}
+   */
   isTaskRegistered(task) {
     this._tPool.has(task);
   }
 
+  /**
+   * Recomputes the frame rate based upon the frequency at which {@link TimingHandler#handle} is
+   * called from within the application main event loop. The frame rate is needed to sync
+   * all timing operations.
+   */
   updateFrameRate() {
     const now = window.performance.now();
     if (this._fCount > 1) {
@@ -444,14 +490,36 @@ class TimingHandler {
     this._fCount += 1;
   }
 
-  get frameRate() {
+  /**
+   * Returns the approximate frame rate of the software as it executes. The initial value
+   * is 10 fps and is updated with each frame. The value is averaged (integrated) over
+   * several frames. As such, this value won't be valid until after 5-10 frames.
+   * @returns {number} frame-rate
+   */
+  frameRate() {
     return this._frameRate;
   }
 
-  get frameCount() {
+  /**
+   * Returns the number of frames displayed since the program started.
+   * @returns {number} frame-count
+   */
+  frameCount() {
     return this._fCount;
   }
 
+  /**
+   * Returns all the animated objects registered at the handler.
+   * @returns {Set<AnimatorObject>} Animator Objects
+   */
+  animatorPool() {
+    return this._aPool;
+  }
+
+  /**
+   * Registers the animation object.
+   * @param {AnimatorObject} object
+   */
   registerAnimator(object) {
     if (object.timingHandler() !== this) {
       object.setTimingHandler(this);
@@ -459,12 +527,20 @@ class TimingHandler {
     this._aPool.add(object);
   }
 
+  /**
+   * Unregisters the animation object.
+   * @param {AnimatorObject} object
+   */
   unregisterAnimator(object) {
     this._aPool.delete(object);
   }
 
+  /**
+   * Returns `true` if the animation object is registered and `false`
+   * otherwise.
+   */
   isObjectAnimator(object) {
-    this.__aPool.has(object);
+    this._aPool.has(object);
   }
 
 }

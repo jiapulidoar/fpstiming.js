@@ -1,7 +1,7 @@
 {
-  "coverage": "54.54%",
-  "expectCount": 77,
-  "actualCount": 42,
+  "coverage": "70.88%",
+  "expectCount": 79,
+  "actualCount": 56,
   "files": {
     "src/Animator.js": {
       "expectCount": 13,
@@ -52,22 +52,9 @@
       "undocumentLines": []
     },
     "src/TimingHandler.js": {
-      "expectCount": 12,
-      "actualCount": 0,
-      "undocumentLines": [
-        3,
-        4,
-        69,
-        65,
-        15,
-        84,
-        50,
-        73,
-        37,
-        80,
-        46,
-        54
-      ]
+      "expectCount": 14,
+      "actualCount": 14,
+      "undocumentLines": []
     },
     "src/TimingTask.js": {
       "expectCount": 10,
