@@ -1,7 +1,7 @@
 {
-  "coverage": "40.78%",
-  "expectCount": 76,
-  "actualCount": 31,
+  "coverage": "54.54%",
+  "expectCount": 77,
+  "actualCount": 42,
   "files": {
     "src/Animator.js": {
       "expectCount": 13,
@@ -43,11 +43,8 @@
     },
     "src/Taskable.js": {
       "expectCount": 2,
-      "actualCount": 0,
-      "undocumentLines": [
-        1,
-        2
-      ]
+      "actualCount": 2,
+      "undocumentLines": []
     },
     "src/Timer.js": {
       "expectCount": 11,
@@ -73,18 +70,10 @@
       ]
     },
     "src/TimingTask.js": {
-      "expectCount": 9,
-      "actualCount": 0,
+      "expectCount": 10,
+      "actualCount": 9,
       "undocumentLines": [
-        3,
-        33,
-        4,
-        39,
-        45,
-        13,
-        20,
-        9,
-        27
+        8
       ]
     },
     "src/index.js": {

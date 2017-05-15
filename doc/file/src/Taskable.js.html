@@ -45,8 +45,14 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/Taskable.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">export default class Taskable {
-  execute(){
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Interface used to define a timer callback method.
+ */
+export default class Taskable {
+  /**
+   * Timer callback method
+   */
+  execute() {
     throw new TypeError(&apos;execute must be overrided&apos;);
   }
 }

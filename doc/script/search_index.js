@@ -828,6 +828,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/timingtask.js~timingtask#timer",
+    "class/src/TimingTask.js~TimingTask.html#instance-method-timer",
+    "src/TimingTask.js~TimingTask#timer",
+    "method"
+  ],
+  [
     "src/index.js",
     "file/src/index.js.html",
     "src/index.js",

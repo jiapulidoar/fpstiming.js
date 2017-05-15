@@ -45,13 +45,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import TimingTask from &apos;<span><a href="file/src/TimingTask.js.html#lineNumber3">fpstiming/src/TimingTask.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import TimingTask from &apos;<span><a href="file/src/TimingTask.js.html#lineNumber7">fpstiming/src/TimingTask.js</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/TimingTask.js.html#lineNumber3">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/TimingTask.js.html#lineNumber7">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -71,7 +71,9 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>An abstract wrapper class holding a <span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-timer">TimingTask#timer</a></span> together with its callback method
+( <span><a href="class/src/Taskable.js~Taskable.html#instance-method-execute">Taskable#execute</a></span>) which derived classes should implement.</p>
+</div>
   
 
   
@@ -143,7 +145,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Stops the <span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-timer">TimingTask#timer</a></span>.</p>
+</div>
       </div>
     </td>
     <td>
@@ -170,7 +173,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Creates the <span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-timer">TimingTask#timer</a></span>.</p>
+</div>
       </div>
     </td>
     <td>
@@ -197,7 +201,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Tells whether or not the timer is active.</p>
+</div>
       </div>
     </td>
     <td>
@@ -218,13 +223,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-run">run</a></span></span><span data-ice="signature">(period: <span>*</span>)</span>
+          <span data-ice="name"><span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-run">run</a></span></span><span data-ice="signature">(period: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Run the <span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-timer">TimingTask#timer</a></span> with a repeated fixed-rate execution according to <code>period</code>.</p>
+</div>
       </div>
     </td>
     <td>
@@ -245,13 +251,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-runOnce">runOnce</a></span></span><span data-ice="signature">(period: <span>*</span>)</span>
+          <span data-ice="name"><span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-runOnce">runOnce</a></span></span><span data-ice="signature">(period: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Run the <span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-timer">TimingTask#timer</a></span> once, according to <code>period</code>.</p>
+</div>
       </div>
     </td>
     <td>
@@ -272,13 +279,14 @@
         <p>
           
           
-          <span data-ice="name"><span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-setTimer">setTimer</a></span></span><span data-ice="signature">(timer: <span>*</span>)</span>
+          <span data-ice="name"><span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-setTimer">setTimer</a></span></span><span data-ice="signature">(timer: <span><a href="class/src/Timer.js~Timer.html">Timer</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Sets the timer instance.</p>
+</div>
       </div>
     </td>
     <td>
@@ -305,7 +313,36 @@
       <div>
         
         
+        <div data-ice="description"><p>Stops the <span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-timer">TimingTask#timer</a></span>.</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+          
+          
+          <span data-ice="name"><span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-timer">timer</a></span></span><span data-ice="signature">(): <span><a href="class/src/Timer.js~Timer.html">Timer</a></span></span>
+        </p>
+      </div>
+      <div>
         
+        
+        <div data-ice="description"><p>Returns the timer instance.</p>
+</div>
       </div>
     </td>
     <td>
@@ -340,7 +377,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Timer callback method</p>
+</div>
       </div>
     </td>
     <td>
@@ -368,7 +406,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber4">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber8">source</a></span></span>
     </span>
   </h3>
 
@@ -415,14 +453,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber33">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber62">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Stops the <span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-timer">TimingTask#timer</a></span>.</p>
+</div>
 
   
 
@@ -458,14 +497,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber39">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber71">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Creates the <span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-timer">TimingTask#timer</a></span>.</p>
+</div>
 
   
 
@@ -501,14 +541,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber45">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber81">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Tells whether or not the timer is active.</p>
+</div>
 
   
 
@@ -552,18 +593,19 @@
     
     
     
-    <span data-ice="name">run</span><span data-ice="signature">(period: <span>*</span>)</span>
+    <span data-ice="name">run</span><span data-ice="signature">(period: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber13">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber32">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Run the <span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-timer">TimingTask#timer</a></span> with a repeated fixed-rate execution according to <code>period</code>.</p>
+</div>
 
   
 
@@ -577,9 +619,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">period</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>in milliseconds.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -611,18 +654,19 @@
     
     
     
-    <span data-ice="name">runOnce</span><span data-ice="signature">(period: <span>*</span>)</span>
+    <span data-ice="name">runOnce</span><span data-ice="signature">(period: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber20">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber43">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Run the <span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-timer">TimingTask#timer</a></span> once, according to <code>period</code>.</p>
+</div>
 
   
 
@@ -636,9 +680,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">period</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>in milliseconds.</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -670,18 +715,19 @@
     
     
     
-    <span data-ice="name">setTimer</span><span data-ice="signature">(timer: <span>*</span>)</span>
+    <span data-ice="name">setTimer</span><span data-ice="signature">(timer: <span><a href="class/src/Timer.js~Timer.html">Timer</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber9">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber24">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Sets the timer instance.</p>
+</div>
 
   
 
@@ -695,7 +741,7 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">timer</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="class/src/Timer.js~Timer.html">Timer</a></span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
     </tr>
@@ -733,14 +779,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber27">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber53">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Stops the <span><a href="class/src/TimingTask.js~TimingTask.html#instance-method-timer">TimingTask#timer</a></span>.</p>
+</div>
 
   
 
@@ -748,6 +795,62 @@
 </div>
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-timer">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    
+    <span data-ice="name">timer</span><span data-ice="signature">(): <span><a href="class/src/Timer.js~Timer.html">Timer</a></span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/TimingTask.js.html#lineNumber16">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Returns the timer instance.</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tbody>
+        <tr>
+          <td class="return-type" data-ice="returnType"><span><a href="class/src/Timer.js~Timer.html">Timer</a></span></td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
 
   
 
