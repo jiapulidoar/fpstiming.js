@@ -20,6 +20,11 @@ function step(timestamp) {
 }
 window.requestAnimationFrame(step); // use requestAnimationFrame or draw function in p5.js
 ```
+# Code Style Guide
+
+- Private variables starts with an underscore "_" (e.g., `_variable_name`).
+- we recommend airbnb's Javascript Style [Guide](https://github.com/airbnb/javascrip)]
+
 # Hacking
 
 ## Initial setup (you don't need this!)
