@@ -23,7 +23,7 @@ window.requestAnimationFrame(step); // use requestAnimationFrame or draw functio
 # Code Style Guide
 
 - Private variables starts with an underscore "_" (e.g., `_variable_name`).
-- we recommend airbnb's Javascript Style [Guide](https://github.com/airbnb/javascrip)]
+- we recommend airbnb's Javascript Style [Guide](https://github.com/airbnb/javascrip)
 
 # Hacking
 
