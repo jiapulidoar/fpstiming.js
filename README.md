@@ -27,7 +27,7 @@ window.requestAnimationFrame(step); // use requestAnimationFrame or draw functio
 
 # Hacking
 
-## Initial setup (you don't need this!)
+## Initial setup
 
 This project uses [rollup](https://rollupjs.org/) as build system and
 [esdoc](https://esdoc.org/) as documentation generator:
