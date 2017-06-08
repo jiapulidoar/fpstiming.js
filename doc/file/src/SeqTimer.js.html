@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/SeqTimer.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Animator.js~Animator.html">Animator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/AnimatorObject.js~AnimatorObject.html">AnimatorObject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/SeqTimer.js~SeqTimer.html">SeqTimer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Taskable.js~Taskable.html">Taskable</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/Timer.js~Timer.html">Timer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TimingHandler.js~TimingHandler.html">TimingHandler</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/TimingTask.js~TimingTask.html">TimingTask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-fpstiming">fpstiming</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/SeqTimer.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Timer from &apos;./Timer&apos;;
+
+/**
+ * Sequential timers are single-threaded timers handled by a TimingHandler.
+ */
+export default class SeqTimer extends Timer {
+    /**
+   * Defines a sequential (single-threaded) timer.
+   *
+   * @param {Object} options defines the handler, singleShot and task options
+   * @param {TimingHandler} options.handler timing handler owner
+   * @param {boolean} options.runOnlyOnce Defines a single shot sequential (single-threaded) timer
+   * @param {TimingTask} options.task if not null, register a callback task
+   */
+  constructor({ handler, runOnlyOnce = false, task = null }) {
+    super();
+    this._task = task;
+    this._handler = handler;
+    this._active = false;
+    this._runOnlyOnce = runOnlyOnce;
+    this._counter = 0;
+    this._period = 0;
+    this._startTime = window.performance.now();
+    this.create();
+  }
+
+  timingTask() {
+    return this._task;
+  }
+  /**
+   * Executes the callback method defined by the {@link SeqTimer#timingTask}.
+   * *Note:* You should not call this method since it&apos;s done by the timing handler (see {@link TimingHandler#handle}).
+   */
+  execute() {
+    const result = this.triggered();
+    if (result) {
+      this._task.execute();
+      if (this._runOnlyOnce) {
+        this.inactivate();
+      }
+    }
+    return result;
+  }
+
+  cancel() {
+    this.inactivate();
+  }
+
+  create() {
+    this.inactivate();
+  }
+
+  run(period = null) {
+    if (period !== null) {
+      this._period = period;
+    }
+    if (period &lt;= 0) {
+      return;
+    }
+    this._counter = 1;
+    this._active = true;
+    this._startTime = window.performance.now();
+  }
+
+  stop() {
+    this.inactivate();
+  }
+
+  isActive() {
+    return this._active;
+  }
+
+  /**
+   * Deactivates the SeqTimer.
+   */
+  inactivate() {
+    this._active = false;
+  }
+
+  /**
+   * Returns `true` if the timer was triggered at the given frame.
+   * *Note:* You should not call this method since it&apos;s done by the timing handler
+   * (see {@link TimingHandler#handle}).
+   * @returns {boolean}
+   */
+  triggered() {
+    if (!this._active) {
+      return false;
+    }
+
+    let result = false;
+
+    const elapsedTime = window.performance.now() - this._startTime;
+    const timePerFrame = (1 / this._handler.frameRate) * 1000;
+    const threshold = this._counter * this._period;
+
+    if (threshold &gt;= elapsedTime) {
+      const diff = (elapsedTime + timePerFrame) - threshold;
+      if (diff &gt;= 0) {
+        if (threshold - elapsedTime &lt; diff) {
+          result = true;
+        }
+      }
+    } else {
+      result = true;
+    }
+    if (result) {
+      this._counter += 1;
+    }
+    return result;
+  }
+
+  period() {
+    return this._period;
+  }
+
+  setPeriod(period) {
+    this._period = period;
+  }
+
+  isSingleShot() {
+    return this._runOnlyOnce;
+  }
+
+  setSingleShot(singleShot) {
+    this._runOnlyOnce = singleShot;
+  }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.5.2)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

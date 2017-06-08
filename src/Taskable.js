@@ -1,7 +1,11 @@
+/**
+ * Interface used to define a timer callback method.
+ */
 export default class Taskable {
-  constructor() {
-    if (typeof this.execute === 'function') {
-      throw new TypeError('execute must be overrided');
-    }
+  /**
+   * Timer callback method
+   */
+  execute() {
+    throw new TypeError('execute must be overrided');
   }
 }
