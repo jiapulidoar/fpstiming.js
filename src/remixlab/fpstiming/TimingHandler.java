@@ -20,24 +20,28 @@ import java.util.ArrayList;
  * <a href="http://nakednous.github.io/projects/fpstiming">this</a>.
  */
 public class TimingHandler {
-  // T i m e r P o o l
-  protected ArrayList<TimingTask> tPool;
-  protected long frameRateLastMillis;
+  static public long frameCount;
   public float frameRate;
-  protected long fCount;
+
+  protected long _deltaCount;
+    // T i m e r P o o l
+  protected ArrayList<TimingTask> _taskPool;
+  protected long _frameRateLastMillis;
+  protected long _localCount;
 
   // A N I M A T I O N
-  protected ArrayList<Animator> aPool;
+  protected ArrayList<Animator> _animatorPool;
 
   /**
    * Main constructor.
    */
   public TimingHandler() {
-    fCount = 0;
+    _localCount = 0;
+    _deltaCount = frameCount;
     frameRate = 10;
-    frameRateLastMillis = System.currentTimeMillis();
-    tPool = new ArrayList<TimingTask>();
-    aPool = new ArrayList<Animator>();
+    _frameRateLastMillis = System.currentTimeMillis();
+    _taskPool = new ArrayList<TimingTask>();
+    _animatorPool = new ArrayList<Animator>();
   }
 
   /**
@@ -55,14 +59,14 @@ public class TimingHandler {
    * (those in the {@link #animatorPool()}) animation functions.
    */
   public void handle() {
-    updateFrameRate();
-    for (TimingTask task : tPool)
+    _updateFrameRate();
+    for (TimingTask task : _taskPool)
       if (task.timer() != null)
         if (task.timer() instanceof SeqTimer)
           if (((SeqTimer) task.timer()).timingTask() != null)
-            ((SeqTimer) task.timer()).execute();
+            ((SeqTimer) task.timer())._execute();
     // Animation
-    for (Animator aObj : aPool)
+    for (Animator aObj : _animatorPool)
       if (aObj.animationStarted())
         if (aObj.timer().trigggered())
           if (!aObj.invokeAnimationHandler())
@@ -73,7 +77,7 @@ public class TimingHandler {
    * Returns the timer pool.
    */
   public ArrayList<TimingTask> timerPool() {
-    return tPool;
+    return _taskPool;
   }
 
   /**
@@ -81,7 +85,7 @@ public class TimingHandler {
    */
   public void registerTask(TimingTask task) {
     task.setTimer(new SeqTimer(this, task));
-    tPool.add(task);
+    _taskPool.add(task);
   }
 
   /**
@@ -89,7 +93,7 @@ public class TimingHandler {
    */
   public void registerTask(TimingTask task, Timer timer) {
     task.setTimer(timer);
-    tPool.add(task);
+    _taskPool.add(task);
   }
 
   /**
@@ -98,7 +102,7 @@ public class TimingHandler {
    * @see #unregisterTask(TimingTask)
    */
   public void unregisterTask(SeqTimer t) {
-    tPool.remove(t.timingTask());
+    _taskPool.remove(t.timingTask());
   }
 
   /**
@@ -107,14 +111,14 @@ public class TimingHandler {
    * @see #unregisterTask(SeqTimer)
    */
   public void unregisterTask(TimingTask task) {
-    tPool.remove(task);
+    _taskPool.remove(task);
   }
 
   /**
    * Returns {@code true} if the task is registered and {@code false} otherwise.
    */
   public boolean isTaskRegistered(TimingTask task) {
-    return tPool.contains(task);
+    return _taskPool.contains(task);
   }
 
   /**
@@ -122,32 +126,37 @@ public class TimingHandler {
    * called from within the application main event loop. The frame rate is needed to sync
    * all timing operations.
    */
-  protected void updateFrameRate() {
+  protected void _updateFrameRate() {
     long now = System.currentTimeMillis();
-    if (fCount > 1) {
+    if (_localCount > 1) {
       // update the current frameRate
-      double rate = 1000.0 / ((now - frameRateLastMillis) / 1000.0);
+      double rate = 1000.0 / ((now - _frameRateLastMillis) / 1000.0);
       float instantaneousRate = (float) rate / 1000.0f;
       frameRate = (frameRate * 0.9f) + (instantaneousRate * 0.1f);
     }
-    frameRateLastMillis = now;
-    fCount++;
+    _frameRateLastMillis = now;
+    _localCount++;
+    //TODO needs testing but I think is also safe but simpler
+    //if (TimingHandler.frameCount < frameCount())
+      //TimingHandler.frameCount = frameCount();
+    if (frameCount < frameCount() + _deltaCount)
+      frameCount = frameCount() + _deltaCount;
   }
 
   /**
    * Returns the approximate frame rate of the software as it executes. The initial value
    * is 10 fps and is updated with each frame. The value is averaged (integrated) over
-   * several frames. As such, this value won't be valid until after 5-10 frames.
+   * several nodes. As such, this value won't be valid until after 5-10 nodes.
    */
   public float frameRate() {
     return frameRate;
   }
 
   /**
-   * Returns the number of frames displayed since the program started.
+   * Returns the number of frames displayed since this timing handler was instantiated.
    */
   public long frameCount() {
-    return fCount;
+    return _localCount;
   }
 
   /**
@@ -156,7 +165,7 @@ public class TimingHandler {
   public void restoreTimers() {
     boolean isActive;
 
-    for (TimingTask task : tPool) {
+    for (TimingTask task : _taskPool) {
       long period = 0;
       boolean rOnce = false;
       isActive = task.isActive();
@@ -183,7 +192,7 @@ public class TimingHandler {
    * Returns all the animated objects registered at the handler.
    */
   public ArrayList<Animator> animatorPool() {
-    return aPool;
+    return _animatorPool;
   }
 
   /**
@@ -192,14 +201,14 @@ public class TimingHandler {
   public void registerAnimator(Animator object) {
     if (object.timingHandler() != this)
       object.setTimingHandler(this);
-    aPool.add(object);
+    _animatorPool.add(object);
   }
 
   /**
    * Unregisters the animation object.
    */
   public void unregisterAnimator(Animator object) {
-    aPool.remove(object);
+    _animatorPool.remove(object);
   }
 
   /**
@@ -207,6 +216,6 @@ public class TimingHandler {
    * otherwise.
    */
   public boolean isAnimatorRegistered(Animator object) {
-    return aPool.contains(object);
+    return _animatorPool.contains(object);
   }
 }

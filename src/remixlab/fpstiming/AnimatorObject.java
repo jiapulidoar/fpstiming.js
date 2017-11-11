@@ -14,10 +14,10 @@ package remixlab.fpstiming;
  * Class implementing the main {@link remixlab.fpstiming.Animator} behavior.
  */
 public class AnimatorObject implements Animator {
-  protected SeqTimer animationTimer;
-  protected boolean started;
-  protected long animationPeriod;
-  protected TimingHandler handler;
+  protected SeqTimer _animationTimer;
+  protected boolean _started;
+  protected long _animationPeriod;
+  protected TimingHandler _handler;
 
   /**
    * Constructs an animated object with a default {@link #animationPeriod()} of 40
@@ -40,20 +40,20 @@ public class AnimatorObject implements Animator {
   }
 
   @Override
-  public void setTimingHandler(TimingHandler h) {
-    handler = h;
-    handler.registerAnimator(this);
-    animationTimer = new SeqTimer(handler);
+  public void setTimingHandler(TimingHandler handler) {
+    _handler = handler;
+    _handler.registerAnimator(this);
+    _animationTimer = new SeqTimer(_handler);
   }
 
   @Override
   public TimingHandler timingHandler() {
-    return handler;
+    return _handler;
   }
 
   @Override
   public SeqTimer timer() {
-    return animationTimer;
+    return _animationTimer;
   }
 
   /**
@@ -70,7 +70,7 @@ public class AnimatorObject implements Animator {
    */
   @Override
   public boolean animationStarted() {
-    return started;
+    return _started;
   }
 
   /**
@@ -91,7 +91,7 @@ public class AnimatorObject implements Animator {
    */
   @Override
   public long animationPeriod() {
-    return animationPeriod;
+    return _animationPeriod;
   }
 
   /**
@@ -113,7 +113,7 @@ public class AnimatorObject implements Animator {
   @Override
   public void setAnimationPeriod(long period, boolean restart) {
     if (period > 0) {
-      animationPeriod = period;
+      _animationPeriod = period;
       if (animationStarted() && restart)
         restartAnimation();
     }
@@ -126,7 +126,7 @@ public class AnimatorObject implements Animator {
    */
   @Override
   public void stopAnimation() {
-    started = false;
+    _started = false;
     if (timer() != null)
       timer().stop();
   }
@@ -138,9 +138,9 @@ public class AnimatorObject implements Animator {
    */
   @Override
   public void startAnimation() {
-    started = true;
+    _started = true;
     if (timer() != null)
-      timer().run(animationPeriod);
+      timer().run(_animationPeriod);
   }
 
   /**
