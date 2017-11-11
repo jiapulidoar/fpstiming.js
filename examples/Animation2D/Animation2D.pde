@@ -44,5 +44,8 @@ public void keyPressed() {
   if (key == '-')
     system.setAnimationPeriod(system.animationPeriod()+2);
   if (key == ' ')
-    system.toggleAnimation();
+    if(system.animationStarted())
+      system.stopAnimation();
+    else
+      system.startAnimation();
 }

@@ -43,7 +43,10 @@ public void keyPressed() {
   if ((key == 'y') || (key == 'Y'))
     system.setAnimationPeriod(system.animationPeriod()+2);
   if ((key == 'z') || (key == 'Z'))
-    system.toggleAnimation();
+    if(system.animationStarted())
+      system.stopAnimation();
+    else
+      system.startAnimation();
   if (key == '+')
     system.setParticlesAnimationPeriod(system.particlesAnimationPeriod()-2);
   if (key == '-')

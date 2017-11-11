@@ -33,6 +33,9 @@ class ParticleSystem extends AnimatorObject {
   
   public void toggleParticlesAnimation() {
     for (int i = 0; i < particle.length; i++)
-      particle[i].toggleAnimation();
+      if(system.animationStarted())
+        particle[i].stopAnimation();
+      else
+        particle[i].startAnimation();
   }
 }
