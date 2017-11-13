@@ -2,7 +2,8 @@ class ParticleSystem extends AnimatorObject {
   int nbPart;
   Particle2D[] particle;
 
-  public ParticleSystem() {
+  public ParticleSystem(TimingHandler handler) {
+    super(handler);
     nbPart = 2000;
     particle = new Particle2D[nbPart];
     for (int i = 0; i < particle.length; i++)

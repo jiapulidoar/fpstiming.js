@@ -39,14 +39,11 @@ public void draw() {
 
 public void keyPressed() {
   if ((key == 'x') || (key == 'X'))
-    system.setAnimationPeriod(system.animationPeriod()-2);
+    system.setPeriod(system.period()-2);
   if ((key == 'y') || (key == 'Y'))
-    system.setAnimationPeriod(system.animationPeriod()+2);
+    system.setPeriod(system.period()+2);
   if ((key == 'z') || (key == 'Z'))
-    if(system.animationStarted())
-      system.stopAnimation();
-    else
-      system.startAnimation();
+    system.toggle();
   if (key == '+')
     system.setParticlesAnimationPeriod(system.particlesAnimationPeriod()-2);
   if (key == '-')

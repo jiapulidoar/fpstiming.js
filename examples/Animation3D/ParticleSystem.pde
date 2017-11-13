@@ -9,7 +9,7 @@ class ParticleSystem extends AnimatorObject {
     particle = new AnimatedParticle[nbPart];
     for (int i = 0; i < particle.length; i++)
       particle[i] = new AnimatedParticle(handler);
-    startAnimation();
+    start();
   }
 
   @Override
@@ -24,18 +24,15 @@ class ParticleSystem extends AnimatorObject {
   
   public void setParticlesAnimationPeriod(long period) {
     for (int i = 0; i < particle.length; i++)
-      particle[i].setAnimationPeriod(period);
+      particle[i].setPeriod(period);
   }
   
   public long particlesAnimationPeriod() {
-    return particle[0].animationPeriod();
+    return particle[0].period();
   }
   
   public void toggleParticlesAnimation() {
     for (int i = 0; i < particle.length; i++)
-      if(system.animationStarted())
-        particle[i].stopAnimation();
-      else
-        particle[i].startAnimation();
+      particle[i].toggle();
   }
 }

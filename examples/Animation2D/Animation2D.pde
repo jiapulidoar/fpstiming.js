@@ -16,9 +16,9 @@ TimingHandler handler;
 
 public void setup() {
   size(640, 360, P2D);
-  system = new ParticleSystem();
-  handler = new TimingHandler(system);
-  system.startAnimation();
+  handler = new TimingHandler();
+  system = new ParticleSystem(handler);
+  system.start();
   smooth();
 }
 
@@ -40,12 +40,9 @@ public void draw() {
 
 public void keyPressed() {
   if (key == '+')
-    system.setAnimationPeriod(system.animationPeriod()-2);
+    system.setPeriod(system.period()-2);
   if (key == '-')
-    system.setAnimationPeriod(system.animationPeriod()+2);
+    system.setPeriod(system.period()+2);
   if (key == ' ')
-    if(system.animationStarted())
-      system.stopAnimation();
-    else
-      system.startAnimation();
+    system.toggle();
 }
