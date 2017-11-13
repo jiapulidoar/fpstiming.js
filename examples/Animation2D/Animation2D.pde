@@ -9,7 +9,7 @@
  * Press ' ' (the space bar) to toggle the animation.
  */
 
-import remixlab.fpstiming.*;
+import remixlab.timing.*;
 
 ParticleSystem system;
 TimingHandler handler;

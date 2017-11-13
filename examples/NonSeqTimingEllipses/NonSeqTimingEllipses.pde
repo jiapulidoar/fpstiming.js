@@ -10,7 +10,7 @@
  * Press 's' to toggle the timer types (sequential/non-sequential).
  */
 
-import remixlab.fpstiming.*;
+import remixlab.timing.*;
 
 Ellipse [] ellipses;
 TimingHandler timingHandler;

@@ -12,7 +12,7 @@
  * Press ' ' (the space bar) to toggle the particles animation.
  */
 
-import remixlab.fpstiming.*;
+import remixlab.timing.*;
 
 ParticleSystem system;
 public TimingHandler handler;

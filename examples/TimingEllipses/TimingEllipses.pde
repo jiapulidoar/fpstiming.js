@@ -9,7 +9,7 @@
  * Press 'r' to toggle the ellipses' set-radii timer.
  */
 
-import remixlab.fpstiming.*;
+import remixlab.timing.*;
 
 Ellipse [] ellipses;
 TimingHandler timingHandler;
