@@ -3,11 +3,12 @@
  */
 export default class Timer {
   /**
-   * Sets the optional period and runs the timer according to {@link Timer#period}. The timer may be scheduled for repeated fixed-rate execution according to {@link Timer#isSingleShot}.
-   *
-   * @param {number} [period=null] time in milliseconds between successive task executions
-   */
-  run(period){
+  * Sets the optional period and runs the timer according
+  * to {@link Timer#period}. The timer may be scheduled for repeated
+  * fixed-rate execution according to {@link Timer#isSingleShot}.
+  * @param {number} [period=null] time in milliseconds between successive task executions
+  */
+  run(period = null){
     throw new TypeError('run must be overrided');
   }
   /**
@@ -71,6 +72,4 @@ export default class Timer {
     throw new TypeError('setSingleShot must be overrided');
   }
 }
-
-
 

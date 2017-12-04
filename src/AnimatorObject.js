@@ -1,14 +1,15 @@
 import Animator from './Animator';
-import SeqTimer from './SeqTimer';
+import SequentialTimer from './SequentialTimer';
 
 /**
  * Class implementing the main {@link Animator} behavior.
  */
 export default class AnimatorObject extends Animator {
   /**
-   * Constructs an animated object with a default {@link AnimatorObject#animationPeriod} of 40 milliseconds (25Hz)
-   * @param {TimingHandler} handler
-   */
+  * Constructs an animated object with a default {@link AnimatorObject#animationPeriod}
+  * of 40 milliseconds (25Hz)
+  * @param {TimingHandler} handler
+  */
   constructor(handler) {
     super();
 
@@ -20,7 +21,7 @@ export default class AnimatorObject extends Animator {
   }
 
   /**
-   * @returns {SeqTimer}
+   * @returns {SequentialTimer}
    */
   timer() {
     return this._animationTimer;
@@ -95,11 +96,11 @@ export default class AnimatorObject extends Animator {
   }
 
   toggle() {
-      if (this._started) {
-          this.stop();
-      } else {
-          this.start();
-      }
+    if (this._started) {
+      this.stop();
+    } else {
+      this.start();
+    }
   }
 
   /**

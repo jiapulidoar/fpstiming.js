@@ -1,25 +1,22 @@
-import SeqTimer from './SeqTimer';
+import SequentialTimer from './SequentialTimer';
 
 /**
- * A timing handler holds a {@link TimingHandler#timerPool} and an {@link TimingHandler#animatorPool}. The timer
+ * A timing handler holds a {@link TimingHandler#timerPool}
+ * and an {@link TimingHandler#animatorPool}. The timer
  * pool are all the tasks scheduled to be performed in the future (one single time or
  * periodically). The animation pool are all the objects that implement an animation
  * callback function. For an introduction to FPSTiming please refer to {@link fpstiming}
  */
 export default class TimingHandler {
   /**
-   * Constructor that optionally takes and registers an animation object.
-   * @param {AnimationObject|null} [aObject=null] animation object.
+   * Main Constructor
    */
-  constructor(aObject = null) {
-    this._tPool = new Set();
-    this._aPool = new Set();
+  constructor() {
+    this._taskPool = new Set();
+    this._animatorPool = new Set();
     this._frameRateLastMillis = 0;
     this._frameRate = 10;
-    this._fCount = 0;
-    if (aObject !== null) {
-      this.registerAnimator(aObject);
-    }
+    this._frameCount = 0;
   }
 
   /**
@@ -30,16 +27,16 @@ export default class TimingHandler {
    */
   handle() {
     this.updateFrameRate();
-    Array.from(this._tPool).forEach((task) => {
+    this._taskPool.forEach((task) => {
       if (task.timer() !== null) {
-        if (task.timer() instanceof SeqTimer) {
+        if (task.timer() instanceof SequentialTimer) {
           if (task.timer().timingTask() !== null) {
-            task.timer().execute();
+            task.timer()._execute();
           }
         }
       }
     });
-    Array.from(this._aPool).forEach((aObj) => {
+    this._animatorPool.forEach((aObj) => {
       if (aObj.animationStarted()) {
         if (aObj.timer().triggered()) {
           if (!aObj.invokeAnimationHandler()) {
@@ -54,7 +51,7 @@ export default class TimingHandler {
    * @returns {Set<TimingTask>} timingTasks callbacks
    */
   timerPool() {
-    return this._tPool;
+    return this._taskPool;
   }
 
   /**
@@ -64,22 +61,22 @@ export default class TimingHandler {
    */
   registerTask(task, timer = null) {
     if (timer === null) {
-      task.setTimer(new SeqTimer({ handler: this, task }));
+      task.setTimer(new SequentialTimer({ handler: this, task }));
     } else {
       task.setTimer(timer);
     }
-    this._tPool.add(task);
+    this._taskPool.add(task);
   }
 
   /**
    * Unregisters the timer. You may also unregister the task this timer is attached to.
-   * @param {TimingTask|SeqTimer} task
+   * @param {TimingTask|SequentialTimer} task
    */
   unregisterTask(task) {
-    if(task instanceof SeqTimer){
-      this._tPool.delete(task.timingTask());
+    if(task instanceof SequentialTimer){
+      this._taskPool.delete(task.timingTask());
     } else {
-      this._tPool.delete(task);
+      this._taskPool.delete(task);
     }
 
   }
@@ -89,7 +86,7 @@ export default class TimingHandler {
    * @returns {boolean}
    */
   isTaskRegistered(task) {
-    this._tPool.has(task);
+    this._taskPool.has(task);
   }
 
   /**
@@ -99,13 +96,13 @@ export default class TimingHandler {
    */
   updateFrameRate() {
     const now = window.performance.now();
-    if (this._fCount > 1) {
+    if (this._frameCount > 1) {
       const rate = 1000 / ((now - this._frameRateLastMillis) / 1000);
       const instantaneousRate = rate / 1000;
       this._frameRate = (this._frameRate * 0.9) + (instantaneousRate * 0.1);
     }
     this._frameRateLastMillis = now;
-    this._fCount += 1;
+    this._frameCount += 1;
   }
 
   /**
@@ -123,42 +120,68 @@ export default class TimingHandler {
    * @returns {number} frame-count
    */
   frameCount() {
-    return this._fCount;
+    return this._frameCount;
   }
+
+  /**
+   * Converts all registered timers to single-threaded timers.
+   */
+  restoreTimers() {
+    this._taskPool.forEach((task) => {
+      let period = 0;
+      let rOnce = false;
+      const isActive = task.isActive();
+      if (isActive) {
+        period = task.period();
+        rOnce = task.timer().isSingleShot();
+      }
+      task.stop();
+      task.setTimer(new SequentialTimer(this, rOnce, task));
+      if (isActive) {
+        if(rOnce)
+          task.runOnce(period);
+        else
+          task.run(period);
+      }
+    })
+    console.log("single threaded timers set");
+  }
+
+  // Animation -->
 
   /**
    * Returns all the animated objects registered at the handler.
    * @returns {Set<AnimatorObject>} Animator Objects
    */
   animatorPool() {
-    return this._aPool;
+    return this._animatorPool;
   }
 
   /**
    * Registers the animation object.
    * @param {AnimatorObject} object
    */
-  registerAnimator(object) {
-    if (object.timingHandler() !== this) {
-      object.setTimingHandler(this);
+  registerAnimator(animator) {
+    if (animator.timingHandler() !== this) {
+      animator.setTimingHandler(this);
     }
-    this._aPool.add(object);
+    this._animatorPool.add(animator);
   }
 
   /**
    * Unregisters the animation object.
    * @param {AnimatorObject} object
    */
-  unregisterAnimator(object) {
-    this._aPool.delete(object);
+  unregisterAnimator(animator) {
+    this._animatorPool.delete(animator);
   }
 
   /**
    * Returns `true` if the animation object is registered and `false`
    * otherwise.
    */
-  isObjectAnimator(object) {
-    this._aPool.has(object);
+  isAnimatorRegistered(object) {
+    this._animatorPool.has(object);
   }
 
 }

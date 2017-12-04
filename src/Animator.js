@@ -56,7 +56,7 @@ export default class Animator {
   }
   /**
    * Returns the sequential timer.
-   * @returns {SeqTimer}
+   * @returns {SequentialTimer}
    */
   timer() {
     throw new TypeError('timer must be overrided');

@@ -1,4 +1,4 @@
-import Taskable from './Taskable.js';
+import Taskable from './Taskable';
 
 /**
  * An abstract wrapper class holding a {@link TimingTask#timer} together with its callback method

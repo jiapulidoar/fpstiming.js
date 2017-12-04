@@ -1,19 +1,19 @@
 import Animator from './Animator';
 import AnimatorObject from './AnimatorObject';
-import SeqTimer from './SeqTimer';
+import SequentialTimer from './SequentialTimer';
 import Taskable from './Taskable';
 import Timer from './Timer';
 import TimingHandler from './TimingHandler';
 import TimingTask from './TimingTask';
 
 /**
- * fps-based timing.  
+ * fps-based timing.
  * A sequential single-threaded timer on top of which Proscene animations and timing routines are built.
  */
 const fpstiming = {
   Animator,
   AnimatorObject,
-  SeqTimer,
+  SequentialTimer,
   Taskable,
   Timer,
   TimingHandler,
