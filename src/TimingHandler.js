@@ -37,11 +37,9 @@ export default class TimingHandler {
       }
     });
     this._animatorPool.forEach((aObj) => {
-      if (aObj.animationStarted()) {
+      if (aObj.started()) {
         if (aObj.timer().triggered()) {
-          if (!aObj.invokeAnimationHandler()) {
-            aObj.animate();
-          }
+          aObj.animate();
         }
       }
     });
@@ -73,12 +71,11 @@ export default class TimingHandler {
    * @param {TimingTask|SequentialTimer} task
    */
   unregisterTask(task) {
-    if(task instanceof SequentialTimer){
+    if (task instanceof SequentialTimer) {
       this._taskPool.delete(task.timingTask());
     } else {
       this._taskPool.delete(task);
     }
-
   }
 
   /**
@@ -138,13 +135,10 @@ export default class TimingHandler {
       task.stop();
       task.setTimer(new SequentialTimer(this, rOnce, task));
       if (isActive) {
-        if(rOnce)
-          task.runOnce(period);
-        else
-          task.run(period);
+        if (rOnce) { task.runOnce(period); } else { task.run(period); }
       }
-    })
-    console.log("single threaded timers set");
+    });
+    console.log('single threaded timers set');
   }
 
   // Animation -->
@@ -162,9 +156,6 @@ export default class TimingHandler {
    * @param {AnimatorObject} object
    */
   registerAnimator(animator) {
-    if (animator.timingHandler() !== this) {
-      animator.setTimingHandler(this);
-    }
     this._animatorPool.add(animator);
   }
 
@@ -183,5 +174,4 @@ export default class TimingHandler {
   isAnimatorRegistered(object) {
     this._animatorPool.has(object);
   }
-
 }

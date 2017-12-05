@@ -12,12 +12,13 @@ export default class AnimatorObject extends Animator {
   */
   constructor(handler) {
     super();
-
-    this._animationPeriod = 40;
-    this._started = false;
-
-    this._animationTimer = null;
     this._handler = handler;
+    this._handler.registerAnimator(this);
+    this._animationTimer = new SequentialTimer({ handler: this._handler });
+
+
+      this._animationPeriod = 40;
+    this._started = false;
   }
 
   /**
