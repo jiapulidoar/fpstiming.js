@@ -1,18 +1,22 @@
 /**
- * Animation 3D.
+ * Animation 2D.
  * by Jean Pierre Charalambos.
  *
  * Documentation found on the online tutorial: https://github.com/nakednous/fpstiming/wiki/1.1.-Animation2D
  *
- * Press '+' to speed up the animation.
- * Press '-' to speed down the animation.
- * Press ' ' (the space bar) to toggle the animation.
+ * Press 'x' to speed up the camera animation.
+ * Press 'y' to speed down the camera animation.
+ * Press 'z' (the space bar) to toggle the camera animation.
+ * Press 'c' to speed up the particles animation.
+ * Press 'v' to speed down the particles animation.
+ * Press 'b' (the space bar) to toggle the particles animation.
  */
+
 class AnimatedParticle extends fpstiming.AnimatorObject {
   constructor(handler){
     super(handler);
     this.speed = new p5.Vector();
-    this.pos = new p5.Vector(random(200), random(200), 0);
+    this.pos = new p5.Vector();
     this.age = 0;
     this.ageMax = 50 + parseInt(random(100));
     this.init();
@@ -26,19 +30,23 @@ class AnimatedParticle extends fpstiming.AnimatorObject {
       this.speed.z = -0.8 * this.speed.z;
       this.pos.z = 0.0;
     }
-    if (++this.age == this.ageMax)
+    if (++this.age == floor(this.ageMax)) {
       this.init();
+    }
   }
 
   draw() {
+    push();
     stroke( 255 * (this.age * 1.0 / this.ageMax), 255 * (this.age * 1.0 / this.ageMax), 255);
-    fill( 255 * (this.age * 1.0 / this.ageMax), 255 * (this.age * 1.0 / this.ageMax), 255);
-    vertex(this.pos.x, this.pos.y, this.pos.z);
+    ambientMaterial( 255 * (this.age * 1.0 / this.ageMax), 255 * (this.age * 1.0 / this.ageMax), 255);
+    translate(this.pos.x, this.pos.y, this.pos.z);
+    sphere(3,10,10);
+    pop();
   }
 
   init() {
     this.pos = new p5.Vector();
-    const angle = 2.0 * p5.PI * random(1);
+    const angle = 2.0 * PI * random(1);
     const norm = 0.04 * random(1);
     this.speed = new p5.Vector(norm * cos(angle), norm  * sin(angle), random(1));
     this.age = 0;
@@ -49,7 +57,7 @@ class AnimatedParticle extends fpstiming.AnimatorObject {
 class ParticleSystem extends fpstiming.AnimatorObject {
   constructor(handler) {
     super(handler);
-    this.nbPart = 2000;
+    this.nbPart = 300;
     this.particle = Array(this.nbPart);
     this.rotation = 0;
     for (let i = 0; i < this.nbPart; i++) {
@@ -67,7 +75,7 @@ class ParticleSystem extends fpstiming.AnimatorObject {
   }
 
   setParticlesAnimationPeriod(period) {
-    for (let i = 0; i < particle.length; i++)
+    for (let i = 0; i < this.particle.length; i++)
       this.particle[i].setPeriod(period);
   }
 
@@ -76,7 +84,7 @@ class ParticleSystem extends fpstiming.AnimatorObject {
   }
 
   toggleParticlesAnimation() {
-    for (let i = 0; i < particle.length; i++)
+    for (let i = 0; i < this.particle.length; i++)
       this.particle[i].toggle();
   }
 }
@@ -92,15 +100,12 @@ function setup() {
 
 function draw() {
   background(0);
-  ambientLight(100);
 
   push();
   strokeWeight(3); // Default
-  beginShape();
   for (let i = 0; i < system.particle.length; i++) {
     system.particle[i].draw();
   }
-  endShape();
   pop();
 
 
@@ -114,10 +119,10 @@ function keyPressed() {
     system.setPeriod(system.period()+2);
   if ((key == 'z') || (key == 'Z'))
     system.toggle();
-  if (key == '+')
+  if ((key == 'c') || (key == 'C'))
     system.setParticlesAnimationPeriod(system.particlesAnimationPeriod()-2);
-  if (key == '-')
+  if ((key == 'v') || (key == 'V'))
     system.setParticlesAnimationPeriod(system.particlesAnimationPeriod()+2);
-  if (key == ' ')
+  if ((key == 'b') || (key == 'B'))
     system.toggleParticlesAnimation();
 }
