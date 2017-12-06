@@ -30,7 +30,7 @@ class Particle2D {
   animate() {
     this.speed.z -= 0.05;
     this.pos = p5.Vector.add(this.pos, p5.Vector.mult(this.speed, 10));
-    if (++this.age === this.ageMax) {
+    if (++this.age === floor(this.ageMax)) {
       this.init();
     }
   }
