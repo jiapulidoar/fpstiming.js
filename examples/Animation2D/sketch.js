@@ -1,7 +1,18 @@
+/**
+ * Animation 2D.
+ * by Jean Pierre Charalambos.
+ *
+ * Documentation found on the online tutorial: https://github.com/nakednous/fpstiming/wiki/1.1.-Animation2D
+ *
+ * Press '+' to speed up the animation.
+ * Press '-' to speed down the animation.
+ * Press ' ' (the space bar) to toggle the animation.
+ */
+
 class Particle2D {
   constructor() {
-    this.speed = p5.Vector();
-    this.pos = p5.Vector();
+    this.speed = new p5.Vector();
+    this.pos = new p5.Vector();
     this.age = 0;
     this.ageMax = 50 + parseInt(random(100));
     this.init();
@@ -19,7 +30,6 @@ class Particle2D {
   animate() {
     this.speed.z -= 0.05;
     this.pos = p5.Vector.add(this.pos, p5.Vector.mult(this.speed, 10));
-
     if (++this.age === this.ageMax) {
       this.init();
     }
@@ -32,8 +42,8 @@ class Particle2D {
 }
 
 class ParticleSystem extends fpstiming.AnimatorObject {
-  constructor() {
-    super();
+  constructor(handler) {
+    super(handler);
     this.nbPart = 2000;
     this.particle = Array(this.nbPart);
     for (let i = 0; i < this.nbPart; i++) {
@@ -51,9 +61,9 @@ let handler, system;
 
 function setup() {
   createCanvas(640, 360);
-  system = new ParticleSystem();
-  handler = new fpstiming.TimingHandler(system);
-  system.startAnimation();
+  handler = new fpstiming.TimingHandler();
+  system = new ParticleSystem(handler);
+  system.start();
   smooth();
 }
 
@@ -71,10 +81,12 @@ function draw() {
   handler.handle();
 }
 function keyPressed() {
-  if (key === 'A' )
-    system.setAnimationPeriod(system.animationPeriod-10);
+  if (key === 'A' ){
+      system.setPeriod(system.animationPeriod-10);
+  }
+
   if (key === 'D' )
-    system.setAnimationPeriod(system.animationPeriod+10);
+    system.setPeriod(system.animationPeriod+10);
   if (key === 'S' )
-    system.toggleAnimation();
+    system.toggle();
 }
