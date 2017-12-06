@@ -12,7 +12,7 @@ class AnimatedParticle extends fpstiming.AnimatorObject {
   constructor(handler){
     super(handler);
     this.speed = new p5.Vector();
-    this.pos = new p5.Vector();
+    this.pos = new p5.Vector(random(200), random(200), 0);
     this.age = 0;
     this.ageMax = 50 + parseInt(random(100));
     this.init();
@@ -31,14 +31,9 @@ class AnimatedParticle extends fpstiming.AnimatorObject {
   }
 
   draw() {
-    //stroke( 255 * (this.age * 1.0 / this.ageMax), 255 * (this.age * 1.0 / this.ageMax), 255);
-    //vertex(this.pos.x, this.pos.y, this.pos.z);
-    push();
-    translate(this.pos.x,this.pos.y,this.pos.z);
-    noStroke();
-    specularMaterial( 255 * (this.age * 1.0 / this.ageMax), 255 * (this.age * 1.0 / this.ageMax), 255);
-    sphere(1,3,3);
-    pop();
+    stroke( 255 * (this.age * 1.0 / this.ageMax), 255 * (this.age * 1.0 / this.ageMax), 255);
+    fill( 255 * (this.age * 1.0 / this.ageMax), 255 * (this.age * 1.0 / this.ageMax), 255);
+    vertex(this.pos.x, this.pos.y, this.pos.z);
   }
 
   init() {
@@ -101,11 +96,11 @@ function draw() {
 
   push();
   strokeWeight(3); // Default
-  //beginShape();
+  beginShape();
   for (let i = 0; i < system.particle.length; i++) {
     system.particle[i].draw();
   }
-  //endShape();
+  endShape();
   pop();
 
 
