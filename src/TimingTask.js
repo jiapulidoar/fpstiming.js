@@ -1,15 +1,14 @@
-import Taskable from './Taskable.js';
+import Timing from './Interface';
 
 /**
  * An abstract wrapper class holding a {@link TimingTask#timer} together with its callback method
  * ( {@link Taskable#execute}) which derived classes should implement.
  */
-export default class TimingTask extends Taskable {
+export default class TimingTask {
   /**
    * Default Constructor.
    */
   constructor() {
-    super();
     this._timer = null;
   }
   /**
@@ -22,9 +21,11 @@ export default class TimingTask extends Taskable {
 
   /**
    * Sets the timer instance.
-   * @param {Timer} timer
+   * @param timer
    */
   setTimer(timer) {
+    // check if timer implements Timer methods
+    Timing["Timer"].ensureImplements(timer);
     this._timer = timer;
   }
 
@@ -86,5 +87,13 @@ export default class TimingTask extends Taskable {
       return this._timer().isActive();
     }
     return false;
+  }
+
+  /**
+  * Timer wrapper method.
+  * @returns {number}
+  */
+  period() {
+    return this.timer().period();
   }
 }

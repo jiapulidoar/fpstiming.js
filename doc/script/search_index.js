@@ -13,8 +13,8 @@ window.esdocSearchIndex = [
   ],
   [
     "fpstiming/src/seqtimer.js~seqtimer",
-    "class/src/SeqTimer.js~SeqTimer.html",
-    "<span>SeqTimer</span> <span class=\"search-result-import-path\">fpstiming/src/SeqTimer.js</span>",
+    "class/src/SequentialTimer.js~SequentialTimer.html",
+    "<span>SequentialTimer</span> <span class=\"search-result-import-path\">fpstiming/src/SequentialTimer.js</span>",
     "class"
   ],
   [
@@ -535,92 +535,92 @@ window.esdocSearchIndex = [
   ],
   [
     "src/seqtimer.js",
-    "file/src/SeqTimer.js.html",
-    "src/SeqTimer.js",
+    "file/src/SequentialTimer.js.html",
+    "src/SequentialTimer.js",
     "file"
   ],
   [
     "src/seqtimer.js~seqtimer#cancel",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-method-cancel",
-    "src/SeqTimer.js~SeqTimer#cancel",
+    "class/src/SequentialTimer.js~SequentialTimer.html#instance-method-cancel",
+    "src/SequentialTimer.js~SequentialTimer#cancel",
     "method"
   ],
   [
     "src/seqtimer.js~seqtimer#constructor",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-constructor-constructor",
-    "src/SeqTimer.js~SeqTimer#constructor",
+    "class/src/SequentialTimer.js~SequentialTimer.html#instance-constructor-constructor",
+    "src/SequentialTimer.js~SequentialTimer#constructor",
     "method"
   ],
   [
     "src/seqtimer.js~seqtimer#create",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-method-create",
-    "src/SeqTimer.js~SeqTimer#create",
+    "class/src/SequentialTimer.js~SequentialTimer.html#instance-method-create",
+    "src/SequentialTimer.js~SequentialTimer#create",
     "method"
   ],
   [
     "src/seqtimer.js~seqtimer#execute",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-method-execute",
-    "src/SeqTimer.js~SeqTimer#execute",
+    "class/src/SequentialTimer.js~SequentialTimer.html#instance-method-execute",
+    "src/SequentialTimer.js~SequentialTimer#execute",
     "method"
   ],
   [
     "src/seqtimer.js~seqtimer#inactivate",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-method-inactivate",
-    "src/SeqTimer.js~SeqTimer#inactivate",
+    "class/src/SequentialTimer.js~SequentialTimer.html#instance-method-inactivate",
+    "src/SequentialTimer.js~SequentialTimer#inactivate",
     "method"
   ],
   [
     "src/seqtimer.js~seqtimer#isactive",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-method-isActive",
-    "src/SeqTimer.js~SeqTimer#isActive",
+    "class/src/SequentialTimer.js~SequentialTimer.html#instance-method-isActive",
+    "src/SequentialTimer.js~SequentialTimer#isActive",
     "method"
   ],
   [
     "src/seqtimer.js~seqtimer#issingleshot",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-method-isSingleShot",
-    "src/SeqTimer.js~SeqTimer#isSingleShot",
+    "class/src/SequentialTimer.js~SequentialTimer.html#instance-method-isSingleShot",
+    "src/SequentialTimer.js~SequentialTimer#isSingleShot",
     "method"
   ],
   [
     "src/seqtimer.js~seqtimer#period",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-method-period",
-    "src/SeqTimer.js~SeqTimer#period",
+    "class/src/SequentialTimer.js~SequentialTimer.html#instance-method-period",
+    "src/SequentialTimer.js~SequentialTimer#period",
     "method"
   ],
   [
     "src/seqtimer.js~seqtimer#run",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-method-run",
-    "src/SeqTimer.js~SeqTimer#run",
+    "class/src/SequentialTimer.js~SequentialTimer.html#instance-method-run",
+    "src/SequentialTimer.js~SequentialTimer#run",
     "method"
   ],
   [
     "src/seqtimer.js~seqtimer#setperiod",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-method-setPeriod",
-    "src/SeqTimer.js~SeqTimer#setPeriod",
+    "class/src/SequentialTimer.js~SequentialTimer.html#instance-method-setPeriod",
+    "src/SequentialTimer.js~SequentialTimer#setPeriod",
     "method"
   ],
   [
     "src/seqtimer.js~seqtimer#setsingleshot",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-method-setSingleShot",
-    "src/SeqTimer.js~SeqTimer#setSingleShot",
+    "class/src/SequentialTimer.js~SequentialTimer.html#instance-method-setSingleShot",
+    "src/SequentialTimer.js~SequentialTimer#setSingleShot",
     "method"
   ],
   [
     "src/seqtimer.js~seqtimer#stop",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-method-stop",
-    "src/SeqTimer.js~SeqTimer#stop",
+    "class/src/SequentialTimer.js~SequentialTimer.html#instance-method-stop",
+    "src/SequentialTimer.js~SequentialTimer#stop",
     "method"
   ],
   [
     "src/seqtimer.js~seqtimer#timingtask",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-method-timingTask",
-    "src/SeqTimer.js~SeqTimer#timingTask",
+    "class/src/SequentialTimer.js~SequentialTimer.html#instance-method-timingTask",
+    "src/SequentialTimer.js~SequentialTimer#timingTask",
     "method"
   ],
   [
     "src/seqtimer.js~seqtimer#triggered",
-    "class/src/SeqTimer.js~SeqTimer.html#instance-method-triggered",
-    "src/SeqTimer.js~SeqTimer#triggered",
+    "class/src/SequentialTimer.js~SequentialTimer.html#instance-method-triggered",
+    "src/SequentialTimer.js~SequentialTimer#triggered",
     "method"
   ],
   [
@@ -739,8 +739,8 @@ window.esdocSearchIndex = [
   ],
   [
     "src/timinghandler.js~timinghandler#isobjectanimator",
-    "class/src/TimingHandler.js~TimingHandler.html#instance-method-isObjectAnimator",
-    "src/TimingHandler.js~TimingHandler#isObjectAnimator",
+    "class/src/TimingHandler.js~TimingHandler.html#instance-method-isAnimatorRegistered",
+    "src/TimingHandler.js~TimingHandler#isAnimatorRegistered",
     "method"
   ],
   [

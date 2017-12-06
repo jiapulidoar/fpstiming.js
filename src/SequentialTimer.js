@@ -1,23 +1,19 @@
-import Timer from './Timer';
-
 /**
  * Sequential timers are single-threaded timers handled by a TimingHandler.
  */
-export default class SeqTimer extends Timer {
-    /**
-   * Defines a sequential (single-threaded) timer.
-   *
-   * @param {Object} options defines the handler, singleShot and task options
-   * @param {TimingHandler} options.handler timing handler owner
-   * @param {boolean} options.runOnlyOnce Defines a single shot sequential (single-threaded) timer
-   * @param {TimingTask} options.task if not null, register a callback task
-   */
-  constructor({ handler, runOnlyOnce = false, task = null }) {
-    super();
+export default class SequentialTimer {
+  /**
+  * Defines a sequential (single-threaded) timer.
+  *
+  * @param {TimingHandler} options.handler timing handler owner
+  * @param {boolean} options.singleShot Defines a single shot sequential (single-threaded) timer
+  * @param {TimingTask} options.task if not null, register a callback task
+  */
+  constructor({ handler, singleShot = false, task = null }) {
     this._task = task;
     this._handler = handler;
     this._active = false;
-    this._runOnlyOnce = runOnlyOnce;
+    this._once = singleShot;
     this._counter = 0;
     this._period = 0;
     this._startTime = window.performance.now();
@@ -28,14 +24,15 @@ export default class SeqTimer extends Timer {
     return this._task;
   }
   /**
-   * Executes the callback method defined by the {@link SeqTimer#timingTask}.
-   * *Note:* You should not call this method since it's done by the timing handler (see {@link TimingHandler#handle}).
-   */
-  execute() {
+  * Executes the callback method defined by the {@link SequentialTimer#timingTask}.
+  * *Note:* You should not call this method since it's done by the
+  * timing handler (see {@link TimingHandler#handle}).
+  */
+  _execute() {
     const result = this.triggered();
     if (result) {
       this._task.execute();
-      if (this._runOnlyOnce) {
+      if (this._once) {
         this.inactivate();
       }
     }
@@ -43,7 +40,8 @@ export default class SeqTimer extends Timer {
   }
 
   cancel() {
-    this.inactivate();
+    this.stop();
+    this._handler.unregisterTask(this);
   }
 
   create() {
@@ -52,7 +50,7 @@ export default class SeqTimer extends Timer {
 
   run(period = null) {
     if (period !== null) {
-      this._period = period;
+      this.setPeriod(period);
     }
     if (period <= 0) {
       return;
@@ -71,7 +69,7 @@ export default class SeqTimer extends Timer {
   }
 
   /**
-   * Deactivates the SeqTimer.
+   * Deactivates the SequentialTimer.
    */
   inactivate() {
     this._active = false;
@@ -119,10 +117,10 @@ export default class SeqTimer extends Timer {
   }
 
   isSingleShot() {
-    return this._runOnlyOnce;
+    return this._once;
   }
 
   setSingleShot(singleShot) {
-    this._runOnlyOnce = singleShot;
+    this._once = singleShot;
   }
 }

@@ -5,183 +5,21 @@
 }(this, (function () { 'use strict';
 
 /**
- * Interface defining the behavior animated objects should implement.
- */
-class Animator {
-  /**
-   * Main callback method.
-   */
-  animate() {
-    throw new TypeError('animate must be overrided');
-  }
-  /**
-   * Whether or not the animated method is defined externally, as when register it through reflection.
-   * @returns {boolean}
-   */
-  invokeAnimationHandler() {
-    throw new TypeError('invokeAnimationHandler must be overrided');
-  }
-  /**
-   * Returns the animation period in milliseconds.
-   * @returns {number}
-   */
-  animationPeriod() {
-    throw new TypeError('animationPeriod must be overrided');
-  }
-  /**
-   * Sets the animation `period` in milliseconds and (optional) `restart` the animation.
-   * @param {number} period
-   * @param {boolean} [restart = false]
-   */
-  setAnimationPeriod(period, restart = true) {
-    throw new TypeError('setAnimationPeriod must be overrided');
-  }
-  /**
-   * Stops the animation
-   */
-  stopAnimation() {
-    throw new TypeError('stopAnimation must be overrided');
-  }
-  /**
-   * Starts the animation executing periodically the animated call back method.
-   */
-  startAnimation() {
-    throw new TypeError('startAnimation must be overrided');
-  }
-  /**
-   * Simply calls {@link Animator#stopAnimation} and then {@link Animator#startAnimation}.
-   */
-  restartAnimation() {
-    throw new TypeError('restartAnimation must be overrided');
-  }
-  /**
-   * Starts or stops the animation according to {@link Animator#animationStarted}.
-   */
-  toggleAnimation() {
-    throw new TypeError('toggleAnimation must be overrided');
-  }
-  /**
-   * Return `true` if animation was started or `false` otherwise.
-   * @returns {boolean}
-   */
-  animationStarted() {
-    throw new TypeError('animationStarted must be overrided');
-  }
-  /**
-   * Sets the timing handler.
-   * param {TimingHandler} handler
-   */
-  setTimingHandler(handler) {
-    throw new TypeError('setTimingHandler must be overrided');
-  }
-  /**
-   * Returns the timing handler.
-   * @returns {TimingHandler}
-   */
-  timingHandler() {
-    throw new TypeError('TimingHandler must be overrided');
-  }
-  /**
-   * Returns the sequential timer.
-   * @returns {SeqTimer}
-   */
-  timer() {
-    throw new TypeError('timer must be overrided');
-  }
-}
-
-/**
- * Interface defining timers.
- */
-class Timer {
-  /**
-   * Sets the optional period and runs the timer according to {@link Timer#period}. The timer may be scheduled for repeated fixed-rate execution according to {@link Timer#isSingleShot}.
-   *
-   * @param {number} [period=null] time in milliseconds between successive task executions
-   */
-  run(period){
-    throw new TypeError('run must be overrided');
-  }
-  /**
-   * Returns the object defining the timer callback method. May be null.
-   * @returns {TimingTask|null}
-   */
-  get timingTask(){
-    throw new TypeError('get timingTask must be overrided');
-  }
-  /**
-   * Stops the timer.
-   */
-  stop(){
-    throw new TypeError('stop must be overrided');
-  }
-  /**
-   * Stops the timer.
-   */
-  cancel(){
-    throw new TypeError('cancel must be overrided');
-  }
-  /**
-   * Creates the timer.
-   */
-  create(){
-    throw new TypeError('create must be overrided');
-  }
-  /**
-   * Tells whether or not the timer is active.
-   * @returns {boolean}
-   */
-  isActive(){
-    throw new TypeError('isActive must be overrided');
-  }
-  /**
-   * Returns the timer period in milliseconds.
-   * @returns {number}
-   */
-  period(){
-    throw new TypeError('get period must be overrided');
-  }
-  /**
-   * Defines the timer period in milliseconds.
-   * @param {number} period in milliseconds
-   */
-  setPeriod(period){
-    throw new TypeError('set period must be overrided');
-  }
-  /**
-   * Returns whether or not the timer is scheduled to be executed only once.
-   * @returns {boolean}
-   */
-  isSingleShot(){
-    throw new TypeError('isSingleShot must be overrided');
-  }
-  /**
-   * Defines the timer as a single shot or for repeated execution.
-   * @param {boolean} singleShot
-   */
-  setSingleShot(singleShot){
-    throw new TypeError('setSingleShot must be overrided');
-  }
-}
-
-/**
  * Sequential timers are single-threaded timers handled by a TimingHandler.
  */
-class SeqTimer extends Timer {
-    /**
-   * Defines a sequential (single-threaded) timer.
-   *
-   * @param {Object} options defines the handler, singleShot and task options
-   * @param {TimingHandler} options.handler timing handler owner
-   * @param {boolean} options.runOnlyOnce Defines a single shot sequential (single-threaded) timer
-   * @param {TimingTask} options.task if not null, register a callback task
-   */
-  constructor({ handler, runOnlyOnce = false, task = null }) {
-    super();
+class SequentialTimer {
+  /**
+  * Defines a sequential (single-threaded) timer.
+  *
+  * @param {TimingHandler} options.handler timing handler owner
+  * @param {boolean} options.singleShot Defines a single shot sequential (single-threaded) timer
+  * @param {TimingTask} options.task if not null, register a callback task
+  */
+  constructor({ handler, singleShot = false, task = null }) {
     this._task = task;
     this._handler = handler;
     this._active = false;
-    this._runOnlyOnce = runOnlyOnce;
+    this._once = singleShot;
     this._counter = 0;
     this._period = 0;
     this._startTime = window.performance.now();
@@ -192,14 +30,15 @@ class SeqTimer extends Timer {
     return this._task;
   }
   /**
-   * Executes the callback method defined by the {@link SeqTimer#timingTask}.
-   * *Note:* You should not call this method since it's done by the timing handler (see {@link TimingHandler#handle}).
-   */
-  execute() {
+  * Executes the callback method defined by the {@link SequentialTimer#timingTask}.
+  * *Note:* You should not call this method since it's done by the
+  * timing handler (see {@link TimingHandler#handle}).
+  */
+  _execute() {
     const result = this.triggered();
     if (result) {
       this._task.execute();
-      if (this._runOnlyOnce) {
+      if (this._once) {
         this.inactivate();
       }
     }
@@ -207,7 +46,8 @@ class SeqTimer extends Timer {
   }
 
   cancel() {
-    this.inactivate();
+    this.stop();
+    this._handler.unregisterTask(this);
   }
 
   create() {
@@ -216,7 +56,7 @@ class SeqTimer extends Timer {
 
   run(period = null) {
     if (period !== null) {
-      this._period = period;
+      this.setPeriod(period);
     }
     if (period <= 0) {
       return;
@@ -235,7 +75,7 @@ class SeqTimer extends Timer {
   }
 
   /**
-   * Deactivates the SeqTimer.
+   * Deactivates the SequentialTimer.
    */
   inactivate() {
     this._active = false;
@@ -283,131 +123,184 @@ class SeqTimer extends Timer {
   }
 
   isSingleShot() {
-    return this._runOnlyOnce;
+    return this._once;
   }
 
   setSingleShot(singleShot) {
-    this._runOnlyOnce = singleShot;
+    this._once = singleShot;
   }
 }
 
 /**
- * Class implementing the main {@link Animator} behavior.
+ * Class implementing the main Animator behavior.
  */
-class AnimatorObject extends Animator {
+class AnimatorObject{
   /**
-   * Constructs an animated object with a default {@link AnimatorObject#animationPeriod} of 40 milliseconds (25Hz), if no handler is supplied, the handler should explicitly be defined afterwards {@link AnimatorObject#setTimingHandler}.
-   * @param {TimingHandler} [handler = null] optional {@link TimingHandler}
-   */
-  constructor(handler = null) {
-    super();
-
-    this._animationPeriod = 40;
-    this._started = false;
-
-    this._animationTimer = null;
-    this._handler = null;
-
-    if (handler !== null) {
-      this.setTimingHandler(handler);
-    }
-  }
-
-  setTimingHandler(handler) {
-    this._animationTimer = new SeqTimer({ handler });
+  * Constructs an animated object with a default {@link AnimatorObject#animationPeriod}
+  * of 40 milliseconds (25Hz)
+  * @param {TimingHandler} handler
+  */
+  constructor(handler) {
     this._handler = handler;
-    handler.registerAnimator(this);
+    this._handler.registerAnimator(this);
+    this._animationTimer = new SequentialTimer({ handler: this._handler });
+    this.setPeriod(40); // 25Hz
+    this.stop();
   }
 
-  timingHandler() {
-    return this._handler;
-  }
-
+  /**
+   * @returns {SequentialTimer}
+   */
   timer() {
     return this._animationTimer;
   }
 
-  animationStarted() {
+  /**
+   * Return true when the animation loop is started.
+   * The timing handler will check when {@link AnimatorObject#started} and then called the
+   * animation callback method every {@link AnimatorObject#period} milliseconds.
+   * Use {@link AnimatorObject#start} and {@link AnimatorObject#stop}.
+   * @see AnimatorObject#start
+   * @see AnimatorObject#animate
+   * @returns {boolean}
+   */
+  started() {
     return this._started;
   }
 
-  animationPeriod() {
+  /**
+   * The animation loop period, in milliseconds. When {@link AnimatorObject#started}, this is
+   * the delay that takes place between two consecutive iterations of the animation loop.
+   * This delay defines a target frame rate that will only be achieved if your
+   * {@link AnimatorObject#animate} methods is fast enough.
+   * Default value is 40 milliseconds (25 Hz).
+   * Note: This value is taken into account only the next time you call
+   * {@link AnimatorObject#start}. If {@link AnimatorObject#started}, you should
+   * {@link AnimatorObject#stop} first. See {@link AnimatorObject#restart} and
+   * {@link AnimatorObject#setPeriod}.
+   * @see AnimatorObject#setPeriod
+   * @returns {number}
+   */
+  period() {
     return this._animationPeriod;
   }
 
-  setAnimationPeriod(period, restart = true) {
+  /**
+   * Sets the {@link AnimatorObject#period}, in milliseconds. If restart is true and
+   * {@link AnimatorObject#started} then {@link AnimatorObject#restart} is called.
+   * @see AnimatorObject#start
+   * @param {number} period
+   */
+  setPeriod(period) {
     if (period > 0) {
       this._animationPeriod = period;
-      if (this._started && restart) {
-        this.restartAnimation();
+      if (this.started()) {
+        this.restart();
       }
     }
   }
 
-  stopAnimation() {
-    this._started = false;
-    if (this._animationTimer != null) {
-      this._animationTimer.stop();
-    }
-  }
-
-  startAnimation() {
-    this._started = true;
-    if (this._animationTimer != null) {
-      this._animationTimer.run(this._animationPeriod);
-    }
-  }
-
-  restartAnimation() {
-    this.stopAnimation();
-    this.startAnimation();
-  }
-
-  toggleAnimation() {
-    if (this._started) {
-      this.stopAnimation();
-    } else {
-      this.startAnimation();
-    }
-  }
-
-  invokeAnimationHandler() {
-    return false;
-  }
-}
-
-/**
- * Interface used to define a timer callback method.
- */
-class Taskable {
   /**
-   * Timer callback method
+   * Stops animation.
+   * @see AnimatorObject#start
    */
-  execute() {
-    throw new TypeError('execute must be overrided');
+  stop() {
+    this._started = false;
+    if (this.timer() != null) {
+      this.timer().stop();
+    }
   }
+
+  /**
+   * Starts the animation loop.
+   * @see AnimatorObject#started
+   */
+  start() {
+    this._started = true;
+    if (this.timer() != null) {
+      this.timer().run(this._animationPeriod);
+    }
+  }
+
+  toggle() {
+    if (this.started()) {
+      this.stop();
+    } else {
+      this.start();
+    }
+  }
+
+  /**
+   * Simply calls {@link AnimatorObject#stop} and then {@link AnimatorObject#start}.
+   */
+  restart() {
+    this.stop();
+    this.start();
+  }
+
+  /**
+   * Main callback method.
+   */
+  animate() {
+    throw new TypeError('animate must be overrided');
+  }
+
 }
 
 /**
- * A timing handler holds a {@link TimingHandler#timerPool} and an {@link TimingHandler#animatorPool}. The timer
+ * Interface is used to check if an Object implements a desired set of behaviors
+ * Adapted from {@link http://jscriptpatterns.blogspot.com.co/2013/01/javascript-interfaces.html}
+ */
+
+class Interface {
+  /**
+   * @param methods
+   */
+  constructor({ name, methods }) {
+    this._name = name;
+    this._methods = [];
+
+    for (let i = 0, len = methods.length; i < len; i++) {
+      if (typeof methods[i] !== 'string') {
+        throw new Error("Interface constructor expects method names to be passed in as a string.");
+      }
+      this._methods.push(methods[i]);
+    }
+  }
+
+  ensureImplements(object) {
+    for (let j = 0, methodsLen = this._methods.length; j < methodsLen; j++) {
+      const method = this._methods[j];
+      if (!object[method] || typeof object[method] !== 'function') {
+        throw new Error("Function Interface.ensureImplements: object does not implement the " + this._name + " interface. Method " + method + " was not found.");
+      }
+    }
+  }
+}
+
+const Timing = {"Animator": new Interface( { name: "Animator", methods: ["animate","period", "setPeriod", "stop", "start", "restart", "toggle", "started", "timer"] }),
+  "Timer": new Interface({ name: "Timer", methods: ["run","timingTask", "stop", "cancel", "create", "isActive","period", "setPeriod", "isSingleShot", "setSingleShot"] }),
+  "Taskable": new Interface({ name: "Taskable", methods: ["execute"] })};
+
+/**
+ * A timing handler holds a {@link TimingHandler#timerPool}
+ * and an {@link TimingHandler#animatorPool}. The timer
  * pool are all the tasks scheduled to be performed in the future (one single time or
  * periodically). The animation pool are all the objects that implement an animation
  * callback function. For an introduction to FPSTiming please refer to {@link fpstiming}
  */
 class TimingHandler {
   /**
-   * Constructor that optionally takes and registers an animation object.
-   * @param {AnimationObject|null} [aObject=null] animation object.
+   * Main Constructor
    */
-  constructor(aObject = null) {
-    this._tPool = new Set();
-    this._aPool = new Set();
-    this._frameRateLastMillis = 0;
+  constructor() {
+    this._taskPool = new Set();
+    this._animatorPool = new Set();
+    this._frameRateLastMillis = window.performance.now();
     this._frameRate = 10;
-    this._fCount = 0;
-    if (aObject !== null) {
-      this.registerAnimator(aObject);
-    }
+    this._frameCount = 0;
+    this._localCount = 0;
+    this._deltaCount = this._frameCount;
   }
 
   /**
@@ -417,22 +310,20 @@ class TimingHandler {
    * (those in the {@link TimingHandler#animatorPool}) animation functions.
    */
   handle() {
-    this.updateFrameRate();
-    Array.from(this._tPool).forEach((task) => {
+    this._updateFrameRate();
+    this._taskPool.forEach((task) => {
       if (task.timer() !== null) {
-        if (task.timer() instanceof SeqTimer) {
+        if (task.timer() instanceof SequentialTimer) {
           if (task.timer().timingTask() !== null) {
-            task.timer().execute();
+            task.timer()._execute();
           }
         }
       }
     });
-    Array.from(this._aPool).forEach((aObj) => {
-      if (aObj.animationStarted()) {
+    this._animatorPool.forEach((aObj) => {
+      if (aObj.started()) {
         if (aObj.timer().triggered()) {
-          if (!aObj.invokeAnimationHandler()) {
-            aObj.animate();
-          }
+          aObj.animate();
         }
       }
     });
@@ -442,7 +333,7 @@ class TimingHandler {
    * @returns {Set<TimingTask>} timingTasks callbacks
    */
   timerPool() {
-    return this._tPool;
+    return this._taskPool;
   }
 
   /**
@@ -452,24 +343,25 @@ class TimingHandler {
    */
   registerTask(task, timer = null) {
     if (timer === null) {
-      task.setTimer(new SeqTimer({ handler: this, task }));
+      task.setTimer(new SequentialTimer({ handler: this, task }));
     } else {
+      // Check if timer implements Timer methods
+      Timing.Timer.ensureImplements(timer);
       task.setTimer(timer);
     }
-    this._tPool.add(task);
+    this._taskPool.add(task);
   }
 
   /**
    * Unregisters the timer. You may also unregister the task this timer is attached to.
-   * @param {TimingTask|SeqTimer} task
+   * @param {TimingTask|SequentialTimer} task
    */
   unregisterTask(task) {
-    if(task instanceof SeqTimer){
-      this._tPool.delete(task.timingTask());
+    if (task instanceof SequentialTimer) {
+      this._taskPool.delete(task.timingTask());
     } else {
-      this._tPool.delete(task);
+      this._taskPool.delete(task);
     }
-
   }
 
   /**
@@ -477,7 +369,7 @@ class TimingHandler {
    * @returns {boolean}
    */
   isTaskRegistered(task) {
-    this._tPool.has(task);
+    this._taskPool.has(task);
   }
 
   /**
@@ -485,15 +377,21 @@ class TimingHandler {
    * called from within the application main event loop. The frame rate is needed to sync
    * all timing operations.
    */
-  updateFrameRate() {
+  _updateFrameRate() {
     const now = window.performance.now();
-    if (this._fCount > 1) {
-      const rate = 1000 / ((now - this._frameRateLastMillis) / 1000);
-      const instantaneousRate = rate / 1000;
+    if (this._localCount > 1) {
+      // update the current frameRate
+      const rate = 1000.0 / ((now - this._frameRateLastMillis) / 1000.0);
+      const instantaneousRate = rate / 1000.0;
       this._frameRate = (this._frameRate * 0.9) + (instantaneousRate * 0.1);
     }
     this._frameRateLastMillis = now;
-    this._fCount += 1;
+    this._localCount++;
+    //TODO needs testing but I think is also safe and simpler
+    //if (TimingHandler.frameCount < frameCount())
+    //TimingHandler.frameCount = frameCount();
+    if (this._frameCount < this.frameCount() + this._deltaCount)
+      this._frameCount = this.frameCount() + this._deltaCount;
   }
 
   /**
@@ -511,56 +409,76 @@ class TimingHandler {
    * @returns {number} frame-count
    */
   frameCount() {
-    return this._fCount;
+    return this._localCount;
   }
+
+  /**
+   * Converts all registered timers to single-threaded timers.
+   */
+  restoreTimers() {
+    this._taskPool.forEach((task) => {
+      let period = 0;
+      let rOnce = false;
+      const isActive = task.isActive();
+      if (isActive) {
+        period = task.period();
+        rOnce = task.timer().isSingleShot();
+      }
+      task.stop();
+      task.setTimer(new SequentialTimer({ handler: this, task }));
+      if (isActive) {
+        if (rOnce) { task.runOnce(period); } else { task.run(period); }
+      }
+    });
+    console.log('single threaded timers set');
+  }
+
+  // Animation -->
 
   /**
    * Returns all the animated objects registered at the handler.
    * @returns {Set<AnimatorObject>} Animator Objects
    */
   animatorPool() {
-    return this._aPool;
+    return this._animatorPool;
   }
 
   /**
    * Registers the animation object.
    * @param {AnimatorObject} object
    */
-  registerAnimator(object) {
-    if (object.timingHandler() !== this) {
-      object.setTimingHandler(this);
-    }
-    this._aPool.add(object);
+  registerAnimator(animator) {
+    // Check if animator implements Animator methods
+    Timing.Animator.ensureImplements(animator);
+    this._animatorPool.add(animator);
   }
 
   /**
    * Unregisters the animation object.
    * @param {AnimatorObject} object
    */
-  unregisterAnimator(object) {
-    this._aPool.delete(object);
+  unregisterAnimator(animator) {
+    this._animatorPool.delete(animator);
   }
 
   /**
    * Returns `true` if the animation object is registered and `false`
    * otherwise.
    */
-  isObjectAnimator(object) {
-    this._aPool.has(object);
+  isAnimatorRegistered(object) {
+    this._animatorPool.has(object);
   }
-
 }
 
 /**
  * An abstract wrapper class holding a {@link TimingTask#timer} together with its callback method
  * ( {@link Taskable#execute}) which derived classes should implement.
  */
-class TimingTask extends Taskable {
+class TimingTask {
   /**
    * Default Constructor.
    */
   constructor() {
-    super();
     this._timer = null;
   }
   /**
@@ -573,9 +491,11 @@ class TimingTask extends Taskable {
 
   /**
    * Sets the timer instance.
-   * @param {Timer} timer
+   * @param timer
    */
   setTimer(timer) {
+    // check if timer implements Timer methods
+    Timing["Timer"].ensureImplements(timer);
     this._timer = timer;
   }
 
@@ -638,18 +558,25 @@ class TimingTask extends Taskable {
     }
     return false;
   }
+
+  /**
+  * Timer wrapper method.
+  * @returns {number}
+  */
+  period() {
+    return this.timer().period();
+  }
 }
 
 /**
- * fps-based timing.  
- * A sequential single-threaded timer on top of which Proscene animations and timing routines are built.
+ * fps-based timing.
+ * A sequential single-threaded timer on top of which Proscene animations and
+ * timing routines are built.
  */
 const fpstiming = {
-  Animator,
+  Timing,
   AnimatorObject,
-  SeqTimer,
-  Taskable,
-  Timer,
+  SequentialTimer,
   TimingHandler,
   TimingTask,
 };
