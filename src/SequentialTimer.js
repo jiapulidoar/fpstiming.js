@@ -1,9 +1,7 @@
-import Timer from './Timer';
-
 /**
  * Sequential timers are single-threaded timers handled by a TimingHandler.
  */
-export default class SequentialTimer extends Timer {
+export default class SequentialTimer {
   /**
   * Defines a sequential (single-threaded) timer.
   *
@@ -12,7 +10,6 @@ export default class SequentialTimer extends Timer {
   * @param {TimingTask} options.task if not null, register a callback task
   */
   constructor({ handler, singleShot = false, task = null }) {
-    super();
     this._task = task;
     this._handler = handler;
     this._active = false;
@@ -53,7 +50,7 @@ export default class SequentialTimer extends Timer {
 
   run(period = null) {
     if (period !== null) {
-      this._period = period;
+      this.setPeriod(period);
     }
     if (period <= 0) {
       return;

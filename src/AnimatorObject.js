@@ -1,24 +1,20 @@
-import Animator from './Animator';
 import SequentialTimer from './SequentialTimer';
 
 /**
- * Class implementing the main {@link Animator} behavior.
+ * Class implementing the main Animator behavior.
  */
-export default class AnimatorObject extends Animator {
+export default class AnimatorObject{
   /**
   * Constructs an animated object with a default {@link AnimatorObject#animationPeriod}
   * of 40 milliseconds (25Hz)
   * @param {TimingHandler} handler
   */
   constructor(handler) {
-    super();
     this._handler = handler;
     this._handler.registerAnimator(this);
     this._animationTimer = new SequentialTimer({ handler: this._handler });
-
-
-      this._animationPeriod = 40;
-    this._started = false;
+    this.setPeriod(40); // 25Hz
+    this.stop();
   }
 
   /**
@@ -63,12 +59,11 @@ export default class AnimatorObject extends Animator {
    * {@link AnimatorObject#started} then {@link AnimatorObject#restart} is called.
    * @see AnimatorObject#start
    * @param {number} period
-   * @param {boolean} [restart = true]
    */
-  setPeriod(period, restart = true) {
+  setPeriod(period) {
     if (period > 0) {
       this._animationPeriod = period;
-      if (this._started && restart) {
+      if (this.started()) {
         this.restart();
       }
     }
@@ -80,8 +75,8 @@ export default class AnimatorObject extends Animator {
    */
   stop() {
     this._started = false;
-    if (this._animationTimer != null) {
-      this._animationTimer.stop();
+    if (this.timer() != null) {
+      this.timer().stop();
     }
   }
 
@@ -91,13 +86,13 @@ export default class AnimatorObject extends Animator {
    */
   start() {
     this._started = true;
-    if (this._animationTimer != null) {
-      this._animationTimer.run(this._animationPeriod);
+    if (this.timer() != null) {
+      this.timer().run(this._animationPeriod);
     }
   }
 
   toggle() {
-    if (this._started) {
+    if (this.started()) {
       this.stop();
     } else {
       this.start();
@@ -111,4 +106,12 @@ export default class AnimatorObject extends Animator {
     this.stop();
     this.start();
   }
+
+  /**
+   * Main callback method.
+   */
+  animate() {
+    throw new TypeError('animate must be overrided');
+  }
+
 }

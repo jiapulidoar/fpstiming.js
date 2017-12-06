@@ -1,4 +1,5 @@
 import SequentialTimer from './SequentialTimer';
+import Interface from './Interface';
 
 /**
  * A timing handler holds a {@link TimingHandler#timerPool}
@@ -14,9 +15,11 @@ export default class TimingHandler {
   constructor() {
     this._taskPool = new Set();
     this._animatorPool = new Set();
-    this._frameRateLastMillis = 0;
+    this._frameRateLastMillis = window.performance.now();
     this._frameRate = 10;
     this._frameCount = 0;
+    this._localCount = 0;
+    this._deltaCount = this._frameCount;
   }
 
   /**
@@ -26,7 +29,7 @@ export default class TimingHandler {
    * (those in the {@link TimingHandler#animatorPool}) animation functions.
    */
   handle() {
-    this.updateFrameRate();
+    this._updateFrameRate();
     this._taskPool.forEach((task) => {
       if (task.timer() !== null) {
         if (task.timer() instanceof SequentialTimer) {
@@ -61,6 +64,8 @@ export default class TimingHandler {
     if (timer === null) {
       task.setTimer(new SequentialTimer({ handler: this, task }));
     } else {
+      // Check if timer implements Timer methods
+      Interface.Timer.ensureImplements(timer);
       task.setTimer(timer);
     }
     this._taskPool.add(task);
@@ -91,15 +96,21 @@ export default class TimingHandler {
    * called from within the application main event loop. The frame rate is needed to sync
    * all timing operations.
    */
-  updateFrameRate() {
+  _updateFrameRate() {
     const now = window.performance.now();
-    if (this._frameCount > 1) {
-      const rate = 1000 / ((now - this._frameRateLastMillis) / 1000);
-      const instantaneousRate = rate / 1000;
+    if (this._localCount > 1) {
+      // update the current frameRate
+      const rate = 1000.0 / ((now - this._frameRateLastMillis) / 1000.0);
+      const instantaneousRate = rate / 1000.0;
       this._frameRate = (this._frameRate * 0.9) + (instantaneousRate * 0.1);
     }
     this._frameRateLastMillis = now;
-    this._frameCount += 1;
+    this._localCount++;
+    //TODO needs testing but I think is also safe and simpler
+    //if (TimingHandler.frameCount < frameCount())
+    //TimingHandler.frameCount = frameCount();
+    if (this._frameCount < this.frameCount() + this._deltaCount)
+      this._frameCount = this.frameCount() + this._deltaCount;
   }
 
   /**
@@ -117,7 +128,7 @@ export default class TimingHandler {
    * @returns {number} frame-count
    */
   frameCount() {
-    return this._frameCount;
+    return this._localCount;
   }
 
   /**
@@ -133,7 +144,7 @@ export default class TimingHandler {
         rOnce = task.timer().isSingleShot();
       }
       task.stop();
-      task.setTimer(new SequentialTimer(this, rOnce, task));
+      task.setTimer(new SequentialTimer({ handler: this, task }));
       if (isActive) {
         if (rOnce) { task.runOnce(period); } else { task.run(period); }
       }
@@ -156,6 +167,8 @@ export default class TimingHandler {
    * @param {AnimatorObject} object
    */
   registerAnimator(animator) {
+    // Check if animator implements Animator methods
+    Interface.Animator.ensureImplements(animator);
     this._animatorPool.add(animator);
   }
 

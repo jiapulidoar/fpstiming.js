@@ -30,7 +30,7 @@ class Interface {
 }
 
 const Timing = {"Animator": new Interface( { name: "Animator", methods: ["animate","period", "setPeriod", "stop", "start", "restart", "toggle", "started", "timer"] }),
-  "Timer": new Interface({ name: "Timer", methods: ["run","get timingTask", "stop", "cancel", "create", "isActive","period", "setPeriod", "isSingleShot", "setSingleShot"] }),
+  "Timer": new Interface({ name: "Timer", methods: ["run","timingTask", "stop", "cancel", "create", "isActive","period", "setPeriod", "isSingleShot", "setSingleShot"] }),
   "Taskable": new Interface({ name: "Taskable", methods: ["execute"] })};
 
 export default Timing;
