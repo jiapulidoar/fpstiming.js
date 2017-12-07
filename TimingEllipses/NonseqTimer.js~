@@ -1,0 +1,9 @@
+class NonseqTimer implements Timer {
+
+    constructor(o , SingleShow = null) {
+	if(SingleShow != null)
+	    this.SingleShow_ = SingleShow;
+	else
+	    this.SingleShow_ = null;
+	this.tmnTask_ = o ;
+    }

@@ -1,0 +1,46 @@
+class NonseqTimer implements Timer {
+
+    constructor(o , SingleShow = null) {
+	if(SingleShow != null)
+	    this.SingleShow_ = SingleShow;
+	else
+	    this.SingleShow_ = null;
+	this.tmnTask_ = o ;
+    }
+    //Override
+    timingTask(){
+	return this.tmntask_;
+    }
+
+    //Override
+    create() {
+	this.stop();
+    }
+
+    run(){
+	this.create();
+	this.worker = new Worker(this.tmntask_.execute());
+	this.active = true;
+    }
+
+    cancel(){
+	this.stop();
+    }
+
+    stop() {
+	if ( this.worker != null) {
+	    this.worker.terminate();
+	}
+	this.active = false;
+    }
+
+    isActive(){
+	return this.worker != null && active;
+    }
+    // Period and Single Shot are missing
+
+}
+    
+    
+    
+	    

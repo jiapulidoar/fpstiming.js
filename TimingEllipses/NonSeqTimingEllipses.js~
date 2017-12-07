@@ -1,0 +1,67 @@
+var ellipses;
+var handler;
+var positionTask, radiiTask, colourTask; 
+
+
+function setup() {
+    createCanvas(640, 360);
+    timingHandler = new fpstiming.TimingHandler();
+    ellipses = new Array(50);
+    for ( var i =0 ; i < ellipses.length; i++)
+	ellipses[i] = new Elipse();
+    
+    positionTask = class extends  fpstiming.TimingTask {
+	static execute() {
+	    setEllipsesPosition();
+	}
+    };
+    timingHandler.registerTask(positionTask);
+    positionTask.run(1000);
+
+    radiiTask = class extends fpstiming.TimingTask {
+	static execute() {
+	    setEllipsesRadii();
+	}
+    };
+    timingHandler.registerTask(radiiTask);
+    radiiTask.run(100);
+    
+    colourTask = class extends fpstiming.TimingTask {
+	static execute() {
+	    setEllipsesColor();
+	}
+    };
+    timingHandler.registerTask(colourTask);
+    colourTask.run(50); 
+    
+    
+}
+
+function setEllipsesColor() {
+  for (var i = 0; i < ellipses.length; i++)
+    ellipses[i].setColor();
+}
+
+
+function setEllipsesPosition() {
+  for (var i = 0; i < ellipses.length; i++)
+    ellipses[i].setPosition();
+}
+
+function setEllipsesRadii() {
+  for (var i = 0; i < ellipses.length; i++)
+    ellipses[i].setRadii();
+}
+
+
+function draw() {
+    background(50);
+    //translate(width/2, height/2);
+    for ( i = 0; i < ellipses.length; i++)
+	ellipses[i].draw();
+    timingHandler.handle();
+}
+
+    
+
+
