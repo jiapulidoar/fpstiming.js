@@ -1,10 +1,22 @@
+/**
+ * Timing Ellipses.
+ * by Jean Pierre Charalambos.
+ *
+ * Documentation found on the online tutorial: https://github.com/nakednous/fpstiming/wiki/1.4.-TimingEllipses
+ *
+ * Press 'c' to toggle the ellipses' color timer.
+ * Press 'p' to toggle the ellipses' positioning timer.
+ * Press 'r' to toggle the ellipses' set-radii timer.
+ */
+ 
 var ellipses;
 var handler;
 var positionTask, radiiTask, colourTask;
 
 
 function setup() {
-    createCanvas(640, 360);
+    var canvas = createCanvas(640, 360);
+    canvas.parent('Ellipses');
     timingHandler = new fpstiming.TimingHandler();
     ellipses = new Array(50);
     for ( var i =0 ; i < ellipses.length; i++)
@@ -30,7 +42,7 @@ function setup() {
     radiiTask.run(100);
 
     colourTaskC = class extends fpstiming.TimingTask {
-	    execute() {          
+	    execute() {
 	    setEllipsesColor();
 	}
     };
