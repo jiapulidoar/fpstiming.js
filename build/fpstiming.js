@@ -505,8 +505,8 @@ class TimingTask {
    */
   run(period) {
     if (this._timer != null) {
-      this._timer().setSingleShot(false);
-      this._timer().run(period);
+      this.timer().setSingleShot(false);
+      this.timer().run(period);
     }
   }
 
@@ -516,8 +516,8 @@ class TimingTask {
    */
   runOnce(period) {
     if (this._timer != null) {
-      this._timer().setSingleShot(true);
-      this._timer().run(period);
+      this.timer().setSingleShot(true);
+      this.timer().run(period);
     }
   }
 
@@ -526,7 +526,7 @@ class TimingTask {
    */
   stop() {
     if (this._timer != null) {
-      this._timer().stop();
+      this.timer().stop();
     }
   }
 
@@ -535,7 +535,7 @@ class TimingTask {
    */
   cancel() {
     if (this._timer != null) {
-      this._timer().cancel();
+      this.timer().cancel();
     }
   }
 
@@ -544,7 +544,7 @@ class TimingTask {
    */
   create() {
     if (this._timer != null) {
-      this._timer().create();
+      this.timer().create();
     }
   }
 
@@ -554,7 +554,7 @@ class TimingTask {
    */
   isActive() {
     if (this._timer != null) {
-      return this._timer().isActive();
+      return this.timer().isActive();
     }
     return false;
   }
