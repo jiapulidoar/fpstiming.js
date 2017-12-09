@@ -89,7 +89,7 @@ class SequentialTimer {
     let result = false;
 
     const elapsedTime = window.performance.now() - this._startTime;
-    const timePerFrame = (1 / this._handler.frameRate) * 1000;
+    const timePerFrame = (1 / this._handler.frameRate()) * 1000;
     const threshold = this._counter * this._period;
 
     if (threshold >= elapsedTime) {
@@ -292,9 +292,8 @@ class TimingHandler {
     this._animatorPool = new Set();
     this._frameRateLastMillis = window.performance.now();
     this._frameRate = 10;
-    this._frameCount = 0;
     this._localCount = 0;
-    this._deltaCount = this._frameCount;
+    this._deltaCount = TimingHandler.frameCount;
   }
 
   /**
@@ -374,7 +373,7 @@ class TimingHandler {
   _updateFrameRate() {
     const now = window.performance.now();
     if (this._localCount > 1) {
-      // update the current frameRate
+      // update the current _frameRate
       const rate = 1000.0 / ((now - this._frameRateLastMillis) / 1000.0);
       const instantaneousRate = rate / 1000.0;
       this._frameRate = (this._frameRate * 0.9) + (instantaneousRate * 0.1);
@@ -384,8 +383,8 @@ class TimingHandler {
     //TODO needs testing but I think is also safe and simpler
     //if (TimingHandler.frameCount < frameCount())
     //TimingHandler.frameCount = frameCount();
-    if (this._frameCount < this.frameCount() + this._deltaCount)
-      this._frameCount = this.frameCount() + this._deltaCount;
+    if (TimingHandler.frameCount < this.frameCount() + this._deltaCount)
+      TimingHandler.frameCount = this.frameCount() + this._deltaCount;
   }
 
   /**
@@ -463,6 +462,8 @@ class TimingHandler {
     this._animatorPool.has(object);
   }
 }
+// static field
+TimingHandler.frameCount = 0;
 
 /**
  * An abstract wrapper class holding a {@link TimingTask#timer} together with its callback method
@@ -498,9 +499,9 @@ class TimingTask {
    * @param {number} period in milliseconds.
    */
   run(period) {
-    if (this._timer != null) {
-      this._timer().setSingleShot(false);
-      this._timer().run(period);
+    if (this.timer() != null) {
+      this.timer().setSingleShot(false);
+      this.timer().run(period);
     }
   }
 
@@ -509,9 +510,9 @@ class TimingTask {
    * @param {number} period in milliseconds.
    */
   runOnce(period) {
-    if (this._timer != null) {
-      this._timer().setSingleShot(true);
-      this._timer().run(period);
+    if (this.timer() != null) {
+      this.timer().setSingleShot(true);
+      this.timer().run(period);
     }
   }
 
@@ -519,8 +520,8 @@ class TimingTask {
    * Stops the {@link TimingTask#timer}.
    */
   stop() {
-    if (this._timer != null) {
-      this._timer().stop();
+    if (this.timer() != null) {
+      this.timer().stop();
     }
   }
 
@@ -528,8 +529,8 @@ class TimingTask {
    * Stops the {@link TimingTask#timer}.
    */
   cancel() {
-    if (this._timer != null) {
-      this._timer().cancel();
+    if (this.timer() != null) {
+      this.timer().cancel();
     }
   }
 
@@ -537,8 +538,8 @@ class TimingTask {
    * Creates the {@link TimingTask#timer}.
    */
   create() {
-    if (this._timer != null) {
-      this._timer().create();
+    if (this.timer() != null) {
+      this.timer().create();
     }
   }
 
@@ -547,8 +548,8 @@ class TimingTask {
    * @returns {boolean}
    */
   isActive() {
-    if (this._timer != null) {
-      return this._timer().isActive();
+    if (this.timer() != null) {
+      return this.timer().isActive();
     }
     return false;
   }
