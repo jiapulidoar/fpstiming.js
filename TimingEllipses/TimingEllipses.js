@@ -8,14 +8,14 @@
  * Press 'p' to toggle the ellipses' positioning timer.
  * Press 'r' to toggle the ellipses' set-radii timer.
  */
- 
+
 var ellipses;
 var handler;
 var positionTask, radiiTask, colourTask;
 
 
 function setup() {
-    var canvas = createCanvas(640, 360);
+    var canvas = createCanvas(600, 338);
     canvas.parent('Ellipses');
     timingHandler = new fpstiming.TimingHandler();
     ellipses = new Array(50);

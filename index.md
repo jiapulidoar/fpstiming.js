@@ -107,6 +107,7 @@ function keyPressed(){
 
 
 <!-- Javascript Code -->
+<!-- Adjust sketch size to 600x338px  -->
 
 <script src="./js/fpstiming.js"></script>
 <script src="./js/p5.js"></script>
